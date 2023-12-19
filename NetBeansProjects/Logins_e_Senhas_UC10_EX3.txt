@@ -1,0 +1,18 @@
+Administrador:
+
+-Login: AdminCenaflix
+-Senha: 101010
+
+
+
+Operador:
+
+-Login: OperaCenaflix
+-Senha: 050505
+
+
+
+Usuario:
+
+-Login: UsuarioCenaflix
+-Senha: 010101
