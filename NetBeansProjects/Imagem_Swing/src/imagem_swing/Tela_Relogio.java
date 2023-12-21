@@ -91,6 +91,7 @@ public class Tela_Relogio extends javax.swing.JFrame {
 
     private void Botao_CliqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_CliqueActionPerformed
        Date data = new Date();
+       
        lblHora.setText(data.toString());
     }//GEN-LAST:event_Botao_CliqueActionPerformed
 
