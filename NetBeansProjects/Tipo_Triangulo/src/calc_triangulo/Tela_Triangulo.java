@@ -47,12 +47,13 @@ public class Tela_Triangulo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(600, 370));
+        setPreferredSize(new java.awt.Dimension(600, 385));
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        sldA.setMaximum(10);
+        sldA.setMaximum(20);
+        sldA.setValue(0);
         sldA.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 sldAStateChanged(evt);
@@ -60,7 +61,8 @@ public class Tela_Triangulo extends javax.swing.JFrame {
         });
         getContentPane().add(sldA, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
-        sldB.setMaximum(10);
+        sldB.setMaximum(20);
+        sldB.setValue(0);
         sldB.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 sldBStateChanged(evt);
@@ -68,7 +70,8 @@ public class Tela_Triangulo extends javax.swing.JFrame {
         });
         getContentPane().add(sldB, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, -1));
 
-        sldC.setMaximum(10);
+        sldC.setMaximum(20);
+        sldC.setValue(0);
         sldC.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 sldCStateChanged(evt);
@@ -165,27 +168,32 @@ public class Tela_Triangulo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarActionPerformed
-       Painel1.setVisible(true);
-       int a, b, c;
-       a = Integer.parseInt(ValorA.getText());
-       b = Integer.parseInt(ValorB.getText());
-       c = Integer.parseInt(ValorC.getText());
-       
-       if((a == 0) || (b == 0) || (c == 0)){
-           lblFormaTriangulo.setText("Não forma um Triangulo");
-           lblTipoTriangulo.setText("-");
-           
-       }else{
-       if((a!=b) && (a!=c) && (b!=c)){
-           lblFormaTriangulo.setText("Forma um Triangulo");
-           lblTipoTriangulo.setText("Isosceles");
-       }else if(a == b && b == c){
-           lblFormaTriangulo.setText("Forma um Triangulo");
-           lblTipoTriangulo.setText("Equilatero");
-       }else{
-           lblFormaTriangulo.setText("Forma um Triangulo");
-           lblTipoTriangulo.setText("Escaleno");
-       }}
+        Painel1.setVisible(true);
+        int a, b, c;
+        a = Integer.parseInt(ValorA.getText());
+        b = Integer.parseInt(ValorB.getText());
+        c = Integer.parseInt(ValorC.getText());
+
+        if ((a == 0) || (b == 0) || (c == 0)) {
+            lblFormaTriangulo.setText("Não forma um Triangulo");
+            lblTipoTriangulo.setText("-");
+
+        } else if (a <= b + c && b <= a + c && c <= a + b) {
+
+            if ((a != b) && (a != c) && (b != c)) {
+                lblFormaTriangulo.setText("Forma um Triangulo");
+                lblTipoTriangulo.setText("Isosceles");
+            } else if (a == b && b == c) {
+                lblFormaTriangulo.setText("Forma um Triangulo");
+                lblTipoTriangulo.setText("Equilatero");
+            } else {
+                lblFormaTriangulo.setText("Forma um Triangulo");
+                lblTipoTriangulo.setText("Escaleno");
+            }
+        } else {
+            lblFormaTriangulo.setText("Não forma um Triangulo");
+            lblTipoTriangulo.setText("-");
+        }
     }//GEN-LAST:event_btnVerificarActionPerformed
 
     private void sldAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldAStateChanged
