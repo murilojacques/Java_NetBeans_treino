@@ -169,6 +169,8 @@ public class Tela_Atualizar1 extends javax.swing.JFrame {
 
     private void Botao_AtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AtualizarActionPerformed
         java.sql.Statement st = null;
+        Conexao2 con = new Conexao2();
+        con.conectar();
         
         String nome="'"+Campo_Nome.getText()+"'";
         String data="'"+Campo_Data.getText()+"'";

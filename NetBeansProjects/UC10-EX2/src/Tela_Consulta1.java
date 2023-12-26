@@ -6,6 +6,7 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -16,37 +17,29 @@ import java.sql.SQLException;
  * @author Murilo
  */
 public class Tela_Consulta1 extends javax.swing.JFrame {
-/**
-     private static final List<Filmes> lista = new ArrayList<>();
-    
-    public static List<Filmes> Listar() {
-          return lista;
-      }
-     public static void Adicionar(Filmes paciente) {
-          lista.add(paciente);
-     }
-     
-     
-     public static void Atualizar(){
-         String[] colunas = { "Nome", "Data de Lançamento", "Categoria"};
-  DefaultTableModel tabelaModelo = new DefaultTableModel(colunas, 0);
- List<Filmes> listaCompleta = new ArrayList();
-  listaCompleta = Tela_Consulta.Listar();
- 
-  
-   for(int i=0; i<listaCompleta.size(); i++) {
-     
-      Filmes FilmeAtual = listaCompleta.get(i);
-      String[] linha = { 
-            FilmeAtual.getFilmeNome(),
-            FilmeAtual.getFilmeData(),
-            FilmeAtual.getFilmeCategoria()
-      };
-       tabelaModelo.addRow(linha);
-  }
- Tabela1.setModel(tabelaModelo);
-    };**/   
-     
+
+    /**
+     * private static final List<Filmes> lista = new ArrayList<>();
+     *
+     * public static List<Filmes> Listar() { return lista; } public static void
+     * Adicionar(Filmes paciente) { lista.add(paciente); }
+     *
+     *
+     * public static void Atualizar(){ String[] colunas = { "Nome", "Data de
+     * Lançamento", "Categoria"}; DefaultTableModel tabelaModelo = new
+     * DefaultTableModel(colunas, 0); List<Filmes> listaCompleta = new
+     * ArrayList(); listaCompleta = Tela_Consulta.Listar();
+     *
+     *
+     * for(int i=0; i<listaCompleta.size(); i++) {
+     *
+     * Filmes FilmeAtual = listaCompleta.get(i); String[] linha = {
+     * FilmeAtual.getFilmeNome(), FilmeAtual.getFilmeData(),
+     * FilmeAtual.getFilmeCategoria() }; tabelaModelo.addRow(linha); }
+     * Tabela1.setModel(tabelaModelo);
+    };*
+     */
+
     public Tela_Consulta1() {
         initComponents();
     }
@@ -125,50 +118,48 @@ public class Tela_Consulta1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Botao_ConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ConsultaActionPerformed
-        java.sql.Statement st;
+        java.sql.Statement st=null;
         ResultSet rs;
+        Conexao2 con = new Conexao2();
+        con.conectar();
         int ID = Integer.parseInt(Campo_ID.getText());
-        String id= Campo_ID.getText();
-      String sql=  "SELECT * from filmes WHERE id ="+"'"+id+"'";
-       
-      try {
-      st = Conexao2.conn.createStatement();
-        
+        String id = Campo_ID.getText();
+        String sql = "SELECT * from filmes WHERE id =" + "'" + id + "'";
+
+        try {
+            st= Conexao2.conn.createStatement();
+
             Filmes1 filme = new Filmes1();
-            
+
             rs = st.executeQuery(sql);
             //verificar se a consulta encontrou o funcionário com a matrícula informada
-            if(rs.next()){ // se encontrou o funcionário, vamos carregar os dados
-               filme.setFilmeNome(rs.getString("nome"));
-               filme.setFilmeData(rs.getString("datalancamento"));
-               filme.setFilmeCategoria(rs.getString("categoria"));
-              }else{
-                
+            if (rs.next()) { // se encontrou o funcionário, vamos carregar os dados
+                filme.setFilmeNome(rs.getString("nome"));
+                filme.setFilmeData(rs.getString("datalancamento"));
+                filme.setFilmeCategoria(rs.getString("categoria"));
+            } else {
+
             }
         } catch (SQLException ex) {
             System.out.println("Erro ao conectar: " + ex.getMessage());
-            
-        } 
-               
-                String[] colunas = { "Nome", "Data de Lançamento", "Categoria"};
-  DefaultTableModel tabelaModelo = new DefaultTableModel(colunas, 0);
- List<Filmes1> listaCompleta = new ArrayList();
-  
- 
-  
-   
-     
-      Filmes1 FilmeAtual = listaCompleta.get(ID);
-      String[] linha = { 
+
+        }
+
+        String[] colunas = {"Nome", "Data de Lançamento", "Categoria"};
+        DefaultTableModel tabelaModelo = new DefaultTableModel(colunas, 0);
+        List<Filmes1> listaCompleta = new ArrayList();
+
+        Filmes1 FilmeAtual = listaCompleta.get(ID);
+        String[] linha = {
             FilmeAtual.getFilmeNome(),
             FilmeAtual.getFilmeData(),
             FilmeAtual.getFilmeCategoria()
-      };
-       tabelaModelo.addRow(linha);
-  
- Tabela1.setModel(tabelaModelo);
-       
-            
+        };
+        tabelaModelo.addRow(linha);
+
+        Tabela1.setModel(tabelaModelo);
+
+
     }//GEN-LAST:event_Botao_ConsultaActionPerformed
 
     /**

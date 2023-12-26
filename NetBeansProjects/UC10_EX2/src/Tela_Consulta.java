@@ -130,10 +130,7 @@ public class Tela_Consulta extends javax.swing.JFrame {
                
                 String[] colunas = { "Nome", "Data de Lançamento", "Categoria"};
   DefaultTableModel tabelaModelo = new DefaultTableModel(colunas, 0);
- List<Filmes> listaCompleta = new ArrayList();
-  
-      
-      Filmes FilmeAtual = new Filmes();
+ 
       
       String[] linha = { 
            nome,
