@@ -26,6 +26,8 @@ public class Podcast {
     private String URL="";
 
     
+
+    
     
     public int getId() {
         return id;
