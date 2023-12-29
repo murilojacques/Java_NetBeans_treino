@@ -4,6 +4,9 @@
  */
 package programacao_oo_03;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Murilo
@@ -13,8 +16,14 @@ public class Conta_Bancaria {
     String tipo;
     String dono;
     float saldo;
-    boolean status;
-
+    boolean Conta_Aberta;
+    
+    public Conta_Bancaria(){
+        this.tipo = "";
+        this.abrirC();
+        this.saldo = 0.0f;
+    }
+    
     public Conta_Bancaria(int numConta, String dono) {
         this.numConta = numConta;
         this.dono = dono;
@@ -52,21 +61,21 @@ public class Conta_Bancaria {
         this.saldo = saldo;
     }
 
-    public boolean getStatus() {
-        return status;
+    public boolean getConta_Aberta() {
+        return Conta_Aberta;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setConta_Aberta(boolean Conta_Aberta) {
+        this.Conta_Aberta = Conta_Aberta;
     }
     
     
     public void fecharC(){
-        this.status = false;
+        this.Conta_Aberta = false;
     }
     
     public void abrirC(){
-        this.status = true;
+        this.Conta_Aberta = true;
     }
     
     public void depositar(float f){
@@ -85,4 +94,7 @@ public class Conta_Bancaria {
         this.saldo -= p;
         System.out.println("\nPagamento Realizado Com Sucesso");
     }
+    
+    
+    
 }

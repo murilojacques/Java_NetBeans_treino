@@ -55,7 +55,7 @@ public class PodcastDAO {
       List Podcast = null;
       
       try{
-          String textoQuery = "SELECT p FROM Podcast p "+"WHERE (:produtor IS NULL OR p.produtor LIKE :produtor)";
+          String textoQuery = "SELECT p FROM Podcast p "+" WHERE (:produtor IS NULL OR p.produtor LIKE :produtor)";
           
           Query listagem = em.createQuery(textoQuery);
           
