@@ -19,7 +19,7 @@ import java.io.Serializable;
  */
  @Entity
  @Table(name = "conta", uniqueConstraints = {
-    @UniqueConstraint(columnNames = "id") })
+ @UniqueConstraint(columnNames = "id") })
 public class conta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -76,4 +76,6 @@ public class conta implements Serializable {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+   
 }

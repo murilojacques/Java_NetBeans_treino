@@ -30,20 +30,18 @@ public class Tela_DepositarSacar extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         Botao_Depositar = new javax.swing.JButton();
         Botao_Sacar = new javax.swing.JButton();
         Campo_ID = new javax.swing.JTextField();
-        Campo_Depositar = new javax.swing.JTextField();
-        Campo_Sacar = new javax.swing.JTextField();
+        Campo_Valor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Informe o id de sua Conta:");
 
-        jLabel2.setText("Valor a Ser depositado: ");
-
-        jLabel3.setText("Valor a ser Sacado: ");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Valor: ");
 
         Botao_Depositar.setText("Depositar");
         Botao_Depositar.addActionListener(new java.awt.event.ActionListener() {
@@ -64,25 +62,23 @@ public class Tela_DepositarSacar extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Campo_Valor, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Botao_Depositar)
-                        .addComponent(jLabel2)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                        .addComponent(Botao_Sacar)
-                        .addGap(54, 54, 54))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Campo_ID, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                            .addComponent(Campo_Depositar)
-                            .addComponent(Campo_Sacar))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Campo_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addComponent(Botao_Depositar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Botao_Sacar)
+                .addGap(59, 59, 59))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,44 +90,53 @@ public class Tela_DepositarSacar extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(Campo_Depositar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(Campo_Sacar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(75, 75, 75)
+                    .addComponent(Campo_Valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Botao_Depositar)
                     .addComponent(Botao_Sacar))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void Botao_DepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_DepositarActionPerformed
+       conta c = cdao.obter(Integer.parseInt(Campo_ID.getText()));
         float deposito=0.0f;
-        conta c = cdao.obter(Integer.parseInt(Campo_ID.getText()));
+        
+        if(c.isStatus() == true){
         if(!Campo_ID.equals(null)){
           deposito = c.getSaldo();
-          deposito+=Float.valueOf( Campo_Depositar.getText().replace(",", "."));
+          deposito+=Float.valueOf( Campo_Valor.getText().replace(",", "."));
           c.setSaldo(deposito);
           cdao.atualizar(c);
         }else{
             JOptionPane.showMessageDialog(null, "Informe o ID de sua Conta");
+        }}else{
+            JOptionPane.showMessageDialog(null, "A Conta em Questao esta Fechada e nao e possivel depositar nem sacar valor dela");
         }
     }//GEN-LAST:event_Botao_DepositarActionPerformed
 
     private void Botao_SacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_SacarActionPerformed
-        float sacar=0.0f;
         conta c = cdao.obter(Integer.parseInt(Campo_ID.getText()));
+        float sacar=0.0f;
+        
+        if(c.isStatus() == true){
         if(!Campo_ID.equals(null)){
+            
           sacar = c.getSaldo();
-          sacar-=Float.valueOf( Campo_Sacar.getText().replace(",", "."));
+          if(sacar >= Float.valueOf( Campo_Valor.getText().replace(",", "."))){
+          sacar-=Float.valueOf( Campo_Valor.getText().replace(",", "."));
           c.setSaldo(sacar);
           cdao.atualizar(c);
+          }else{
+              JOptionPane.showMessageDialog(null, "O valor a ser sacado e maior que o valor total armazenado na conta, nao e possivel fazer a retirada");
+          }
         }else{
             JOptionPane.showMessageDialog(null, "Informe o ID de sua Conta");
+        }}else{
+            JOptionPane.showMessageDialog(null, "A Conta em Questao esta Fechada e nao e possivel depositar nem sacar valor dela");
         }
     }//GEN-LAST:event_Botao_SacarActionPerformed
 
@@ -173,11 +178,9 @@ public class Tela_DepositarSacar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Botao_Depositar;
     private javax.swing.JButton Botao_Sacar;
-    private javax.swing.JTextField Campo_Depositar;
     private javax.swing.JTextField Campo_ID;
-    private javax.swing.JTextField Campo_Sacar;
+    private javax.swing.JTextField Campo_Valor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

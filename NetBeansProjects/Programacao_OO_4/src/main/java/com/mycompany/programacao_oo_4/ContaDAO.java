@@ -71,12 +71,12 @@ public class ContaDAO {
         EntityManager em = EntityManagement.getEntityManager();
 
         try {
-            //conta c = em.find(conta.class, id);
-            //if (c != null) {
+            conta c = em.find(conta.class, id);
+            if (c != null) {
                 em.getTransaction().begin();
-                em.remove(id);
+                em.remove(c);
                 em.getTransaction().commit();
-            //}
+            }
         } catch (Exception e) {
             em.getTransaction().rollback();
             throw e;

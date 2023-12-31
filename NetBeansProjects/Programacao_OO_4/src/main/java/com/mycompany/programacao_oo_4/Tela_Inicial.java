@@ -55,6 +55,11 @@ public class Tela_Inicial extends javax.swing.JFrame {
         });
 
         Botao_AlterarStatus.setText("Alterar Status de Conta");
+        Botao_AlterarStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_AlterarStatusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,6 +106,11 @@ public class Tela_Inicial extends javax.swing.JFrame {
        Tela_ExcluirCon tec = new Tela_ExcluirCon();
        tec.setVisible(true);
     }//GEN-LAST:event_Botao_ApagarConActionPerformed
+
+    private void Botao_AlterarStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AlterarStatusActionPerformed
+        Tela_AbrirFechar taf = new Tela_AbrirFechar();
+        taf.setVisible(true);
+    }//GEN-LAST:event_Botao_AlterarStatusActionPerformed
 
     /**
      * @param args the command line arguments
