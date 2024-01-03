@@ -108,28 +108,9 @@ public class Tela_CriarCon extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         conta c = new conta();
         boolean st = (!Campo_Status.getText().equals("Aberta")) ? false : true;
-
-        try {
-            if(Campo_Nome.equals(null)){
-            if (!Campo_TConta.equals("cc") && !Campo_TConta.equals("cp")) {
-            c.setDono(Campo_Nome.getText());
-            if (Campo_TConta.equals("cc")) {
-                c.setTipo(Campo_TConta.getText());
-                c.setSaldo(50.0f);
-            } else if (Campo_TConta.equals("cp")) {
-                c.setTipo(Campo_TConta.getText());
-                c.setSaldo(150.0f);
-            }
-            c.setStatus(st);
-            
-            ContaDAO cdao = new ContaDAO();
-            cdao.cadastrar(c);
-            }}else{
-                JOptionPane.showMessageDialog(null,"<html>Todos os campos devem estar preenchidos, sendo que os unicos tipos de Conta Aceitos sao cc [Conta Corrente]\n e cp [Conta Poupanca], por favor verifique se os campos estao corretamente preenchidos</html>");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ocorreu uma falha:\n" + e.getMessage());
-        }
+        ContaDAO cdao = new ContaDAO();
+        c.abrirCon(Campo_TConta.getText(), Campo_Nome.getText(), st, cdao);    
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

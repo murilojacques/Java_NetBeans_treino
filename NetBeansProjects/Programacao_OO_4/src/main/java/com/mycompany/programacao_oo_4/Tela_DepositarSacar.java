@@ -102,41 +102,22 @@ public class Tela_DepositarSacar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Botao_DepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_DepositarActionPerformed
-       conta c = cdao.obter(Integer.parseInt(Campo_ID.getText()));
-        float deposito=0.0f;
-        
-        if(c.isStatus() == true){
-        if(!Campo_ID.equals(null)){
-          deposito = c.getSaldo();
-          deposito+=Float.valueOf( Campo_Valor.getText().replace(",", "."));
-          c.setSaldo(deposito);
-          cdao.atualizar(c);
+       if(!Campo_ID.equals(null)){
+        conta c = cdao.obter(Integer.parseInt(Campo_ID.getText()));
+        float deposito=Float.valueOf( Campo_Valor.getText().replace(",", "."));;
+        c.depoitar(deposito, cdao);
         }else{
             JOptionPane.showMessageDialog(null, "Informe o ID de sua Conta");
-        }}else{
-            JOptionPane.showMessageDialog(null, "A Conta em Questao esta Fechada e nao e possivel depositar nem sacar valor dela");
         }
     }//GEN-LAST:event_Botao_DepositarActionPerformed
 
     private void Botao_SacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_SacarActionPerformed
-        conta c = cdao.obter(Integer.parseInt(Campo_ID.getText()));
-        float sacar=0.0f;
-        
-        if(c.isStatus() == true){
         if(!Campo_ID.equals(null)){
-            
-          sacar = c.getSaldo();
-          if(sacar >= Float.valueOf( Campo_Valor.getText().replace(",", "."))){
-          sacar-=Float.valueOf( Campo_Valor.getText().replace(",", "."));
-          c.setSaldo(sacar);
-          cdao.atualizar(c);
-          }else{
-              JOptionPane.showMessageDialog(null, "O valor a ser sacado e maior que o valor total armazenado na conta, nao e possivel fazer a retirada");
-          }
+        conta c = cdao.obter(Integer.parseInt(Campo_ID.getText()));
+        float sacar=Float.valueOf( Campo_Valor.getText().replace(",", "."));
+        c.sacar(sacar, cdao);
         }else{
             JOptionPane.showMessageDialog(null, "Informe o ID de sua Conta");
-        }}else{
-            JOptionPane.showMessageDialog(null, "A Conta em Questao esta Fechada e nao e possivel depositar nem sacar valor dela");
         }
     }//GEN-LAST:event_Botao_SacarActionPerformed
 

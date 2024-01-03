@@ -29,7 +29,7 @@ public class ContaDAO {
             EntityManagement.closeEntityManager();
         }
     }
-
+    
     public List<conta> listar(String id) {
         EntityManager em = EntityManagement.getEntityManager();
         List conta = null;
