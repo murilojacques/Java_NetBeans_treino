@@ -21,9 +21,9 @@ public interface Controlador {
      
      public abstract int menosVolume();
      
-     public abstract void ligarMudo();
+     public abstract String ligarMudo();
      
-     public abstract void desligarMudo();
+     public abstract int desligarMudo();
      
      public abstract void play();
      

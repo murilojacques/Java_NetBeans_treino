@@ -18,12 +18,12 @@ public class Programacao_OO_05 {
         Scanner a = new Scanner(System.in);
         Controle c = new Controle();
 
-        
-
         try {
             System.out.print("Voce deseja ligar o sistema [S/N] ");
         String ls = a.nextLine();
             if (ls.equals("S")) {
+                
+                
                 c.ligar();
             } else if (ls.equals("N")) {
                 System.out.println("Finalizando programa");

@@ -13,8 +13,11 @@ public class Tela_Dois extends javax.swing.JFrame {
     /**
      * Creates new form Tela_Inicial
      */
+    Controle c =new Controle();
     public Tela_Dois() {
         initComponents();
+        
+        
     }
 
     /**
@@ -30,13 +33,18 @@ public class Tela_Dois extends javax.swing.JFrame {
         lblVolume = new javax.swing.JLabel();
         Botao_AumentaVolume = new javax.swing.JButton();
         Botao_DiminuiVolume = new javax.swing.JButton();
+        Botao_Mudo = new javax.swing.JButton();
+        Botao_Desmutar = new javax.swing.JButton();
+        Botao_Play = new javax.swing.JButton();
+        Botao_Pause = new javax.swing.JButton();
+        Botao_FecharMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel1.setText("Volume: ");
 
-        lblVolume.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblVolume.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         lblVolume.setText("0");
 
         Botao_AumentaVolume.setText("Aumentar volume");
@@ -47,47 +55,134 @@ public class Tela_Dois extends javax.swing.JFrame {
         });
 
         Botao_DiminuiVolume.setText("Diminuir Volume");
+        Botao_DiminuiVolume.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_DiminuiVolumeActionPerformed(evt);
+            }
+        });
+
+        Botao_Mudo.setText("Mutar");
+        Botao_Mudo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_MudoActionPerformed(evt);
+            }
+        });
+
+        Botao_Desmutar.setText("Desmutar");
+        Botao_Desmutar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_DesmutarActionPerformed(evt);
+            }
+        });
+
+        Botao_Play.setText("Play");
+        Botao_Play.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_PlayActionPerformed(evt);
+            }
+        });
+
+        Botao_Pause.setText("Pause");
+        Botao_Pause.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_PauseActionPerformed(evt);
+            }
+        });
+
+        Botao_FecharMenu.setText("Fechar Menu");
+        Botao_FecharMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_FecharMenuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblVolume)
-                .addGap(71, 71, 71)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Botao_DiminuiVolume, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Botao_AumentaVolume, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(99, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Botao_FecharMenu))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(Botao_AumentaVolume)
+                                    .addComponent(Botao_DiminuiVolume, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Botao_Desmutar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Botao_Mudo, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblVolume, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Botao_Pause)
+                            .addComponent(Botao_Play))))
+                .addGap(56, 56, 56))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(Botao_AumentaVolume)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Botao_DiminuiVolume))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(lblVolume))))
-                .addContainerGap(216, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(Botao_Play)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Botao_Pause)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Botao_FecharMenu)
+                .addGap(24, 24, 24))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(38, 44, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblVolume))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Botao_AumentaVolume)
+                    .addComponent(Botao_Mudo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Botao_DiminuiVolume)
+                    .addComponent(Botao_Desmutar))
+                .addGap(56, 56, 56))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void Botao_AumentaVolumeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AumentaVolumeActionPerformed
-        Controle c =new Controle();
-        int v = c.maisVolume();
-        lblVolume.setText(String.valueOf(v));
+         lblVolume.setText(String.valueOf(c.maisVolume()));
     }//GEN-LAST:event_Botao_AumentaVolumeActionPerformed
+
+    private void Botao_DiminuiVolumeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_DiminuiVolumeActionPerformed
+         lblVolume.setText(String.valueOf(c.menosVolume()));
+    }//GEN-LAST:event_Botao_DiminuiVolumeActionPerformed
+
+    private void Botao_MudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_MudoActionPerformed
+        lblVolume.setText(c.ligarMudo());
+    }//GEN-LAST:event_Botao_MudoActionPerformed
+
+    private void Botao_DesmutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_DesmutarActionPerformed
+        lblVolume.setText(String.valueOf(c.desligarMudo()));
+    }//GEN-LAST:event_Botao_DesmutarActionPerformed
+
+    private void Botao_PlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_PlayActionPerformed
+       c.play();
+    }//GEN-LAST:event_Botao_PlayActionPerformed
+
+    private void Botao_PauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_PauseActionPerformed
+        c.pause();
+    }//GEN-LAST:event_Botao_PauseActionPerformed
+
+    private void Botao_FecharMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_FecharMenuActionPerformed
+       
+        c.fecharMenu();
+    }//GEN-LAST:event_Botao_FecharMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,7 +222,12 @@ public class Tela_Dois extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Botao_AumentaVolume;
+    private javax.swing.JButton Botao_Desmutar;
     private javax.swing.JButton Botao_DiminuiVolume;
+    private javax.swing.JButton Botao_FecharMenu;
+    private javax.swing.JButton Botao_Mudo;
+    private javax.swing.JButton Botao_Pause;
+    private javax.swing.JButton Botao_Play;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblVolume;
     // End of variables declaration//GEN-END:variables

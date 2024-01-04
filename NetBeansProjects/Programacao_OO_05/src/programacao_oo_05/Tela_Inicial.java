@@ -13,6 +13,7 @@ public class Tela_Inicial extends javax.swing.JFrame {
     /**
      * Creates new form Tela_Inicial
      */
+    Controle c = new Controle();
     public Tela_Inicial() {
         initComponents();
     }
@@ -26,14 +27,22 @@ public class Tela_Inicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        Botao_AbrirMenu = new javax.swing.JButton();
+        Botao_Fechar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Tela_Dois");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Botao_AbrirMenu.setText("Abrir Menu");
+        Botao_AbrirMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                Botao_AbrirMenuActionPerformed(evt);
+            }
+        });
+
+        Botao_Fechar.setText("Fechar");
+        Botao_Fechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_FecharActionPerformed(evt);
             }
         });
 
@@ -41,26 +50,35 @@ public class Tela_Inicial extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(264, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(57, 57, 57))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Botao_AbrirMenu)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(Botao_Fechar)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jButton1)
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addComponent(Botao_AbrirMenu)
+                .addGap(18, 18, 18)
+                .addComponent(Botao_Fechar)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Tela_Dois td = new Tela_Dois();
-        td.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void Botao_AbrirMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AbrirMenuActionPerformed
+        c.abrirMenu();  
+    }//GEN-LAST:event_Botao_AbrirMenuActionPerformed
+
+    private void Botao_FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_FecharActionPerformed
+        c.desligar();
+    }//GEN-LAST:event_Botao_FecharActionPerformed
 
     /**
      * @param args the command line arguments
@@ -98,6 +116,7 @@ public class Tela_Inicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton Botao_AbrirMenu;
+    private javax.swing.JButton Botao_Fechar;
     // End of variables declaration//GEN-END:variables
 }
