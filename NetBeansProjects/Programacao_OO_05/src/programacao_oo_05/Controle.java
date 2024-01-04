@@ -14,7 +14,7 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 public class Controle implements Controlador {
 
     boolean ligado;
-    int volume;
+    int volume = 50;
     boolean tocando;
     static Controle c = new Controle();
     static Tela_Inicial ti = new Tela_Inicial();
@@ -69,7 +69,7 @@ public class Controle implements Controlador {
 
     @Override
     public void fecharMenu() {
-
+        
         
         td.dispose();
         JOptionPane.showMessageDialog(null, "Menu fechado com sucesso!");
@@ -109,7 +109,7 @@ public class Controle implements Controlador {
 
     @Override
     public void play() {
-        if (this.isTocando() != true) {
+        if (this.isTocando() != true && this.isLigado()== true) {
             this.setTocando(true);
             JOptionPane.showMessageDialog(null, "Play iniciado");
         } else {
@@ -120,7 +120,7 @@ public class Controle implements Controlador {
 
     @Override
     public void pause() {
-        if (this.isTocando() != false) {
+        if (this.isTocando() != false && this.isLigado()== true) {
             this.setTocando(false);
             JOptionPane.showMessageDialog(null, "Pausado");
         } else {
