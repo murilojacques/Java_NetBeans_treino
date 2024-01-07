@@ -4,7 +4,9 @@
  */
 package com.mycompany.projeto_uec_db;
 
+import java.awt.event.KeyEvent;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -38,7 +40,10 @@ public class Tela_Consulta extends javax.swing.JFrame {
     }
     
     int i;
+     int r;
+     int c;
     Object a;
+    
     public Tela_Consulta() {
         initComponents();
         ParticipantesDAO pdao = new ParticipantesDAO();
@@ -58,13 +63,20 @@ public class Tela_Consulta extends javax.swing.JFrame {
         Excluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabela1 = new javax.swing.JTable();
+        Botao_Filtrar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        Campo_Filtro = new javax.swing.JTextField();
+        Botao_Voltar = new javax.swing.JButton();
+        Botao_Atualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Tabela de Consulta de Dados");
 
+        Excluir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Excluir.setText("Excluir");
+        Excluir.setToolTipText("Selecione o campo id do lutador para poder exclui-lo");
         Excluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ExcluirActionPerformed(evt);
@@ -85,7 +97,41 @@ public class Tela_Consulta extends javax.swing.JFrame {
                 Tabela1MouseClicked(evt);
             }
         });
+        Tabela1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Tabela1KeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(Tabela1);
+
+        Botao_Filtrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Botao_Filtrar.setText("Filtrar");
+        Botao_Filtrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_FiltrarActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Nome do Lutador: ");
+
+        Campo_Filtro.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        Botao_Voltar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Botao_Voltar.setText("Voltar");
+        Botao_Voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_VoltarActionPerformed(evt);
+            }
+        });
+
+        Botao_Atualizar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Botao_Atualizar.setText("Atualizar");
+        Botao_Atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_AtualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,21 +142,45 @@ public class Tela_Consulta extends javax.swing.JFrame {
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1)
-                .addGap(205, 205, 205)
-                .addComponent(Excluir)
-                .addContainerGap(210, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Campo_Filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(Botao_Filtrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Botao_Atualizar)
+                        .addGap(92, 92, 92)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Excluir)
+                        .addGap(96, 96, 96))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Botao_Voltar)
+                        .addGap(29, 29, 29))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(Excluir))
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+                    .addComponent(Excluir)
+                    .addComponent(Botao_Atualizar))
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(Campo_Filtro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Botao_Filtrar)
+                    .addComponent(Botao_Voltar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -129,12 +199,35 @@ public class Tela_Consulta extends javax.swing.JFrame {
     }//GEN-LAST:event_ExcluirActionPerformed
 
     private void Tabela1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabela1MouseClicked
-        int r = Tabela1.getSelectedRow();
-        int c = Tabela1.getSelectedColumn();
+         r = Tabela1.getSelectedRow();
+         c = Tabela1.getSelectedColumn();
          a = Tabela1.getModel().getValueAt(r, c);
         
          System.out.println(a);
     }//GEN-LAST:event_Tabela1MouseClicked
+
+    private void Botao_FiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_FiltrarActionPerformed
+        ParticipantesDAO pdao = new ParticipantesDAO();
+        
+       List<participantes> ResultadoConsulta = pdao.ListarFiltro(Campo_Filtro.getText());
+       preencherTabela (ResultadoConsulta);
+    }//GEN-LAST:event_Botao_FiltrarActionPerformed
+
+    private void Botao_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_VoltarActionPerformed
+       dispose();
+    }//GEN-LAST:event_Botao_VoltarActionPerformed
+
+    private void Botao_AtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AtualizarActionPerformed
+        ParticipantesDAO pdao = new ParticipantesDAO();
+        participantes p = pdao.obter(a);
+        
+        pdao.atualizar(p);
+        preencherTabela(pdao.Listar());
+    }//GEN-LAST:event_Botao_AtualizarActionPerformed
+
+    private void Tabela1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Tabela1KeyPressed
+       
+    }//GEN-LAST:event_Tabela1KeyPressed
 
     /**
      * @param args the command line arguments
@@ -172,9 +265,14 @@ public class Tela_Consulta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Botao_Atualizar;
+    private javax.swing.JButton Botao_Filtrar;
+    private javax.swing.JButton Botao_Voltar;
+    private javax.swing.JTextField Campo_Filtro;
     private javax.swing.JButton Excluir;
     private javax.swing.JTable Tabela1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

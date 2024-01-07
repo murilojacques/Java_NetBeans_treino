@@ -27,7 +27,6 @@ public class Tela_Inicial extends javax.swing.JFrame {
     private void initComponents() {
 
         Botao_Cadastrar = new javax.swing.JButton();
-        Botao_Excluir = new javax.swing.JButton();
         Botao_Consulta = new javax.swing.JButton();
         Botao_Atualizar = new javax.swing.JButton();
         Botao_MarcarLuta = new javax.swing.JButton();
@@ -41,9 +40,6 @@ public class Tela_Inicial extends javax.swing.JFrame {
                 Botao_CadastrarActionPerformed(evt);
             }
         });
-
-        Botao_Excluir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Botao_Excluir.setText("Excluir");
 
         Botao_Consulta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Botao_Consulta.setText("Consulta");
@@ -66,16 +62,11 @@ public class Tela_Inicial extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Botao_Excluir)
-                            .addComponent(Botao_Consulta))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Botao_Cadastrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                        .addComponent(Botao_Atualizar)
-                        .addGap(68, 68, 68))))
+                    .addComponent(Botao_Consulta)
+                    .addComponent(Botao_Cadastrar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addComponent(Botao_Atualizar)
+                .addGap(66, 66, 66))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Botao_MarcarLuta)
@@ -84,15 +75,16 @@ public class Tela_Inicial extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Botao_Cadastrar)
-                    .addComponent(Botao_Atualizar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Botao_Consulta)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Botao_Excluir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(Botao_Cadastrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Botao_Consulta))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(Botao_Atualizar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addComponent(Botao_MarcarLuta)
                 .addGap(76, 76, 76))
         );
@@ -150,7 +142,6 @@ public class Tela_Inicial extends javax.swing.JFrame {
     private javax.swing.JButton Botao_Atualizar;
     private javax.swing.JButton Botao_Cadastrar;
     private javax.swing.JButton Botao_Consulta;
-    private javax.swing.JButton Botao_Excluir;
     private javax.swing.JButton Botao_MarcarLuta;
     // End of variables declaration//GEN-END:variables
 }
