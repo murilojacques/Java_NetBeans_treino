@@ -1,0 +1,28 @@
+CREATE DATABASE `uec`;
+
+CREATE TABLE `participantes`(
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `nome` VARCHAR(50) NOT NULL,
+    `idade` INT NOT NULL,
+    `altura` FLOAT(4,1) NOT NULL,
+    `nacionalidade` VARCHAR(70) NOT NULL,
+    `peso` FLOAT(4,1) NOT NULL,
+    `categoria` VARCHAR(40) NOT NULL,
+    `vitorias` INT NOT NULL,
+    `derrotas` INT NOT NULL,
+    `empates` INT NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `luta`(
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `desafiado_id` INT NOT NULL,
+    `desafiante_id` INT NOT NULL,
+    `rounds` INT NOT NULL,
+    `aprovada` VARCHAR(20) NOT NULL,
+    `data` DATE NOT NULL,
+    CONSTRAINT desafiado_fk FOREIGN KEY(desafiado_id) REFERENCES participantes(id),
+    CONSTRAINT desafiante_fk FOREIGN KEY(desafiante_id) REFERENCES participantes(id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+select * FROM participantes;
+select * FROM luta;

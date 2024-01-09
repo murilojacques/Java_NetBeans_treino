@@ -30,25 +30,28 @@ public class conta implements Serializable {
     private String endereco ="";
     
     private int cpf = 0;
+    
+    private int cnpj = 0;
 
     private String tipo = "";
 
     private float saldo = 0.0f;
 
     private boolean status;
+    
+    private String pfpj="";
 
-    public conta(String n, String e, int cpf, String t, float s, boolean st) {
+    public conta(String n, String e, int cpf, int cnpj,String t, float s, boolean st, String pfpj) {
         this.setNome_usuario(n);
         this.setEndereco(e);
         this.setCpf(cpf);
+        this.setCnpj(cnpj);
         this.setTipo(t);
         this.setSaldo(s);
         this.setStatus(st);
+        this.setPfpj(pfpj);
     }
 
-    
-    
-    
     public int getId() {
         return id;
     }
@@ -81,6 +84,14 @@ public class conta implements Serializable {
         this.cpf = cpf;
     }
 
+    public int getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(int cnpj) {
+        this.cnpj = cnpj;
+    }
+
     public String getTipo() {
         return tipo;
     }
@@ -105,6 +116,17 @@ public class conta implements Serializable {
         this.status = status;
     }
 
+    public String getPfpj() {
+        return pfpj;
+    }
+
+    public void setPfpj(String pfpj) {
+        this.pfpj = pfpj;
+    }
+
+    
+    
+    
     public void abrirCon(String t, String n, boolean a, ContaDAO cdao) {
         if (!n.equals(null) && (!t.equals(null))) {
             this.setNome_usuario(n);
