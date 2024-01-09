@@ -18,7 +18,7 @@ public class Tela_Cadastro extends javax.swing.JFrame {
        
     }
 
-    ParticipantesDAO pdao = new ParticipantesDAO();
+    LutadoresDAO pdao = new LutadoresDAO();
     
     
     @SuppressWarnings("unchecked")
@@ -157,7 +157,7 @@ public class Tela_Cadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Botao_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_CadastrarActionPerformed
-       participantes p = new participantes();
+       lutadores p = new lutadores();
        
        try{
            p.setNome(Campo_Nome.getText());
@@ -169,6 +169,7 @@ public class Tela_Cadastro extends javax.swing.JFrame {
            p.setDerrotas(Integer.parseInt(Campo_Derrotas.getText()));
            p.setEmpates(Integer.parseInt(Campo_Empates.getText()));
            
+           System.out.println(p.getAltura());
            pdao.cadastrar(p);
        }catch(Exception e){
            throw e;

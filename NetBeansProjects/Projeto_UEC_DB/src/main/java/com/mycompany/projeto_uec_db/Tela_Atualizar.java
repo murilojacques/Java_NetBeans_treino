@@ -196,11 +196,11 @@ public class Tela_Atualizar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ParticipantesDAO pdao = new ParticipantesDAO();
+        LutadoresDAO pdao = new LutadoresDAO();
         if(!Campo_ID.equals(null)){
             try{
                
-            participantes p = pdao.obter(Campo_ID.getText());
+            lutadores p = pdao.obter(Campo_ID.getText());
                  if(!Campo_Nome.equals(null)){
             p.setNome(Campo_Nome.getText());
                  }else if(!Campo_Idade.equals(null)){

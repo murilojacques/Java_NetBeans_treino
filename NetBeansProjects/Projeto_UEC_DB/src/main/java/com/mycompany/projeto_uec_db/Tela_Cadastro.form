@@ -41,15 +41,11 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="Campo_Nome" alignment="0" pref="223" max="32767" attributes="0"/>
                           <Component id="Campo_Nacionalidade" alignment="0" max="32767" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="Campo_Empates" alignment="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="Campo_Derrotas" alignment="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="Campo_Vitorias" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="Campo_Altura" alignment="0" pref="143" max="32767" attributes="0"/>
-                              <Component id="Campo_Idade" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="Campo_Empates" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="Campo_Derrotas" alignment="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="Campo_Vitorias" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
+                          <Component id="Campo_Altura" alignment="0" pref="143" max="32767" attributes="0"/>
+                          <Component id="Campo_Idade" alignment="0" max="32767" attributes="0"/>
                           <Component id="Campo_Peso" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
                       </Group>
                   </Group>

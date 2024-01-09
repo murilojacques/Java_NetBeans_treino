@@ -59,6 +59,11 @@ public class Tela_Inicial extends javax.swing.JFrame {
 
         Botao_MarcarLuta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Botao_MarcarLuta.setText("Marcar Luta");
+        Botao_MarcarLuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_MarcarLutaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,6 +117,12 @@ public class Tela_Inicial extends javax.swing.JFrame {
        Tela_Atualizar ta = new Tela_Atualizar();
        ta.setVisible(true);
     }//GEN-LAST:event_Botao_AtualizarActionPerformed
+
+    private void Botao_MarcarLutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_MarcarLutaActionPerformed
+        Tela_MarcarLuta tml = new Tela_MarcarLuta();
+        
+        tml.setVisible(true);
+    }//GEN-LAST:event_Botao_MarcarLutaActionPerformed
 
     /**
      * @param args the command line arguments

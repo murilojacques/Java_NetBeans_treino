@@ -15,17 +15,18 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Tela_Consulta extends javax.swing.JFrame {
 
-    public void preencherTabela(List<participantes> p){
+    public void preencherTabela(List<lutadores> p){
         String colunas[] = {"id", "Nome", "idade", "altura", "nacionalidade", "peso", "categoria", "vitorias", "derrotas", "empates"};
         String dados[][] = new String [p.size()][colunas.length];
         
         int i =0;
-        for(participantes r: p){
+        for(lutadores r: p){
             dados[i] = new String[]{
            String.valueOf( r.getId()),
            r.getNome(),
            String.valueOf(r.getIdade()),
            String.valueOf(r.getAltura()),
+           
            r.getNacionalidade(),
            String.valueOf(r.getPeso()),
            r.getCategoria(),
@@ -34,6 +35,7 @@ public class Tela_Consulta extends javax.swing.JFrame {
            String.valueOf(r.getEmpates())
         };
              i++;
+             System.out.println(r.getAltura());
         }
        DefaultTableModel tabelaModelo = new DefaultTableModel(dados, colunas);
         Tabela1.setModel(tabelaModelo);
@@ -46,7 +48,7 @@ public class Tela_Consulta extends javax.swing.JFrame {
     
     public Tela_Consulta() {
         initComponents();
-        ParticipantesDAO pdao = new ParticipantesDAO();
+        LutadoresDAO pdao = new LutadoresDAO();
         preencherTabela(pdao.Listar());
     }
 
@@ -193,7 +195,7 @@ public class Tela_Consulta extends javax.swing.JFrame {
 
    
     private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
-        ParticipantesDAO pdao = new ParticipantesDAO();
+        LutadoresDAO pdao = new LutadoresDAO();
         pdao.Excluir(a);
         preencherTabela(pdao.Listar());
     }//GEN-LAST:event_ExcluirActionPerformed
@@ -207,9 +209,9 @@ public class Tela_Consulta extends javax.swing.JFrame {
     }//GEN-LAST:event_Tabela1MouseClicked
 
     private void Botao_FiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_FiltrarActionPerformed
-        ParticipantesDAO pdao = new ParticipantesDAO();
+        LutadoresDAO pdao = new LutadoresDAO();
         
-       List<participantes> ResultadoConsulta = pdao.ListarFiltro(Campo_Filtro.getText());
+       List<lutadores> ResultadoConsulta = pdao.ListarFiltro(Campo_Filtro.getText());
        preencherTabela (ResultadoConsulta);
     }//GEN-LAST:event_Botao_FiltrarActionPerformed
 
@@ -218,8 +220,8 @@ public class Tela_Consulta extends javax.swing.JFrame {
     }//GEN-LAST:event_Botao_VoltarActionPerformed
 
     private void Botao_AtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AtualizarActionPerformed
-        ParticipantesDAO pdao = new ParticipantesDAO();
-        participantes p = pdao.obter(a);
+        LutadoresDAO pdao = new LutadoresDAO();
+        lutadores p = pdao.obter(a);
         
         pdao.atualizar(p);
         preencherTabela(pdao.Listar());
