@@ -4,7 +4,7 @@ CREATE TABLE `participantes`(
 	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `nome` VARCHAR(50) NOT NULL,
     `idade` INT NOT NULL,
-    `altura` FLOAT(4,2) NOT NULL,
+    `altura` FLOAT(4,1) NOT NULL,
     `nacionalidade` VARCHAR(70) NOT NULL,
     `peso` FLOAT(4,1) NOT NULL,
     `categoria` VARCHAR(40) NOT NULL,
@@ -26,5 +26,3 @@ CREATE TABLE `luta`(
 
 select * FROM participantes;
 select * FROM luta;
-
-9fi5pupp

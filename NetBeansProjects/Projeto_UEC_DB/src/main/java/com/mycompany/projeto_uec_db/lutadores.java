@@ -130,5 +130,15 @@ public class lutadores {
         this.empates = empates;
     }
     
+    public void ganharLuta(){
+        this.setVitorias( this.getVitorias()+1);
+    }
     
+    public void perderLuta(){
+        this.setDerrotas(this.getDerrotas()+1);
+    }
+    
+    public void empateLuta(){
+        this.setEmpates(this.getEmpates()+1);
+    }
 }

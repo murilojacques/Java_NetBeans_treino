@@ -15,12 +15,11 @@ public class Tela_Cadastro extends javax.swing.JFrame {
      */
     public Tela_Cadastro() {
         initComponents();
-       
+
     }
 
     LutadoresDAO pdao = new LutadoresDAO();
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -157,23 +156,23 @@ public class Tela_Cadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Botao_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_CadastrarActionPerformed
-       lutadores p = new lutadores();
-       
-       try{
-           p.setNome(Campo_Nome.getText());
-           p.setIdade(Integer.parseInt(Campo_Idade.getText()));
-           p.setAltura(Float.parseFloat(Campo_Altura.getText().replace(",", ".")));
-           p.setNacionalidade(Campo_Nacionalidade.getText());
-           p.setPeso(Float.parseFloat(Campo_Peso.getText().replace(",", ".")));
-           p.setVitorias(Integer.parseInt(Campo_Vitorias.getText()));
-           p.setDerrotas(Integer.parseInt(Campo_Derrotas.getText()));
-           p.setEmpates(Integer.parseInt(Campo_Empates.getText()));
-           
-           System.out.println(p.getAltura());
-           pdao.cadastrar(p);
-       }catch(Exception e){
-           throw e;
-       }
+        lutadores p = new lutadores();
+
+        try {
+            p.setNome(Campo_Nome.getText());
+            p.setIdade(Integer.parseInt(Campo_Idade.getText()));
+            p.setAltura(Float.parseFloat(Campo_Altura.getText().replace(",", ".")));
+            p.setNacionalidade(Campo_Nacionalidade.getText());
+            p.setPeso(Float.parseFloat(Campo_Peso.getText().replace(",", ".")));
+            p.setVitorias(Integer.parseInt(Campo_Vitorias.getText()));
+            p.setDerrotas(Integer.parseInt(Campo_Derrotas.getText()));
+            p.setEmpates(Integer.parseInt(Campo_Empates.getText()));
+
+            System.out.println(p.getAltura());
+            pdao.cadastrar(p);
+        } catch (Exception e) {
+            throw e;
+        }
     }//GEN-LAST:event_Botao_CadastrarActionPerformed
 
     /**
