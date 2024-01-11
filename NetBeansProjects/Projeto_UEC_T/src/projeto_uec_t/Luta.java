@@ -4,6 +4,8 @@
  */
 package projeto_uec_t;
 
+import java.util.Random;
+
 /**
  *
  * @author Murilo
@@ -64,21 +66,21 @@ public class Luta {
             this.desafiado.apresentar();
             System.out.println("\n");
             this.desafiante.apresentar();
-
-            int vencedor = (int) (1 + Math.random() * (3));
+            Random aleatorio = new Random();
+            int vencedor = aleatorio.nextInt(3);
 
             switch (vencedor) {
-                case 1:
+                case 0:
                     System.out.println("Empatou");
                     this.desafiado.empatarLuta();
                     this.desafiante.empatarLuta();
                     break;
-                case 2:
+                case 1:
                     System.out.println("Desafiante " + this.desafiante.getNome() + " Venceu");
                     this.desafiante.ganharLuta();
                     this.desafiado.perderLuta();
                     break;
-                case 3:
+                case 2:
                     System.out.println("Desafiado " + this.desafiado.getNome() + " Venceu");
                     this.desafiado.ganharLuta();
                     this.desafiante.perderLuta();

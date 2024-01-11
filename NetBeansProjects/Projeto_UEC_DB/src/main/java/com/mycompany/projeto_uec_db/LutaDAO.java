@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import java.sql.Date;
 import java.util.List;
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 /**
@@ -63,28 +64,31 @@ public class LutaDAO {
     public void Lutar(luta l, lutadores l1, lutadores l2) {
         LutadoresDAO ldao = new LutadoresDAO();
         if (l.getAprovada() == true) {
+            System.out.println("#### Desafiante #### \n ------------------------------------------");
             l1.apresentar();
             System.out.println("\n");
+            System.out.println("#### Desafiado #### \n ------------------------------------------");
             l2.apresentar();
 
-            int vencedor = (int) (1 + Math.random() * (3));
+            Random aleatorio = new Random();
+            int vencedor = aleatorio.nextInt(3);
 
             switch (vencedor) {
-                case 1:
+                case 0:
                     System.out.println("Empatou");
                     l1.empateLuta();
                     l2.empateLuta();
                     ldao.atualizar(l2);
                     ldao.atualizar(l1);
                     break;
-                case 2:
+                case 1:
                     System.out.println("Desafiante " + l1.getNome() + " Venceu");
                     l1.ganharLuta();
                     l2.perderLuta();
                     ldao.atualizar(l2);
                     ldao.atualizar(l1);
                     break;
-                case 3:
+                case 2:
                     System.out.println("Desafiado " + l2.getNome() + " Venceu");
                     l2.ganharLuta();
                     l1.perderLuta();
