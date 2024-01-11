@@ -19,27 +19,27 @@ public class Tela_TabelaLuta extends javax.swing.JFrame {
     private void preencherTabela(List<luta> Listar) {
         String coluna[] = {"ID", "Desafiado", "Desafiante", "Rounds", "Aprovacao", "Data"};
         String dados[][] = new String[Listar.size()][coluna.length];
-        
-        int i=0;
-        for(luta l: Listar){
+
+        int i = 0;
+        for (luta l : Listar) {
             dados[i] = new String[]{
-               String.valueOf(l.getId()),
-               String.valueOf( l.getDesafiado_id()),
-               String.valueOf(l.getDesafiante_id()),
-               String.valueOf(l.getRounds()),
-               l.getAprovada(),
-               String.valueOf(l.getData())     
+                String.valueOf(l.getId()),
+                String.valueOf(l.getDesafiado_id()),
+                String.valueOf(l.getDesafiante_id()),
+                String.valueOf(l.getRounds()),
+                String.valueOf(l.getAprovada()),
+                String.valueOf(l.getData())
             };
             i++;
         }
         DefaultTableModel tabelaModelo = new DefaultTableModel(dados, coluna);
         Tabela2.setModel(tabelaModelo);
     }
-    
+
     public Tela_TabelaLuta() {
         initComponents();
         LutaDAO ldao = new LutaDAO();
-        
+
         preencherTabela(ldao.Listar());
     }
 
@@ -122,5 +122,4 @@ public class Tela_TabelaLuta extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    
 }

@@ -22,7 +22,7 @@ public class luta {
     int desafiado_id;
     int desafiante_id;
     int rounds=0;
-    String aprovada="";
+    boolean aprovada;
     Date data;
 
    
@@ -59,11 +59,11 @@ public class luta {
         this.rounds = rounds;
     }
 
-    public String getAprovada() {
+    public boolean getAprovada() {
         return aprovada;
     }
 
-    public void setAprovada(String aprovada) {
+    public void setAprovada(boolean aprovada) {
         this.aprovada = aprovada;
     }
 

@@ -4,6 +4,7 @@
  */
 package com.mycompany.projeto_uec_db;
 
+import java.awt.HeadlessException;
 import java.sql.Date;
 import javax.swing.JOptionPane;
 
@@ -35,12 +36,13 @@ public class Tela_MarcarLuta extends javax.swing.JFrame {
         Campo_Desafiante = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         Campo_Rounds = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        Campo_Aprovada = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         Campo_Data = new javax.swing.JFormattedTextField();
         Botao_MarcarLuta = new javax.swing.JButton();
         Botao_tabelaLutas = new javax.swing.JButton();
+        Botao_RLuta = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        Campo_IDLuta = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,11 +60,6 @@ public class Tela_MarcarLuta extends javax.swing.JFrame {
         jLabel3.setText("Rounds:");
 
         Campo_Rounds.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setText("Aprovada:");
-
-        Campo_Aprovada.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Data:");
@@ -89,70 +86,89 @@ public class Tela_MarcarLuta extends javax.swing.JFrame {
             }
         });
 
+        Botao_RLuta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Botao_RLuta.setText("Ver Resultado Luta");
+        Botao_RLuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_RLutaActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setText("ID Luta:");
+
+        Campo_IDLuta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Campo_Rounds, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Campo_Desafiante, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(Campo_Desafiado, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                                .addComponent(Botao_tabelaLutas))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Campo_Desafiante, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(Campo_Desafiado, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(Botao_tabelaLutas))
+                                    .addComponent(Campo_Rounds, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(17, 40, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Campo_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Campo_IDLuta, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Campo_Aprovada, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Campo_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(Botao_MarcarLuta, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(17, 17, 17))
+                        .addGap(49, 49, 49)
+                        .addComponent(Botao_MarcarLuta, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Botao_RLuta)))
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(Campo_Desafiado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Botao_tabelaLutas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(Campo_Desafiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(Campo_Desafiado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Botao_tabelaLutas))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(Campo_Desafiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(Campo_Rounds, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(Campo_Aprovada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                        .addComponent(Campo_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5)))
-                .addGap(63, 63, 63)
-                .addComponent(Botao_MarcarLuta, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+                            .addComponent(jLabel5)
+                            .addComponent(Campo_Data, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(44, 44, 44))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Campo_IDLuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Botao_RLuta)
+                    .addComponent(Botao_MarcarLuta, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -162,23 +178,20 @@ public class Tela_MarcarLuta extends javax.swing.JFrame {
         LutaDAO ldao = new LutaDAO();
         luta l = new luta();
         try {
-            boolean verificarDesafiado = ldao.verificacao(Integer.parseInt(Campo_Desafiado.getText()));
-            boolean verificarDesafiante = ldao.verificacao(Integer.parseInt(Campo_Desafiante.getText()));
+            String dat = String.valueOf(Campo_Data.getText());
+            Date data = Date.valueOf(dat);
+            boolean verificar = ldao.verificacao(Integer.valueOf(Campo_Desafiado.getText()), Integer.valueOf(Campo_Desafiante.getText()), data, Campo_Rounds.getText());
 
-            if ((verificarDesafiado == true) && (verificarDesafiante == true)) {
-                l.setDesafiante_id(Integer.parseInt(Campo_Desafiante.getText()));
-                l.setDesafiado_id(Integer.parseInt(Campo_Desafiado.getText()));
+            if (verificar == true) {
+                l.setDesafiante_id(Integer.valueOf(Campo_Desafiante.getText()));
+                l.setDesafiado_id(Integer.valueOf(Campo_Desafiado.getText()));
                 l.setRounds(Integer.parseInt(Campo_Rounds.getText()));
-                l.setAprovada(Campo_Aprovada.getText());
-                String dat = String.valueOf(Campo_Data.getText());
-                Date data = Date.valueOf(dat);
+                l.setAprovada(true);
                 l.setData(data);
 
                 ldao.cadastrar(l);
-            } else {
-                JOptionPane.showMessageDialog(null, "Verifique se todos os campos foram devidamente Informados");
             }
-        } catch (Exception e) {
+        } catch (HeadlessException | NumberFormatException e) {
 
         }
     }//GEN-LAST:event_Botao_MarcarLutaActionPerformed
@@ -188,6 +201,22 @@ public class Tela_MarcarLuta extends javax.swing.JFrame {
 
         ttl.setVisible(true);
     }//GEN-LAST:event_Botao_tabelaLutasActionPerformed
+
+    private void Botao_RLutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_RLutaActionPerformed
+        LutaDAO ldao = new LutaDAO();
+        lutadores lu1 = new lutadores();
+        lutadores lu2 = new lutadores();
+        LutadoresDAO ludao = new LutadoresDAO();
+
+        try {
+            luta l = ldao.obter(Integer.valueOf(Campo_IDLuta.getText()));
+            lu1 = ludao.obter(l.getDesafiado_id());
+            lu2 = ludao.obter(l.getDesafiante_id());
+            ldao.Lutar(l, lu1, lu2);
+        } catch (Exception e) {
+            throw e;
+        }
+    }//GEN-LAST:event_Botao_RLutaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,11 +255,12 @@ public class Tela_MarcarLuta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Botao_MarcarLuta;
+    private javax.swing.JButton Botao_RLuta;
     private javax.swing.JButton Botao_tabelaLutas;
-    private javax.swing.JTextField Campo_Aprovada;
     private javax.swing.JFormattedTextField Campo_Data;
     private javax.swing.JTextField Campo_Desafiado;
     private javax.swing.JTextField Campo_Desafiante;
+    private javax.swing.JTextField Campo_IDLuta;
     private javax.swing.JTextField Campo_Rounds;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
