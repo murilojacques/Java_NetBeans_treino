@@ -13,6 +13,14 @@ public class Pessoa {
     private int idade=0;
     private String genero="";
 
+    public Pessoa(String n, int i, String g) {
+        this.setNome(n);
+        this.setIdade(i);
+        this.setGenero(g);
+    }
+
+    
+    
     public String getNome() {
         return nome;
     }

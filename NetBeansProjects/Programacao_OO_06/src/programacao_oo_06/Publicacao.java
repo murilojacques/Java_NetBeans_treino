@@ -13,7 +13,7 @@ public interface Publicacao {
     
     public void fechar();
     
-    public void folhar();
+    public void folhear();
     
     public void avancarPag();
     
