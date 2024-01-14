@@ -23,7 +23,6 @@ public class Programacao_OO_06 {
        p[4] = new Pessoa("Vinicius Souza", 13, "M");
        
        Livro l1 = new Livro("Romeu e Julieta", "William Shakespeare", 192, true, p[2]);
-        System.out.println(p[2].getNome());
        l1.folhear();
        l1.avancarPag();
        l1.fechar();
