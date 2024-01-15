@@ -12,7 +12,14 @@ public abstract class Pessoa {
     protected String nome;
     protected int idade;
     protected String genero;
-    protected int experiencia;
+    protected float experiencia;
+
+    public Pessoa(String nome, int idade, String genero) {
+        this.nome = nome;
+        this.idade = idade;
+        this.genero = genero;
+        this.experiencia = 0.0f;
+    }
 
     public String getNome() {
         return nome;
@@ -38,11 +45,11 @@ public abstract class Pessoa {
         this.genero = genero;
     }
 
-    public int getExperiencia() {
+    public float getExperiencia() {
         return experiencia;
     }
 
-    public void setExperiencia(int experiencia) {
+    public void setExperiencia(float experiencia) {
         this.experiencia = experiencia;
     }
     

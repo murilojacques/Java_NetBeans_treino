@@ -14,7 +14,15 @@ public class Programacao_OO_10 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Gafanhotos g = new Gafanhotos("Murilo", 17, "M", "Mu");
+        Video v = new Video("ViDEO de Marcos"); 
+        Visualizacao vis = new Visualizacao(g, v); 
+        vis.filme.setViews(500);
+        System.out.println(vis.filme.getViews());
+        vis.avaliar();
+        vis.avaliar();
+        vis.avaliar();
+        System.out.println(vis.filme.getAvaliacao());
     }
-    
+
 }
