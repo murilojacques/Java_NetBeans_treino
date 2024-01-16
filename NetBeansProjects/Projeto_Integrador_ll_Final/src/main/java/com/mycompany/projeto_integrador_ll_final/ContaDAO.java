@@ -30,18 +30,18 @@ public class ContaDAO {
         }
     }
     
-    public List<conta> listar(String id) {
+    public conta listar(String id) {
         EntityManager em = EntityManagement.getEntityManager();
-        List conta = null;
+        conta c= null;
         try {
             String textoQuery = "SELECT c FROM conta c" + " WHERE c.id = :id";
             Query buscaConta = em.createQuery(textoQuery);
             buscaConta.setParameter("id", id);
-            conta = buscaConta.getResultList();
+            c = (conta) buscaConta.getResultList();
         } finally {
             EntityManagement.closeEntityManager();
         }
-        return conta;
+        return c;
     }
 
     public void atualizar(conta d) {
@@ -85,4 +85,6 @@ public class ContaDAO {
             EntityManagement.closeEntityManager();
         }
     }
+    
+    
 }
