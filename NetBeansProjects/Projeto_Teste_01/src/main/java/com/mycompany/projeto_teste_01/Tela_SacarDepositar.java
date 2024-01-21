@@ -4,6 +4,8 @@
  */
 package com.mycompany.projeto_teste_01;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Murilo
@@ -15,6 +17,7 @@ public class Tela_SacarDepositar extends javax.swing.JFrame {
      */
     ContaDAO cdao = new ContaDAO();
     Tela_Login tl = new Tela_Login();
+    conta c;
 
     public Tela_SacarDepositar() {
         initComponents();
@@ -32,7 +35,7 @@ public class Tela_SacarDepositar extends javax.swing.JFrame {
         Botao_Sacar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         Campo_Valor = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        Botao_Depositar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,7 +48,12 @@ public class Tela_SacarDepositar extends javax.swing.JFrame {
 
         jLabel1.setText("Valor:");
 
-        jButton2.setText("Depositar");
+        Botao_Depositar.setText("Depositar");
+        Botao_Depositar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_DepositarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -57,7 +65,7 @@ public class Tela_SacarDepositar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Botao_Sacar)
                         .addGap(30, 30, 30)
-                        .addComponent(jButton2))
+                        .addComponent(Botao_Depositar))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -74,7 +82,7 @@ public class Tela_SacarDepositar extends javax.swing.JFrame {
                 .addGap(101, 101, 101)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Botao_Sacar)
-                    .addComponent(jButton2))
+                    .addComponent(Botao_Depositar))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -82,11 +90,33 @@ public class Tela_SacarDepositar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Botao_SacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_SacarActionPerformed
-        conta c = tl.c;
-        float valor = Float.valueOf(Campo_Valor.getText().replace(",", "."));
-        c.setSaldo(c.getSaldo() + valor);
-        cdao.atualizar(c);
+        try {
+            c = cdao.obter(cdao.obterId());
+            float valor = Float.parseFloat(Campo_Valor.getText().replace(",", "."));
+            if(c.getSaldo() > valor && c.isStatus() == true){
+            c.setSaldo(c.getSaldo() - valor);
+            cdao.atualizar(c);
+            }else {
+                JOptionPane.showMessageDialog(null,"Nao e possivel realizar o saque verifique se a conta esta aberta e verifique se o valor de saque nao excede o total depositado na conta");
+            }
+        } catch (Exception e) {
+            throw e;
+        }
     }//GEN-LAST:event_Botao_SacarActionPerformed
+
+    private void Botao_DepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_DepositarActionPerformed
+        try {
+            c = cdao.obter(cdao.obterId());
+            float valor = Float.parseFloat(Campo_Valor.getText().replace(",", "."));
+            if(c.isStatus() == true){
+            c.setSaldo(c.getSaldo() + valor);
+            cdao.atualizar(c);
+            }else {
+                JOptionPane.showMessageDialog(null,"Nao e possivel realizar o deposito verifique se a conta esta aberta");
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_Botao_DepositarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,9 +154,9 @@ public class Tela_SacarDepositar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Botao_Depositar;
     private javax.swing.JButton Botao_Sacar;
     private javax.swing.JTextField Campo_Valor;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

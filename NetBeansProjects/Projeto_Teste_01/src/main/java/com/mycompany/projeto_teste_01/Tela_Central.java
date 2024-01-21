@@ -4,6 +4,8 @@
  */
 package com.mycompany.projeto_teste_01;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Murilo
@@ -13,6 +15,7 @@ public class Tela_Central extends javax.swing.JFrame {
     /**
      * Creates new form Tela_Central
      */
+    ContaDAO cdao = new ContaDAO();
     public Tela_Central() {
         initComponents();
     }
@@ -28,6 +31,7 @@ public class Tela_Central extends javax.swing.JFrame {
 
         Botao_SacarDepositar = new javax.swing.JButton();
         Botao_Excluir = new javax.swing.JButton();
+        Botao_Transacao = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,26 +43,41 @@ public class Tela_Central extends javax.swing.JFrame {
         });
 
         Botao_Excluir.setText("Excluir");
+        Botao_Excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_ExcluirActionPerformed(evt);
+            }
+        });
+
+        Botao_Transacao.setText("Transacao");
+        Botao_Transacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_TransacaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Botao_SacarDepositar)
-                    .addComponent(Botao_Excluir))
-                .addContainerGap(73, Short.MAX_VALUE))
+                    .addComponent(Botao_Excluir)
+                    .addComponent(Botao_Transacao))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addContainerGap()
                 .addComponent(Botao_SacarDepositar)
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addComponent(Botao_Excluir)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(Botao_Transacao)
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         pack();
@@ -68,6 +87,21 @@ public class Tela_Central extends javax.swing.JFrame {
         Tela_SacarDepositar tsd = new Tela_SacarDepositar();
         tsd.setVisible(true);
     }//GEN-LAST:event_Botao_SacarDepositarActionPerformed
+
+    private void Botao_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ExcluirActionPerformed
+      String r = JOptionPane.showInputDialog("Deseja Apagar essa conta? [S/N]");
+        if(r.equals("S")){
+          int i = cdao.obterId();
+          cdao.excluir(i);
+        }else{
+            
+        }
+    }//GEN-LAST:event_Botao_ExcluirActionPerformed
+
+    private void Botao_TransacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_TransacaoActionPerformed
+        Tela_Transacao tt = new Tela_Transacao();
+        tt.setVisible(true);
+    }//GEN-LAST:event_Botao_TransacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -107,5 +141,6 @@ public class Tela_Central extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Botao_Excluir;
     private javax.swing.JButton Botao_SacarDepositar;
+    private javax.swing.JButton Botao_Transacao;
     // End of variables declaration//GEN-END:variables
 }

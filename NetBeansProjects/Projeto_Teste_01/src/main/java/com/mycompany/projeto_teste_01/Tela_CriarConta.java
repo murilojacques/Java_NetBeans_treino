@@ -129,7 +129,8 @@ public class Tela_CriarConta extends javax.swing.JFrame {
        try{
            ContaDAO cdao = new ContaDAO();
         conta c=null;
-        c.criarCon(Campo_Login.getText(), Campo_Nome.getText(), Campo_Endereco.getText(), Integer.valueOf(Campo_Senha.getText()));
+        c.criarCon(Campo_Login.getText(), Campo_Nome.getText(), Campo_Endereco.getText(), Integer.parseInt(Campo_Senha.getText()));
+        
         cdao.cadastrar(c);
        }catch(Exception e){
            

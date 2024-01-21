@@ -17,7 +17,7 @@ public class Tela_Login extends javax.swing.JFrame {
      * Creates new form Tela_Login
      */
     ContaDAO cdao = new ContaDAO();
-    conta c;
+   static conta con;
     public Tela_Login() {
         initComponents();
         
@@ -116,9 +116,8 @@ public class Tela_Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
    try{
-       c =  cdao.verificar(Campo_Login.getText(), Integer.parseInt(Campo_Senha.getText()));
-       
-     if(c != null ){
+       con = cdao.verificar(Campo_Login.getText(), Integer.parseInt(Campo_Senha.getText()));
+     if(con != null ){
          Tela_Central tc = new Tela_Central();
          tc.setVisible(true);
          

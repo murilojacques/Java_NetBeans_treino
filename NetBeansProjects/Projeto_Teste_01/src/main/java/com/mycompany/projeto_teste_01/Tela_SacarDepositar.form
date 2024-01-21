@@ -29,7 +29,7 @@
                   <Group type="102" attributes="0">
                       <Component id="Botao_Sacar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <Component id="Botao_Depositar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -52,7 +52,7 @@
               <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Botao_Sacar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Botao_Depositar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
@@ -75,10 +75,13 @@
     </Component>
     <Component class="javax.swing.JTextField" name="Campo_Valor">
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="Botao_Depositar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Depositar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Botao_DepositarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

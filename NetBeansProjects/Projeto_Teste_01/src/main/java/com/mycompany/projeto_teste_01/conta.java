@@ -27,9 +27,9 @@ public class conta {
     private boolean status;
 
     public void criarCon(String login, String nome_usuario, String endereco, int senha) {
-        this.login = login;
-        this.nome_usuario = nome_usuario;
-        this.endereco = endereco;
+        this.setLogin(login);
+        this.setNome_usuario(nome_usuario);
+        this.setEndereco(endereco);
         this.status = true;
         this.setSenha(senha);
         this.setSaldo(50.0f);
