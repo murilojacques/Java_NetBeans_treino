@@ -15,7 +15,16 @@ import javax.swing.JOptionPane;
  * @author Murilo
  */
 public class ContaDAO {
+    int id;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public void cadastrar(conta conta) {
         EntityManager em = EntityManagement.getEntityManager();
         try {
@@ -85,4 +94,31 @@ public class ContaDAO {
             EntityManagement.closeEntityManager();
         }
     }
+
+    public conta verificar(String login, int senha) {
+        EntityManager em = EntityManagement.getEntityManager();
+        conta c = null;
+        try {
+            String textoQuery = "SELECT c FROM conta c" + " WHERE c.login = :login" + " AND c.senha = :senha";
+            Query busca = em.createQuery(textoQuery);
+            busca.setParameter("login", login);
+            busca.setParameter("senha", senha);
+            c = (conta) busca.getSingleResult();
+            setId(c.getId());
+        } finally {
+            EntityManagement.closeEntityManager();
+        }
+        return c;
+    }
+
+    public int obterId() {
+        EntityManager em = EntityManagement.getEntityManager();
+        try {
+            return Tela_Login.con.getId();
+        } finally {
+            EntityManagement.closeEntityManager();
+        }
+    }
+    
+    
 }

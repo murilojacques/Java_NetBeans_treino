@@ -29,6 +29,10 @@ public class conta implements Serializable {
     
     private String endereco ="";
     
+    private String login;
+    
+    private int senha;
+    
     private int cpf = 0;
     
     private int cnpj = 0;
@@ -41,15 +45,22 @@ public class conta implements Serializable {
     
     private String pfpj="";
 
-    public conta(String n, String e, int cpf, int cnpj,String t, float s, boolean st, String pfpj) {
-        this.setNome_usuario(n);
-        this.setEndereco(e);
-        this.setCpf(cpf);
-        this.setCnpj(cnpj);
-        this.setTipo(t);
-        this.setSaldo(s);
-        this.setStatus(st);
-        this.setPfpj(pfpj);
+    
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public int getSenha() {
+        return senha;
+    }
+
+    public void setSenha(int senha) {
+        this.senha = senha;
     }
 
     public int getId() {
@@ -124,32 +135,35 @@ public class conta implements Serializable {
         this.pfpj = pfpj;
     }
 
-    
-    
-    
-    public void abrirCon(String t, String n, boolean a, ContaDAO cdao) {
-        if (!n.equals(null) && (!t.equals(null))) {
+    public void criarCon(String t, String n, String login, int senha, String e, int cpf, int cnpj,  String pfpj) {
+        
             this.setNome_usuario(n);
-            if (t.equals("cc")) {
+        switch (t) {
+            case "cc" -> {
                 this.setTipo(t);
                 this.setStatus(true);
                 this.setSaldo(50.0f);
-                this.setStatus(a);
-                cdao.cadastrar(this);
+                this.setLogin(login);
+                this.setSenha(senha);
+                this.setEndereco(e);
+                this.setCpf(cpf);
+                this.setCnpj(cnpj);
+                this.setPfpj(pfpj);
             }
-            if (t.equals("cp")) {
+            case "cp" -> {
                 this.setTipo(t);
                 this.setStatus(true);
                 this.setSaldo(150.0f);
-                this.setStatus(a);
-                cdao.cadastrar(this);
-            } else {
-                JOptionPane.showMessageDialog(null, "<html>O campo tipo de Conta so aceita os tipos cc [Conta Corrente]\n e cp [Conta Poupanca], por favor verifique se o campo estao corretamente preenchidos</html>");
+                this.setLogin(login);
+                this.setSenha(senha);
+                this.setEndereco(e);
+                this.setCpf(cpf);
+                this.setCnpj(cnpj);
+                this.setPfpj(pfpj);
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "<html>Todos os campos devem estar preenchidos, sendo que os unicos tipos de Conta Aceitos sao cc [Conta Corrente]\n e cp [Conta Poupanca], por favor verifique se os campos estao corretamente preenchidos</html>");
+            default -> JOptionPane.showMessageDialog(null, "<html>O campo tipo de Conta so aceita os tipos cc [Conta Corrente]\n e cp [Conta Poupanca], por favor verifique se o campo estao corretamente preenchidos</html>");
         }
-    }
+}
 
     public void sacar(float s, ContaDAO cdao) {
         if (this.isStatus() == true) {

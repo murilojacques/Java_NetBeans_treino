@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.projeto_teste_01;
+package com.mycompany.projeto_integrador_mod_ii;
 
 /**
  *
@@ -107,6 +107,11 @@ public class Tela_Transacao extends javax.swing.JFrame {
            c1 = cdao.obter(cdao.obterId());
            c2 = cdao.obter(Integer.parseInt(Campo_IDRecebedor.getText()));
            if(c1 != null && c2 != null){
+               float valor = Float.parseFloat(Campo_Valor.getText());
+               c1.setSaldo(c1.getSaldo() - valor);
+               c2.setSaldo(c2.getSaldo() + valor);
+               cdao.atualizar(c1);
+               cdao.atualizar(c2);
                t.setConta_origem_id(c1.getId());
                t.setConta_destino_id(c2.getId());
                t.setValor(Float.parseFloat(Campo_Valor.getText()));
@@ -144,6 +149,9 @@ public class Tela_Transacao extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Tela_Transacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

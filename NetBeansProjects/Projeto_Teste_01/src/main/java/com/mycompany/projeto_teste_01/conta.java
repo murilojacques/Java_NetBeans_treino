@@ -5,17 +5,22 @@
 package com.mycompany.projeto_teste_01;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 /**
  *
  * @author Murilo
  */
 @Entity
-public class conta {
 
+public class conta {
+   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
