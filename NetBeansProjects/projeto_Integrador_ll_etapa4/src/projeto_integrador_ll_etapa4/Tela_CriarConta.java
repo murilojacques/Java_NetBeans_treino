@@ -15,8 +15,9 @@ public class Tela_CriarConta extends javax.swing.JFrame {
     /**
      * Creates new form Tela_CriarConta
      */
+    static conta[] a = new conta[10];
     conta c = new conta();
-
+    int i=0;
     public Tela_CriarConta() {
         initComponents();
     }
@@ -79,6 +80,11 @@ public class Tela_CriarConta extends javax.swing.JFrame {
 
         Botao_Voltar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Botao_Voltar.setText("Voltar");
+        Botao_Voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_VoltarActionPerformed(evt);
+            }
+        });
 
         Campo_TipoConta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -118,9 +124,8 @@ public class Tela_CriarConta extends javax.swing.JFrame {
                         .addComponent(Campo_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(Campo_Endereco)
                         .addComponent(Campo_Login, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(Campo_TipoConta, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Campo_Senha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)))
+                        .addComponent(Campo_TipoConta)
+                        .addComponent(Campo_Senha))
                     .addComponent(Campo_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Campo_CNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -168,17 +173,24 @@ public class Tela_CriarConta extends javax.swing.JFrame {
 
     private void Botao_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_CadastrarActionPerformed
         try {
-            ContaDAO cdao = new ContaDAO();
+            
             String pfpj;
-
-            if (!Campo_CPF.getText().equals(null) && Campo_CNPJ.getText().equals("0")) {
+            
+            if (Campo_CPF.getText() != null && Campo_CNPJ.getText().equals("0")) {
                 pfpj = "pf";
-                c.criarCon(Campo_TipoConta.getText(), Campo_Nome.getText(), Campo_Login.getText(), Integer.parseInt(Campo_Senha.getText()), Campo_Endereco.getText(), Integer.parseInt(Campo_CPF.getText()), Integer.parseInt(Campo_CNPJ.getText()), pfpj);
-                cdao.cadastrar(c);
-            } else if(!Campo_CNPJ.getText().equals(null) && Campo_CPF.getText().equals("0")){
+                c.criarCon(i,Campo_TipoConta.getText(), Campo_Nome.getText(), Campo_Login.getText(), Integer.parseInt(Campo_Senha.getText()), Campo_Endereco.getText(), Integer.parseInt(Campo_CPF.getText()), Integer.parseInt(Campo_CNPJ.getText()), pfpj);
+                a[i] = c;
+                i++;
+                //c.salvar(c);
+               //c.obter(0);
+               JOptionPane.showMessageDialog(null, c.getNome_usuario());
+            } else if(Campo_CNPJ.getText() != null && Campo_CPF.getText().equals("0")){
                 pfpj = "pj";
-                c.criarCon(Campo_TipoConta.getText(), Campo_Nome.getText(), Campo_Login.getText(), Integer.parseInt(Campo_Senha.getText()), Campo_Endereco.getText(), Integer.parseInt(Campo_CPF.getText()), Integer.parseInt(Campo_CNPJ.getText()), pfpj);
-                cdao.cadastrar(c);
+                c.criarCon(i,Campo_TipoConta.getText(), Campo_Nome.getText(), Campo_Login.getText(), Integer.parseInt(Campo_Senha.getText()), Campo_Endereco.getText(), Integer.parseInt(Campo_CPF.getText()), Integer.parseInt(Campo_CNPJ.getText()), pfpj);
+                a[i] = c;
+                i++;
+               //c.salvar(c);
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Considerando os campos 'CPF' e 'CNPJ', somente um pode estar preenchido o outro deve obrigatoriamente ser o valor Zero");
             }
@@ -186,6 +198,10 @@ public class Tela_CriarConta extends javax.swing.JFrame {
             throw e;
         }
     }//GEN-LAST:event_Botao_CadastrarActionPerformed
+
+    private void Botao_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_VoltarActionPerformed
+        dispose();
+    }//GEN-LAST:event_Botao_VoltarActionPerformed
 
     /**
      * @param args the command line arguments

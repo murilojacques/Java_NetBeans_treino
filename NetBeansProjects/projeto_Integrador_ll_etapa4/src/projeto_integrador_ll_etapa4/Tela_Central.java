@@ -134,10 +134,11 @@ public class Tela_Central extends javax.swing.JFrame {
     }//GEN-LAST:event_Botao_SacarDepositarActionPerformed
 
     private void Botao_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ExcluirActionPerformed
-      String r = JOptionPane.showInputDialog("Deseja Apagar essa conta? [S/N]");
+        String i = JOptionPane.showInputDialog("Digite o Id da Conta");
+        int id = Integer.parseInt(i);
+        String r = JOptionPane.showInputDialog("Deseja Apagar essa conta? [S/N]");
         if(r.equals("S")){
-          int i = cdao.obterId();
-          cdao.excluir(i);
+          Tela_CriarConta.a[id] = null;
         }else{
             
         }
@@ -149,23 +150,19 @@ public class Tela_Central extends javax.swing.JFrame {
     }//GEN-LAST:event_Botao_TransacaoActionPerformed
 
     private void Botao_AbrirContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AbrirContaActionPerformed
-       conta c = cdao.obter(cdao.obterId());
-       if(c.isStatus() != true){
+       String i = JOptionPane.showInputDialog("Digite o Id da Conta");
+       int id = Integer.parseInt(i);
+       conta c = Tela_CriarConta.a[id];
        c.setStatus(true);
-       cdao.atualizar(c);
-       }else{
-           JOptionPane.showMessageDialog(null, "Conta ja esta aberta");
-       }
+       Tela_CriarConta.a[id] = c;
     }//GEN-LAST:event_Botao_AbrirContaActionPerformed
 
     private void Botao_FecharContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_FecharContaActionPerformed
-        conta c = cdao.obter(cdao.obterId());
-       if(c.isStatus() != false){
+        String i = JOptionPane.showInputDialog("Digite o Id da Conta");
+        int id = Integer.parseInt(i);
+        conta c = Tela_CriarConta.a[id];
        c.setStatus(false);
-       cdao.atualizar(c);
-       }else{
-           JOptionPane.showMessageDialog(null, "Conta ja esta aberta");
-       }
+       Tela_CriarConta.a[id] = c;
     }//GEN-LAST:event_Botao_FecharContaActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

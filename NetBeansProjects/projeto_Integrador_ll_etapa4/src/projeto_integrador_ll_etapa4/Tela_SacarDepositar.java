@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package projeto_integrador_ll_etapa4;
-
+import projeto_integrador_ll_etapa4.Tela_CriarConta;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +18,7 @@ public class Tela_SacarDepositar extends javax.swing.JFrame {
     
     Tela_Login tl = new Tela_Login();
     conta c;
+    Tela_CriarConta tcc = new Tela_CriarConta(); 
 
     public Tela_SacarDepositar() {
         initComponents();
@@ -37,6 +38,8 @@ public class Tela_SacarDepositar extends javax.swing.JFrame {
         Campo_Valor = new javax.swing.JTextField();
         Botao_Depositar = new javax.swing.JButton();
         Botao_Voltar = new javax.swing.JButton();
+        Campo_ID = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,38 +66,55 @@ public class Tela_SacarDepositar extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("ID:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Campo_Valor, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Botao_Sacar)
                     .addComponent(Botao_Depositar))
                 .addGap(19, 19, 19))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Botao_Voltar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Botao_Voltar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(jLabel1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Campo_Valor, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Campo_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(Campo_Valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(Botao_Sacar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addComponent(Botao_Sacar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Campo_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(Campo_Valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Botao_Depositar)
                 .addGap(13, 13, 13)
                 .addComponent(Botao_Voltar)
@@ -106,8 +126,22 @@ public class Tela_SacarDepositar extends javax.swing.JFrame {
 
     private void Botao_SacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_SacarActionPerformed
         try {
-           
-            
+            //tcc.a[Integer.parseInt(Campo_ID.getText())];
+          
+           conta r = new conta();
+           r = Tela_CriarConta.a[Integer.parseInt(Campo_ID.getText())];
+           if(r != null && r.isStatus() == true){
+           float valor = Float.parseFloat(Campo_Valor.getText());
+           JOptionPane.showMessageDialog(null,r.getSaldo());
+            if(valor < r.getSaldo()){
+            r.setSaldo(r.getSaldo() - valor);
+            JOptionPane.showMessageDialog(null,"Valor Sacado com sucesso");
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Nao e possivel sacar o valor requerido pois esta acima do total depositado na conta em questao");
+            }} else {
+                JOptionPane.showMessageDialog(null,"Usuario nao encontrado verifique se o id inserido esta correto");
+            }
         } catch (Exception e) {
             throw e;
         }
@@ -115,8 +149,20 @@ public class Tela_SacarDepositar extends javax.swing.JFrame {
 
     private void Botao_DepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_DepositarActionPerformed
         try {
+             conta r = new conta();
+           r = Tela_CriarConta.a[Integer.parseInt(Campo_ID.getText())];
+           if(r != null && r.isStatus() == true){
+           float valor = Float.parseFloat(Campo_Valor.getText());
+           JOptionPane.showMessageDialog(null,r.getSaldo());
             
+            r.setSaldo(r.getSaldo() + valor);
+            JOptionPane.showMessageDialog(null,"Valor depositado com sucesso");
+            }
+             else {
+                JOptionPane.showMessageDialog(null,"Usuario nao encontrado verifique se o id inserido esta correto");
+            }
         } catch (Exception e) {
+            throw e;
         }
     }//GEN-LAST:event_Botao_DepositarActionPerformed
 
@@ -170,7 +216,9 @@ public class Tela_SacarDepositar extends javax.swing.JFrame {
     private javax.swing.JButton Botao_Depositar;
     private javax.swing.JButton Botao_Sacar;
     private javax.swing.JButton Botao_Voltar;
+    private javax.swing.JTextField Campo_ID;
     private javax.swing.JTextField Campo_Valor;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

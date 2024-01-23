@@ -18,20 +18,22 @@ public final class Tela_Listagem extends javax.swing.JFrame {
      * Creates new form Tela_Listagem
      * @param t
      */
-    public void preencherTabela(List<transacoes> t){
+    public void preencherTabela(){
         String colunas[] = {"id", "id conta origem", "id conta destino", "Alteracao da conta", "valor"};
-        String dados[][] = new String[t.size()][colunas.length];
+        String dados[][] = new String[Tela_Transacao.t.length][colunas.length];
         
         int i=0;
-        
-        for(transacoes l: t){
-            dados[i] = new String[]{
-                String.valueOf(l.getId()),
-                String.valueOf(l.getConta_origem_id()),
-                String.valueOf(l.getConta_destino_id()),
-                l.getAlteracao_conta(),
-                String.valueOf(l.getValor())
+        transacoes tr = new transacoes();
+        for(int j=0; j<Tela_Transacao.t.length; j++){
+            if(Tela_Transacao.t[j]!= null){
+            dados[j] = new String[]{
+                String.valueOf(Tela_Transacao.t[i].getId()),
+                String.valueOf(Tela_Transacao.t[i].getConta_origem_id()),
+                String.valueOf(Tela_Transacao.t[i].getConta_destino_id()),
+                String.valueOf(Tela_Transacao.t[i].getAlteracao_conta()),
+                String.valueOf(Tela_Transacao.t[i].getValor())
             };
+            }
                     i++;
         }
         DefaultTableModel tabelaModelo = new DefaultTableModel(dados, colunas);
@@ -40,7 +42,8 @@ public final class Tela_Listagem extends javax.swing.JFrame {
     
     public Tela_Listagem() {
         initComponents();
-        
+        transacoes t = new transacoes();
+        preencherTabela();
     }
 
     /**
@@ -77,7 +80,7 @@ public final class Tela_Listagem extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

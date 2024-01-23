@@ -4,6 +4,8 @@
  */
 package projeto_integrador_ll_etapa4;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Murilo
@@ -15,11 +17,10 @@ public class Tela_Transacao extends javax.swing.JFrame {
     /**
      * Creates new form Tela_Transacao
      */
-    conta c1 = new conta();
-    conta c2 = new conta();
     
-    transacoes t = new transacoes();
     
+   static transacoes[] t = new transacoes[10];
+    int i=0;
     public Tela_Transacao() {
         initComponents();
     }
@@ -38,6 +39,8 @@ public class Tela_Transacao extends javax.swing.JFrame {
         Campo_Valor = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         Campo_IDRecebedor = new javax.swing.JTextField();
+        Campo_IDContaOrigem = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,6 +62,11 @@ public class Tela_Transacao extends javax.swing.JFrame {
 
         Campo_IDRecebedor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        Campo_IDContaOrigem.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setText("ID Conta Origem:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,19 +77,17 @@ public class Tela_Transacao extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(Botao_RealizarTransacao))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(jLabel1)
-                                .addGap(67, 67, 67))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Campo_IDRecebedor, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Campo_Valor, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(87, Short.MAX_VALUE))
+                            .addComponent(Campo_Valor, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Campo_IDContaOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,7 +100,11 @@ public class Tela_Transacao extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Campo_IDRecebedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Campo_IDContaOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(Botao_RealizarTransacao)
                 .addGap(40, 40, 40))
         );
@@ -104,18 +114,30 @@ public class Tela_Transacao extends javax.swing.JFrame {
 
     private void Botao_RealizarTransacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_RealizarTransacaoActionPerformed
        try{
-           
+           transacoes te = new transacoes();
+           conta c1 = Tela_CriarConta.a[Integer.parseInt(Campo_IDContaOrigem.getText())];
+           conta c2 = Tela_CriarConta.a[Integer.parseInt(Campo_IDRecebedor.getText())];
            if(c1 != null && c2 != null){
                float valor = Float.parseFloat(Campo_Valor.getText());
                c1.setSaldo(c1.getSaldo() - valor);
                c2.setSaldo(c2.getSaldo() + valor);
                
+               te.setConta_origem_id(c1.getId());
+               te.setConta_destino_id(c2.getId());
+               te.setAlteracao_conta("Desposito");
+               te.setValor(valor);
+               //while(t != null){
+                 //  i++;
+               //}
+               te.setId(10);
                
+               t[i] = te;
+               JOptionPane.showMessageDialog(null, "Transacao realizada com Sucesso" + "/nconta origem saldo atual " + c1.getSaldo()+" Conta recebedor, transacao recebida de "+ Campo_Valor.getText() +" Saldo total "+ c2.getSaldo());
                
                
            }
        }catch(Exception e){
-           
+           throw e;
        }
     }//GEN-LAST:event_Botao_RealizarTransacaoActionPerformed
 
@@ -163,9 +185,11 @@ public class Tela_Transacao extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Botao_RealizarTransacao;
+    private javax.swing.JTextField Campo_IDContaOrigem;
     private javax.swing.JTextField Campo_IDRecebedor;
     private javax.swing.JTextField Campo_Valor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

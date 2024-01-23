@@ -4,6 +4,8 @@
  */
 package projeto_integrador_ll_etapa4;
 
+import java.util.List;
+
 
 /**
  *
@@ -14,9 +16,9 @@ public class transacoes {
     
     private int id;
     
-    private conta conta_origem_id;
+    private int conta_origem_id;
     
-    private conta conta_destino_id;
+    private int conta_destino_id;
     
     private String alteracao_conta="";
     
@@ -32,19 +34,19 @@ public class transacoes {
         this.id = id;
     }
 
-    public conta getConta_origem_id() {
+    public int getConta_origem_id() {
         return conta_origem_id;
     }
 
-    public void setConta_origem_id(conta conta_origem_id) {
+    public void setConta_origem_id(int conta_origem_id) {
         this.conta_origem_id = conta_origem_id;
     }
 
-    public conta getConta_destino_id() {
+    public int getConta_destino_id() {
         return conta_destino_id;
     }
 
-    public void setConta_destino_id(conta conta_destino_id) {
+    public void setConta_destino_id(int conta_destino_id) {
         this.conta_destino_id = conta_destino_id;
     }
 
@@ -65,4 +67,16 @@ public class transacoes {
     }
     
     
+    public List<transacoes> listar() {
+        
+        List transacoes = null;
+        try {
+            for(int i=0; i<Tela_Transacao.t.length; i++){
+            transacoes = (List) Tela_Transacao.t[i];
+                    }
+        } catch(Exception e) {
+            throw e;
+        }
+        return transacoes;
+    }
 }

@@ -6,6 +6,8 @@ package projeto_integrador_ll_etapa4;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,8 +39,25 @@ public class conta implements Serializable {
     
     private String pfpj="";
 
-    
+    int i=0;
+   /** 
+    public void salvar(conta c){
+        
+            while(contas[i] != null){
+                i++;
+            }
+            contas[i] =c;
+            
+    }
 
+    public conta obter(int i){
+        int j=0;
+        while(j != i){
+            j++;
+        }
+        return t.get(id);
+    }**/
+    
     public String getLogin() {
         return login;
     }
@@ -127,11 +146,12 @@ public class conta implements Serializable {
         this.pfpj = pfpj;
     }
 
-    public void criarCon(String t, String n, String login, int senha, String e, int cpf, int cnpj,  String pfpj) {
+    public void criarCon(int id,String t, String n, String login, int senha, String e, int cpf, int cnpj,  String pfpj) {
         
             this.setNome_usuario(n);
         switch (t) {
             case "cc" -> {
+                this.setId(id);
                 this.setTipo(t);
                 this.setStatus(true);
                 this.setSaldo(50.0f);
@@ -143,6 +163,7 @@ public class conta implements Serializable {
                 this.setPfpj(pfpj);
             }
             case "cp" -> {
+                this.setId(id);
                 this.setTipo(t);
                 this.setStatus(true);
                 this.setSaldo(150.0f);

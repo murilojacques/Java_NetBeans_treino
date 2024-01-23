@@ -1,0 +1,6 @@
+Para acessar o sistema é necessario primeiro clicar em criar uma conta depois preencher os campos e e voltar para tela de Login, la utilize uma senha e login pre pronto pra acessar:
+
+Conta
+Login: emailMurilo
+senha: 123456
+
