@@ -33,9 +33,9 @@ public class Operacoes {
     
     public static String contador(double i , double f){
         String t ="";
-        f += 0.1;
+        f += 1;
         System.out.println("Contagem entre os valores informados: \n");
-        for(double c = i; c<=f; c+=0.1){
+        for(double c = i; c<=f; c+=1){
           String fot = String.format("%.2f", c);
             t += fot + "\n";
            

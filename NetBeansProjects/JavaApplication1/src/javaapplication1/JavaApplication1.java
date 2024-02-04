@@ -10,7 +10,7 @@ public class JavaApplication1 {
     public static void main(String[] args) {
         Scanner variavel = new Scanner(System.in);
        int a, b;
-       
+      
        System.out.println("Digite o numero de convidados para a festa: ");
        a = variavel.nextInt();
        
