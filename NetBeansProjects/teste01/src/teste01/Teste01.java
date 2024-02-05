@@ -36,9 +36,9 @@ public class Teste01 {
          r = (int) (1 +  Math.random()*(11-1));
         num = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite um numero entre 1 a 10 e veja se acerta"));
     if(num == r){
-        JOptionPane.showMessageDialog(null, "Acertou" + r);
+        JOptionPane.showMessageDialog(null, "Acertou");
     } else if(num != r){
-        JOptionPane.showMessageDialog(null, "errou  "+ r + " " + Math.random());
+        JOptionPane.showMessageDialog(null, "Errou");
     } else if(num > 10 || num < 1){
         JOptionPane.showMessageDialog(null, "Numero Invalido");
     }
