@@ -32,7 +32,7 @@ public class JavaAudio {
         clip.open(audioStream);
         
         while(!r.equals("F")){
-           System.out.print("\nPlay = P; Stop = S; Reiniciar = R; Fechar = F;\n");
+           System.out.println("\nPlay = P; Stop = S; Reiniciar = R; Fechar = F;");
            System.out.println("Escreva o comando: ");
            r = scanner.nextLine();
            r = r.toUpperCase();
