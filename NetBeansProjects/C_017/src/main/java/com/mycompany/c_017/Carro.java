@@ -42,7 +42,7 @@ public class Carro {
     
     
     public void dirigir(){
-        System.out.println("La vai Fulano com seu carro modelo "+this.getModelo()+" um carro magnifico com seus belos tons de "+ this.getCor()+ " , Seu ano fde fabricacao foi "+ this.getAno());
+        System.out.println("La vai Fulano com seu carro modelo "+this.getModelo()+" um carro magnifico com seus belos tons de "+ this.getCor()+ ", Seu ano fde fabricacao foi "+ this.getAno());
     }
     
 }
