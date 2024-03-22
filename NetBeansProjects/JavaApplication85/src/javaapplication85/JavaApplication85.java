@@ -22,7 +22,6 @@ public class JavaApplication85 {
         int i = 1000;
         int c = random.nextInt(0, 10);
         int t = 0;
-        
         System.out.println(c);
         
         while(i != c){
