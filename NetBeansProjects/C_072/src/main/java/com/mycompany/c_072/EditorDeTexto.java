@@ -92,6 +92,7 @@ public class EditorDeTexto extends JFrame implements ActionListener {
         fontBox.setSelectedItem("Arial");
 
         //-------MenuBar----------------------------------------------------------------------------------------------------------------
+        
         barraMenu = new JMenuBar();
         fileMenu = new JMenu("File");
         openItem = new JMenuItem("Open");
