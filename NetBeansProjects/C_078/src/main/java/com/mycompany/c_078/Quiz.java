@@ -44,7 +44,7 @@ public class Quiz implements ActionListener {
     int index;
     int correct_guesses = 0;
     int total_questions = questions.length;
-    int result;
+    double result;
     int seconds = 10;
 
     JTextField textField = new JTextField();
@@ -165,6 +165,7 @@ public class Quiz implements ActionListener {
         timeLabel.setText("Timer >:D");
         timeLabel.setHorizontalAlignment(JTextField.CENTER);
 
+        
         number_right.setBounds(195, 260, 200, 100);
         number_right.setBackground(new Color(25, 25, 25));
         number_right.setForeground(new Color(25, 255, 0));
@@ -181,6 +182,7 @@ public class Quiz implements ActionListener {
         percentage.setHorizontalAlignment(JTextField.CENTER);
         percentage.setEditable(false);
 
+        
         //frame.add(number_right);
         //frame.add(percentage);
         frame.add(timeLabel);
@@ -267,8 +269,11 @@ public class Quiz implements ActionListener {
         buttonC.setEnabled(false);
         buttonD.setEnabled(false);
 
-        result = (int) (correct_guesses / (double) total_questions) * 100;
-
+        result = (correct_guesses/(double) total_questions) * 100;
+        System.out.println(total_questions);
+        System.out.println(correct_guesses);
+        System.out.println(result);
+        
         textField.setText("RESULTS!");
         textArea.setText("");
         answer_LabelA.setText("");
@@ -277,7 +282,7 @@ public class Quiz implements ActionListener {
         answer_LabelD.setText("");
 
         number_right.setText("(" + String.valueOf(correct_guesses) + "/" + String.valueOf(total_questions) + ")");
-        percentage.setText(String.valueOf(result) + "%");
+        percentage.setText(String.valueOf(result) + " %");
 
         frame.add(percentage);
         frame.add(number_right);
