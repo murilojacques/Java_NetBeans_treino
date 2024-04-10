@@ -4,6 +4,8 @@
 
 package com.mycompany.c_100;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Murilo
@@ -13,6 +15,7 @@ public class C_100 {
     public static void main(String[] args) {
         Graph graph = new Graph(5);
         
+        //JOptionPane.showMessageDialog(null, "VIRUS VIRUS,  ENTRRE EM CONTATO COM A MICROSOFT!!!!!, DE PREFERENCIA COM O GATES OU HUSK", "Mensagem de Aviso", 0);
         graph.addNode(new Node('A'));
         graph.addNode(new Node('B'));
         graph.addNode(new Node('C'));
