@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.PerspectiveCamera?>
+<?import javafx.scene.PointLight?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Box?>
+<?import javafx.scene.shape.Line?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.mycompany.testemavenjfx.FXMLController">
+   <children>
+      <ColorPicker layoutX="116.0" layoutY="63.0" />
+      <PointLight color="CHARTREUSE" layoutX="245.0" layoutY="216.0" lightOn="true" />
+      <PerspectiveCamera fieldOfView="29.1" layoutX="404.0" layoutY="128.0" />
+      <Box depth="100" height="100" layoutX="186.0" layoutY="250.0" width="100" />
+      <Line endX="-5.0" endY="12.0" layoutX="426.0" layoutY="314.0" startX="-135.0" startY="-69.0" />
+   </children>
+</AnchorPane>

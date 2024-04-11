@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Arc?>
+
+<AnchorPane id="AnchorPane" prefHeight="401.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="cfx_003_t2.FXMLController">
+    <stylesheets>
+        <URL value="@fxml.css" />
+    </stylesheets>
+   <children>
+      <Button layoutX="171.0" layoutY="188.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="248.0" layoutY="188.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="320.0" layoutY="188.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="395.0" layoutY="189.0" mnemonicParsing="false" text="Button" />
+      <Arc fill="#f5de0e" layoutX="135.0" layoutY="201.0" length="270.0" radiusX="100.0" radiusY="100.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+   </children>
+</AnchorPane>
