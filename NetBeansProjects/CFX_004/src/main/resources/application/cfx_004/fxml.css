@@ -1,0 +1,23 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.root{
+    -fx-background-Color: #111111;
+}
+
+.label{
+    -fx-font-family: "Lucida Console";
+    -fx-font-size: 25;
+    -fx-text-fill: white;
+    -fx-aligment:center;
+}
+
+#titleLabel{
+    -fx-font-size: 60;
+    
+}
+
+.mainFxmlClass {
+
+}
