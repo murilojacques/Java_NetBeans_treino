@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.AmbientLight?>
+<?import javafx.scene.PointLight?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.CubicCurve?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="application.cfx_005.SceneController">
+   <children>
+      <Button layoutX="218.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToScene1" text="Switch to Scene 1">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="185.0" layoutY="14.0" text="This is Scene 2">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <CubicCurve controlX1="150.0" controlX2="-150.0" controlY1="-57.0" controlY2="56.0" endX="150.0" fill="DODGERBLUE" layoutX="300.0" layoutY="143.0" startX="-150.0" stroke="BLACK" />
+      <PointLight color="CHARTREUSE" layoutX="107.0" layoutY="160.0" lightOn="true" />
+      <AmbientLight color="CHARTREUSE" layoutX="508.0" layoutY="96.0" lightOn="true" />
+   </children>
+</AnchorPane>

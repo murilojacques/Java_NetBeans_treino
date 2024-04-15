@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="456.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.cfx_007.SceneController">
+   <children>
+      <Button fx:id="myButton" layoutX="328.0" layoutY="408.0" mnemonicParsing="false" onAction="#switchImage" text="Button" />
+      <ImageView fx:id="myImageView" fitHeight="380.0" fitWidth="680.0" layoutX="164.0" layoutY="14.0" onMouseClicked="#switchImage" onMouseEntered="#switchImage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@jerry.jpg" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </ImageView>
+   </children>
+</AnchorPane>
