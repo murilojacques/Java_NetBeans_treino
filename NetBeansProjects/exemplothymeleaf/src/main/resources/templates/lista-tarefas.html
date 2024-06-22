@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head> 
+    <title>Lista de tarefas</title> 
+    <link rel="stylesheet" th:href="@{/css/style.css}" /> 
+</head> 
+<body> 
+    <header th:insert="navbar.html"></header> 
+    <h1>Lista de tarefas</h1> 
+    <img th:src="@{/imagens/SUS_pq.webp}" height="50px"> 
+    <p>Essas são todas as suas tarefas:</p> 
+    <table> 
+        <thead> 
+            <tr> 
+                <th>ID</th> 
+                <th>Nome</th> 
+                <th>Completa</th> 
+            </tr> 
+        </thead> 
+        <tbody> 
+            <tr th:each="tarefa : ${tarefas}"> 
+                <td th:text="${tarefa.id}"></td> 
+                <td th:text="${tarefa.descricao}"></td> 
+                <td onclick="atualizarTarefa(this)"> 
+                    <span th:if="${tarefa.completa}" class="tarefa-concluida">Concluída</span> 
+                    <span th:unless="${tarefa.completa}" class="tarefa-pendente">Pendente</span> 
+                </td>                 
+            </tr> 
+        </tbody> 
+    </table> 
+    <script th:src="@{/js/scripts.js}"></script> 
+</body> 
+</html>

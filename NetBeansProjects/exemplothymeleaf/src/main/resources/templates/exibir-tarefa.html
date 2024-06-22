@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> 
+    <head> 
+        <title>Tarefa</title> 
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+    </head> 
+    <body> 
+        
+        <header th:insert="navbar.html :: nav"></header>
+        
+        <h1>Tarefa</h1> 
+        <p>Bem-vindo, <span th:text="${nome}"/>!</p> 
+        <br> 
+        <p>ID: <span th:text="${tarefa.id}" /></p> 
+        <p>Descrição: <span th:text="${tarefa.descricao}" /></p> 
+        <p>Completa: <span th:text="${tarefa.completa}" /></p> 
+
+    </body> 
+</html>
