@@ -6,11 +6,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>TODO supply a title</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
+        <header th:insert="navbar.html"></header>
         <h1>Cadastro de Filmes</h1>
-        <form th:action="@{/cadastroFilmes}" th:object="${Filmes}">
+        <form th:action="@{/cadastroFilmes}" th:object="${Filmes}" method="POST">
             
             <p>ID: <input type="number" th:field="*{id}" /> </p>
             <p>Titulo: <input type="text" th:field="*{titulo}" /> </p>

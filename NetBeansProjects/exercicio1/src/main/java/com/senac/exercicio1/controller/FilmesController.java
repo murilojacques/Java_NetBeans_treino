@@ -4,6 +4,7 @@
  */
 package com.senac.exercicio1.controller;
 
+import com.senac.exercicio1.model.Analise;
 import com.senac.exercicio1.model.Filmes;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +22,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class FilmesController {
     
     private List<Filmes> filmes = new ArrayList();
+    private List<Analise> analises = new ArrayList();
     
     @GetMapping("/cadastroFilmes")
     public String exibirCadastroFilmes(Model model){
+        model.addAttribute("Filmes", new Filmes());
         return "cadastroFilmes";
     }
     
@@ -31,7 +34,12 @@ public class FilmesController {
     public String processarFormulario(@ModelAttribute Filmes filme, Model model){
         filmes.add(filme);
         System.out.println(filme.getTitulo());
-        return "cadastroFilmes";
+        System.out.println(filme.getSinopse());
+        System.out.println(filme.getGenero());
+        System.out.println(filme.getAnoLancamento());
+        System.out.println(filme.getSinopse());
+        System.out.println(filme.getTitulo());
+        return "listaFilmes";
     }
     
     
@@ -39,6 +47,22 @@ public class FilmesController {
     
     @GetMapping("/listaFilmes")
     public String exibirListaFilmes(Model model){
+        return "listaFilmes";
+    }
+    
+    
+    
+    
+    
+    
+    @GetMapping("/detalhesFilme")
+    public String exibirDetalhesFilme(Model model){
+        return "detalhesFilme";
+    }
+    
+    @PostMapping("/detalhesFilme")
+    public String processarAnalise(@ModelAttribute Analise analise, Model model){
+        analises.add(analise);
         return "listaFilmes";
     }
 }

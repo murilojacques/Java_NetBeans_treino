@@ -7,16 +7,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
     </head>
     <body>
+        <header th:insert="navbar.html"></header>
+        <p>AAAAAAAAAAABBBBBBBBBBBB</p>
         
-        <form th:action="@{/DetalhesFilmes}" th:object="${Analise}">
-            
-            <p>ID: <input type="number" th:field="*{id}" /> </p>
-            <p>Filme: <input type="text" th:field="*{filme}" /> </p>
-            <p>Analise: <input type="text" th:field="*{analise}" /> </p>
-            <p>Nota: <input type="number" th:field="*{nota}" /> </p>
+        <form th:action="@{/detalhesFilme}" th:object="${Analise}" method="POST">
+            <p>ID: <input type="number" th:field="*{id}" /></p>
+            <p>Filme: <input type="text" th:field="*{filme}" /></p>
+            <p>Analise: <input type="text" th:field="*{analise}" /></p>
+            <p>Nota: <input type="number" th:field="*{nota}" /></p>
             <p><input type="submit" value="Enviar" /></p>
         </form>
         
