@@ -13,11 +13,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <header th:insert="navbar.html"></header>
         <p>AAAAAAAAAAABBBBBBBBBBBB</p>
         
-        <form th:action="@{/detalhesFilme}" th:object="${Analise}" method="POST">
-            <p>ID: <input type="number" th:field="*{id}" /></p>
-            <p>Filme: <input type="text" th:field="*{filme}" /></p>
-            <p>Analise: <input type="text" th:field="*{analise}" /></p>
-            <p>Nota: <input type="number" th:field="*{nota}" /></p>
+        <form th:action="@{/detalhesFilme}" method="POST">
+            <p>ID: <input type="number" th:field="*{analise.id}" /></p>
+            <p>Filme: <input type="text" th:field="*{analise.filme}" /></p>
+            <p>Analise: <input type="text" th:field="*{analise.analise}" /></p>
+            <p>Nota: <input type="number" th:field="*{analise.nota}" /></p>
             <p><input type="submit" value="Enviar" /></p>
         </form>
         

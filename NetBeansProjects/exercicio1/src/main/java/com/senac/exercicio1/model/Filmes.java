@@ -16,7 +16,7 @@ public class Filmes {
     private String titulo;
     private String sinopse;
     private String genero;
-    private int anoLancamento;
+    private int ano;
     
     public Filmes(){
     }
@@ -26,7 +26,7 @@ public class Filmes {
         this.titulo = titulo;
         this.sinopse = sinopse;
         this.genero = genero;
-        this.anoLancamento = anoLancamento;
+        this.ano = anoLancamento;
     }
 
     
@@ -62,13 +62,15 @@ public class Filmes {
         this.genero = genero;
     }
 
-    public int getAnoLancamento() {
-        return anoLancamento;
+    public int getAno() {
+        return ano;
     }
 
-    public void setDataLancamento(int anoLancamento) {
-        this.anoLancamento = anoLancamento;
+    public void setAno(int ano) {
+        this.ano = ano;
     }
+
+    
     
     
     

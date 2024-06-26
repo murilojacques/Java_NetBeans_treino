@@ -20,7 +20,7 @@ public class Tarefa {
     public Tarefa(int id, String descricao, boolean completa) { 
         this.id = id; 
         this.descricao = descricao; 
-        this.completa = completa; 
+        this.completa = completa;
     }
     
     public int getId() { return id; } 

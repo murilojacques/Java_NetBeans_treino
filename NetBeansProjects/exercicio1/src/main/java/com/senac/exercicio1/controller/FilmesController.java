@@ -26,19 +26,19 @@ public class FilmesController {
     
     @GetMapping("/cadastroFilmes")
     public String exibirCadastroFilmes(Model model){
-        model.addAttribute("Filmes", new Filmes());
+        model.addAttribute("filme", new Filmes());
         return "cadastroFilmes";
     }
     
     @PostMapping("/cadastroFilmes")
     public String processarFormulario(@ModelAttribute Filmes filme, Model model){
         filmes.add(filme);
+        model.addAttribute("filme", filme);
+        System.out.println(filme.getId());
         System.out.println(filme.getTitulo());
         System.out.println(filme.getSinopse());
         System.out.println(filme.getGenero());
-        System.out.println(filme.getAnoLancamento());
-        System.out.println(filme.getSinopse());
-        System.out.println(filme.getTitulo());
+        System.out.println(filme.getAno());
         return "listaFilmes";
     }
     
@@ -47,6 +47,7 @@ public class FilmesController {
     
     @GetMapping("/listaFilmes")
     public String exibirListaFilmes(Model model){
+        model.addAttribute("filmes", filmes);
         return "listaFilmes";
     }
     
@@ -57,6 +58,7 @@ public class FilmesController {
     
     @GetMapping("/detalhesFilme")
     public String exibirDetalhesFilme(Model model){
+        model.addAttribute("analise", new Analise());
         return "detalhesFilme";
     }
     

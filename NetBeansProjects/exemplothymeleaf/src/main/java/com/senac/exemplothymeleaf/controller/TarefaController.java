@@ -41,11 +41,7 @@ public class TarefaController {
         
     @GetMapping("/lista-tarefas") 
     public String listaTarefas(Model model) { 
-    // Criação de objetos Tarefa e adição à coleção tarefas 
-    tarefas.add(new Tarefa(1, "teste1", true)); 
     
-    tarefas.add(new Tarefa(2, "teste2", false)); 
-    // Adição da coleção tarefas ao modelo 
     model.addAttribute("tarefas", tarefas); 
     // Retorna o nome da página que será renderizada 
     return "lista-tarefas"; 
