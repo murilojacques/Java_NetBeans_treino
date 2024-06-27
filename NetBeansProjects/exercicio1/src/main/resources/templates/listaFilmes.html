@@ -8,12 +8,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
     </head>
     <body>
+        
         <header th:insert="navbar.html"></header>
         <p>AAAAAA</p>
         
-        <table border="1"> 
+        
+        <form th:action="@{/listaFilmes}" method="POST">
+            <p>Id Filme: <input th:name="id" type="number"></p> 
+            <button type="submit">Enviar</button>
+        </form>
+        
+        <table border="1" id="Tabela"> 
         <thead> 
             <tr> 
                 <th>ID</th> 
@@ -25,7 +33,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         </thead> 
         <tbody> 
             <tr th:each="filme : ${filmes}"> 
-               <td th:text="${filme.id}" id="id" onclick="a(id)"></td> 
+               <td th:text="${filme.id}" class="id"></td> 
                 <td th:text="${filme.titulo}"></td> 
             <td th:text="${filme.sinopse}"></td>
             <td th:text="${filme.genero}"></td>
@@ -34,7 +42,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             </tr> 
         </tbody> 
     </table>
+        <script th:src="@{/js/script.js}"></script>
         
-    <script th:src="@{\js\script.js}"></script>
     </body>
 </html>
