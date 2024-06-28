@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <form th:action="@{/Pag2}" method="POST">
+            <p>Titulo: <input type="number" th:field="*{f.id}" /> </p>
+            <button type="submit">Enviar</button>
+        </form>
+        
+        <table border="1" id="Tabela"> 
+        <thead> 
+            <tr> 
+                <th>ID</th> 
+                <th>Titulo</th> 
+                <th>Sinopse</th>
+            <th>Genero</th>
+            <th>Ano de Lançamento</th>
+            </tr> 
+        </thead> 
+        <tbody> 
+            <tr th:each="filme : ${filmes}"> 
+               <td th:text="${filme.id}" class="id"></td> 
+                <td th:text="${filme.titulo}"></td> 
+            <td th:text="${filme.sinopse}"></td>
+            <td th:text="${filme.genero}"></td>
+            <td th:text="${filme.ano}"></td>
+                                 
+            </tr> 
+        </tbody> 
+    </table>
+        
+    </body>
+</html>

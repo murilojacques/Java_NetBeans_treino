@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.thymeleaf.expression.Ids;
 
 /**
  *
@@ -26,11 +27,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class FilmesController {
     private int indices=0;
     private int getIndex=0;
-    private List<Filmes> filmes = new ArrayList();
-    private List<Analise> analises = new ArrayList();
+    private final List<Filmes> filmes = new ArrayList();
+    private final List<Analise> analises = new ArrayList();
+    
     
     @GetMapping("/cadastroFilmes")
     public String exibirCadastroFilmes(Model model){
+        Analise a = new Analise();
+        model.addAttribute("a", a);
+        System.out.println(a.getId());
         model.addAttribute("filme", new Filmes());
         return "cadastroFilmes";
     }
@@ -53,8 +58,8 @@ public class FilmesController {
     
     
     @GetMapping("/listaFilmes")
-    public String exibirListaFilmes(Model model){
-        model.addAttribute("indice", indices);
+    public String exibirListaFilmes(Model model){  
+        model.addAttribute("filme", new Filmes());
         model.addAttribute("filmes", filmes);
         return "listaFilmes";
     }
@@ -62,9 +67,11 @@ public class FilmesController {
     
     
     @PostMapping("/listaFilmes")
-    public String MostrarPaginaDetalhes(@RequestParam(name = "id") int indice, Model model){
-        getIndex = indice;
-        return "detalhesFilme";
+    public String MostrarPaginaDetalhes(@ModelAttribute Filmes filme, Model model){
+        Analise analise = new Analise();
+        analise.setFilme(filmes.get(filme.getId()));
+        model.addAttribute("analise" ,analise);
+        return "detalhesFilmes";
     }
     
     
@@ -73,14 +80,9 @@ public class FilmesController {
     
     @GetMapping("/detalhesFilme")
     public String exibirDetalhesFilme(Model model){
-        if (getIndex <= indices) {
-             model.addAttribute("filme", filmes.get(indices+1));
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "O Indice selecionado é invalido");
-        }
-       
-        model.addAttribute("analise", new Analise());
+        Analise analise = new Analise();
+        model.addAttribute("analise", analise);
+        
         return "detalhesFilme";
     }
     

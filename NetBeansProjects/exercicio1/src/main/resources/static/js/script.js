@@ -3,12 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
  */ 
 
-import com.senac.exercicio1.controller.FilmesController;
+
 
 var cells = document.querySelectorAll("#Tabela td");
 for (var i = 0; i < cells.length; i++) {
   cells[i].addEventListener("click", function() {
-    alert("AAAA");
+    alert(this.innerHTML);
   });
 }
 

@@ -6,7 +6,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>TODO supply a title</title>
-        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
     </head>
@@ -15,9 +15,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <header th:insert="navbar.html"></header>
         <p>AAAAAA</p>
         
+        <p th:text="${b}"></p>
         
         <form th:action="@{/listaFilmes}" method="POST">
-            <p>Id Filme: <input th:name="id" type="number"></p> 
+            <p>ID: <input type="number"  th:field="${filme.id}" /> </p>
+            
             <button type="submit">Enviar</button>
         </form>
         
@@ -42,6 +44,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             </tr> 
         </tbody> 
     </table>
+
         <script th:src="@{/js/script.js}"></script>
         
     </body>
