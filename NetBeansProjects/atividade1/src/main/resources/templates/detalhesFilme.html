@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalhes do Filme</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1>Detalhes do Filme</h1>
+    <div th:if="${filme != null}">
+        <p><strong>Título:</strong> <span th:text="${filme.titulo}">Título</span></p>
+        <p><strong>Sinopse:</strong> <span th:text="${filme.sinopse}">Sinopse</span></p>
+        <p><strong>Gênero:</strong> <span th:text="${filme.genero}">Gênero</span></p>
+        <p><strong>Ano de Lançamento:</strong> <span th:text="${filme.anoLancamento}">Ano</span></p>
+        
+        <h2>Adicionar Análise</h2>
+        <form th:action="@{/filme/{id}/analisar(id=${filme.id})}" method="post">
+            <textarea name="analise" placeholder="Escreva sua análise" required></textarea>
+            <p>Nota: <input type="number" name="nota"></p>
+            <button type="submit">Adicionar Análise</button>
+        </form>
+    </div>
+    <div th:if="${filme == null}">
+        <p>Filme não encontrado!</p>
+    </div>
+    <a href="/filmes">Voltar à Lista de Filmes</a>
+</body>
+</html>

@@ -31,6 +31,10 @@ public class FilmesController {
     private final List<Analise> analises = new ArrayList();
     
     
+    filmes.add(new Filmes(1, "Filme A", "Sinopse A", "Ação", 2020));
+    filmes.add(new Filmes(2, "Filme B", "Sinopse B", "Drama", 2019));
+
+    
     @GetMapping("/cadastroFilmes")
     public String exibirCadastroFilmes(Model model){
         Analise a = new Analise();

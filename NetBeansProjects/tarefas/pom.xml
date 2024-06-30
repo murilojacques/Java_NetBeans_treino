@@ -12,7 +12,7 @@
 	<artifactId>tarefas</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>tarefas</name>
-	<description>API Rest de Projeto de Tarefas</description>
+	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
 		<license/>
