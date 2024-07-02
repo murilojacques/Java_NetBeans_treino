@@ -4,63 +4,87 @@
  */
 package com.api.tarefas.controller;
 
+import com.api.tarefas.model.Tarefa;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.web.bind.annotation.*;
-import com.api.tarefas.model.Tarefa;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+/**
+ *
+ * @author Murilo
+ */
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/tarefas")
 public class TarefaController {
-
-    private final List<Tarefa> tarefas = new ArrayList<>();
+    
+    // Variáveis auxiliares
+    private List<Tarefa> tarefas = new ArrayList<>();
     private int proximoId = 1;
-
+    
+    
+    
+    @GetMapping("")
+    public List buscarTodasTarefas(){
+        return tarefas;
+    }
+    
+    @GetMapping("/{id}")
+    public Tarefa buscarTarefaPorId(@PathVariable int id){
+        for(Tarefa tarefa : tarefas){
+            if(tarefa.getId() == id){
+                return tarefa;
+            }   
+        }
+        return null;
+    }
+    
+    
+    
     @PostMapping("")
-    public Tarefa criarTarefa(@RequestBody Tarefa tarefa) {
-        tarefa.setId(proximoId++);
+    public Tarefa criarTarefa(@RequestBody Tarefa tarefa){
+        int id = tarefas.size()+1;
+        tarefa.setId(id);
         tarefas.add(tarefa);
         return tarefa;
     }
-
-    @GetMapping("")
-    public List buscarTarefas() {
-        return tarefas;
-    }
-
-    @GetMapping("/{id}")
-    public Tarefa buscarTarefa(@PathVariable int id) {
-        for (Tarefa tarefa : tarefas) {
-            if (tarefa.getId() == id) {
+    
+    
+    
+    @PutMapping("/{id}")
+    public Tarefa atualizarTarefa(@PathVariable int id, @RequestBody Tarefa tarefaAtualizada){
+        for(int i = 0; i<tarefas.size(); i++){
+            Tarefa tarefa = tarefas.get(i);
+            if(tarefa.getId() == id){
+                tarefa.setDescricao(tarefaAtualizada.getDescricao());
+                tarefa.setCompleta(tarefaAtualizada.isCompleta());
                 return tarefa;
             }
         }
         return null;
     }
-
-    @PutMapping("/{id}")
-    public Tarefa atualizarTarefa(@PathVariable int id, @RequestBody Tarefa tarefa) {
-        for (int i = 0; i < tarefas.size(); i++) {
-            Tarefa t = tarefas.get(i);
-            if (t.getId() == id) {
-                t.setDescricao(tarefa.getDescricao());
-                t.setCompleta(tarefa.isCompleta());
-                return t;
-            }
-        }
-        return null;
-    }
-
+    
+    
+    
     @DeleteMapping("/{id}")
-    public boolean deletarTarefa(@PathVariable int id) {
-        for (int i = 0; i < tarefas.size(); i++) {
+    public boolean deletarTarefa(@PathVariable int id){
+        for(int i=0; i<tarefas.size(); i++){
             Tarefa tarefa = tarefas.get(i);
-            if (tarefa.getId() == id) {
+            if(tarefa.getId() == id){
                 tarefas.remove(i);
                 return true;
             }
         }
         return false;
     }
+    
+    
 }
