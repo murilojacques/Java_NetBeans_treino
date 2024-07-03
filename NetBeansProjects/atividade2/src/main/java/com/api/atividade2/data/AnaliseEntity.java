@@ -8,7 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.io.Serializable;
 import lombok.Data;
 
 /**
@@ -18,13 +20,13 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="Analises")
-public class AnaliseEntity {
+public class AnaliseEntity implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
     
-    private FilmeEntity filme;
+    private Integer filme;
     
     private String analise;
     

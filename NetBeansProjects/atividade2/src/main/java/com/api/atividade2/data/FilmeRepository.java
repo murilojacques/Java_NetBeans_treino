@@ -5,11 +5,13 @@
 package com.api.atividade2.data;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Murilo
  */
+@Repository
 public interface FilmeRepository extends JpaRepository<FilmeEntity, Integer>{
     
 }

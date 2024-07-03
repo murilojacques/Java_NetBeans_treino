@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 public class FilmeService {
     
     @Autowired
+            
     FilmeRepository filmeRepository;
     
     
@@ -30,14 +31,14 @@ public class FilmeService {
     
     
     
-    public FilmeEntity atualizarFilme(Integer filmeId, FilmeEntity filmeRequest){
+    public FilmeEntity atualizarFilme(Integer filmeId, FilmeEntity filmeAtualizacao){
         
         FilmeEntity filme = getFilmeById(filmeId);
         
-        filme.setTitulo(filmeRequest.getTitulo());
-        filme.setSinopse(filmeRequest.getSinopse());
-        filme.setGenero(filmeRequest.getGenero());
-        filme.setAnoLancamento(filmeRequest.getAnoLancamento());
+        filme.setTitulo(filmeAtualizacao.getTitulo());
+        filme.setSinopse(filmeAtualizacao.getSinopse());
+        filme.setGenero(filmeAtualizacao.getGenero());
+        filme.setAnoLancamento(filmeAtualizacao.getAnoLancamento());
         
         filmeRepository.save(filme);
         
