@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+               integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container my-3">
+            <a th:href="@{/cadastrarFilme}">Cadastrar Filme</a>
+            
+            <table border="1" class="table table-striped table-responsive-md">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Titulo</th>
+                        <th>Sinopse</th>
+                        <th>Genero</th>
+                        <th>Ano de Lançamento</th>
+                        <th>Operações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="filme : ${filmes}">
+                        <td th:text="${filme.id}">
+                        <td th:text="${filme.titulo}">
+                        <td th:text="${filme.sinopse}">
+                        <td th:text="${filme.genero}">
+                        <td th:text="${filme.anoLancamento}">
+                        <td>
+                            <a th:href="@{/adicionarAnalise/{id}(id=${filme.id})}" class="btn btn-primary">Analisar</a>
+                            <a th:href="@{/atualizarFilme/{id}(id=${filme.id})}" class="btn btn-primary">Atualizar</a>
+                            <a th:href="@{/deletarFilme/{id}(id=${filme.id})}" class="btn btn-danger">Deletar</a>
+                        </td>
+                    </tr>
+                </tbody>
+                
+            </table>
+        </div>
+    </body>
+</html>
