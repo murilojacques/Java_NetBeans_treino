@@ -26,7 +26,7 @@ public class AnaliseEntity implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     
-    private Integer filme;
+    private int filme;
     
     private String analise;
     

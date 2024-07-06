@@ -4,6 +4,7 @@
  */
 package com.api.atividade3.controller;
 
+import com.api.atividade3.data.AnaliseEntity;
 import com.api.atividade3.data.FilmeEntity;
 import com.api.atividade3.service.AnaliseService;
 import com.api.atividade3.service.FilmeService;
@@ -12,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -23,43 +27,90 @@ public class filmesController {
     
     @Autowired
     FilmeService filmeService;
+    
+    @Autowired
     AnaliseService analiseService;
     
     
     @GetMapping("/")
     public String pagListaFilmes(Model model){
         List<FilmeEntity> filmes = filmeService.listarTodosFilmes();
+        List<AnaliseEntity> analises = analiseService.getTodasAnalises();
+        model.addAttribute("analises", analises);
         model.addAttribute("filmes", filmes);
+        model.addAttribute("filme", new FilmeEntity());
         return "index";
     }
     
-    @GetMapping("/cadastrarFilme")
-    public String cadastrarFilme(Model model){
-        return "cadastrarFilme";
+    @GetMapping("/atualizarFilme/{id}")
+    public String PagAtualizarFilme(@PathVariable(value = "id") Integer id, Model model){
+        FilmeEntity filme = filmeService.getFilmeById(id);
+        model.addAttribute("filme", filme);
+       return "atualizarFilme";
+    }
+    
+    @PostMapping("/salvarFilme")
+    public String cadastrarFilme(@ModelAttribute("filme") FilmeEntity filme, Model model){
+        System.out.println(filme.getId());
+        if(filme.getId() == null){
+            filmeService.cadastrarFilme(filme);
+        }
+        else{
+            filmeService.atualizarFilme(filme.getId(), filme);
+        }
+        return "redirect:/";
+    }
+    
+    
+    @GetMapping("/deletarFilme/{id}")
+    public String deletarFilme(@PathVariable(value="id") Integer id, Model model){
+        analiseService.DeletarAnalisesPorFilme(id);
+        filmeService.deletarFilme(id);
+        return "redirect:/";
+    }
+    
+    
+
+    @GetMapping("/adicionarAnalise/{id}")
+    public String PagAdicionarAnalise(@PathVariable(value = "id") Integer id, Model model){
+        FilmeEntity filme = filmeService.getFilmeById(id);
+        model.addAttribute("filme", filme);
+        model.addAttribute("Analises", new AnaliseEntity());
+        return "adicionarAnalise";
+    }
+    
+   @PostMapping("/salvarAnalise/{id}")
+    public String salvarAnalise(@ModelAttribute("Analises") AnaliseEntity a, @PathVariable(value="id") int filmeId, Model model){
+        System.out.println(a.getAnalise());
+        System.out.println(a.getId());
+        a.setFilme(filmeId);
+        System.out.println(a.getFilme());
+        System.out.println(a.getNota());
+        
+
+        analiseService.adicionarAnalise(a);
+        return "redirect:/";
     }
     
     
     
+    @GetMapping("/deletarAnalise/{id}")
+    public String deletarAnalise(@PathVariable(value = "id") Integer id){
+        analiseService.deletarAnalise(id);
+        return "redirect:/";
+    }
     
+    @GetMapping("atualizarAnalise/{id}")
+    public String atualizarAnalise(@PathVariable(value = "id") Integer id, Model model){
+        AnaliseEntity analise = analiseService.getAnaliseById(id);
+        model.addAttribute("Analise", analise);
+        return "atualizarAnalise";
+    }
     
-    //@GetMapping("/adicionarAnalise/{id}")
-    //public String adicionarAnalise(@PathVariable(value = "id") int id, Model model){
-        //return "adicionarAnalise";
-    //}
+    @PostMapping("/salvarAnaliseAtualizada")
+    public String atualizarAnalise(@ModelAttribute("Analise") AnaliseEntity analise, Model model){
+        analiseService.atualizarAnalise(analise.getId(), analise);
+        return "redirect:/";
+    }
     
-    //@GetMapping("/atualizarFilme/{id}")
-    //public String atualizarFilme(@PathVariable(value = "id") int id, Model model){
-       // return "redirect:/";
-    //}
-    
-    
-    
-    
-    //@GetMapping("/filme/{id}")
-    //public String detalhesFilme(@PathVariable(value = "id") int id, Model model){
-        //System.out.println(id);
-        //FilmeEntity filme = filmeService.getFilmeById(id);
-        //model.addAttribute("filme", filme);
-        //return "detalhesFilme";
-    //}
 }

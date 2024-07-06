@@ -7,7 +7,7 @@
 <body>
     <h1>Detalhes do Filme</h1>
     <div th:if="${filme != null}">
-        <p><strong>Título:</strong> <span th:text="${filme.titulo}">Título</span></p>
+        <p><strong>Título:</strong> <span th:text="${filme.titulo}" >Título</span></p>
         <p><strong>Sinopse:</strong> <span th:text="${filme.sinopse}">Sinopse</span></p>
         <p><strong>Gênero:</strong> <span th:text="${filme.genero}">Gênero</span></p>
         <p><strong>Ano de Lançamento:</strong> <span th:text="${filme.anoLancamento}">Ano</span></p>
