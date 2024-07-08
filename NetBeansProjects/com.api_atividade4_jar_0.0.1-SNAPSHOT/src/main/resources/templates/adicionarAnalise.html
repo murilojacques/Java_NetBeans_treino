@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+               integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <p><strong>Título:</strong> <span th:text="${filme.titulo}" class="form-control mb-4 col-4"></span></p>
+            <p><strong>Sinopse:</strong> <span th:text="${filme.sinopse}" class="form-control mb-4 col-4"></span></p>
+            <p><strong>Genero:</strong> <span th:text="${filme.genero}" class="form-control mb-4 col-4"></span></p>
+            <p><strong>Ano de Lançamento:</strong> <span th:text="${filme.anoLancamento}" class="form-control mb-4 col-4"></span></p>
+        </div>
+        <form th:action="@{/salvarAnalise/{id}(id=${filme.id})}" th:object="${Analises}" method="post">
+                <br>
+                <input type="text" th:field="*{analise}" name="analise" placeholder="Analise" class="form-control mb-4 col-4" required>
+                <input type="number" th:field="*{nota}" name="Nota" placeholder="Nota" class="form-control mb-4 col-4" required>
+                <br>
+                <input type="submit" name="name" value="Salvar Analise" class="btn btn-primary">
+        </form>
+        <br>
+        <a th:href="@{/}">Voltar à Lista de Filmes</a>
+    </body>
+</html>
