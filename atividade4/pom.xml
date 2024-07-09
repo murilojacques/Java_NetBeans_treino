@@ -11,8 +11,9 @@
     <groupId>com.api</groupId>
     <artifactId>atividade4</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>atividade4_1</name>
+    <name>atividade4</name>
     <description>Demo project for Spring Boot</description>
+    <packaging>war</packaging>
     <url/>
     <licenses>
         <license/>
@@ -33,6 +34,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -62,10 +67,6 @@
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
             <version>3.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
     </dependencies>
 
