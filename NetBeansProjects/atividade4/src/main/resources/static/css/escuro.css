@@ -1,0 +1,15 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 8 de jul. de 2024, 22:33:47
+    Author     : Murilo
+*/
+body{ 
+  background-color: #505050;  
+  color: white; 
+} 
+a, a:visited{ 
+  color: white; 
+}
