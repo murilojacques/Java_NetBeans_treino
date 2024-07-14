@@ -21,10 +21,10 @@ public class ContaService {
     ContaRepository contaRepository;
     
     
-    public ContaEntity cadastrarConta(ContaEntity conta){
-        conta.setId(null);
-        contaRepository.save(conta);
-        return conta;
+    public ContaEntity cadastrarConta(ContaEntity con){
+        con.setId(null);
+        contaRepository.save(con);
+        return con;
     }
     
     
@@ -35,6 +35,11 @@ public class ContaService {
     }
     
     
+    public Boolean ConfirmarLogin(String login, int senha){
+        ContaEntity conta;
+        conta = contaRepository.findByLoginAndSenha(login, senha);
+        return conta != null;
+    }
     
     public ContaEntity buscarContaById(Integer id){
         return contaRepository.findById(id).orElse(null);
