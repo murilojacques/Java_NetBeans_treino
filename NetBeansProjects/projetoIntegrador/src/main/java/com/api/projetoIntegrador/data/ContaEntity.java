@@ -41,7 +41,7 @@ public class ContaEntity implements Serializable{
 
     private String tipo;
 
-    private float saldo;
+    private int saldo;
 
     private boolean status;
     
