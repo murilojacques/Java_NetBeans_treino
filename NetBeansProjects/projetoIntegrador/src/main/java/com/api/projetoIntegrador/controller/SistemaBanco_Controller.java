@@ -5,9 +5,12 @@
 package com.api.projetoIntegrador.controller;
 
 import com.api.projetoIntegrador.data.ContaEntity;
+import com.api.projetoIntegrador.data.TransacaoEntity;
+import com.api.projetoIntegrador.exceptions.ResourceNotFoundException;
 import com.api.projetoIntegrador.model.Valor;
 import com.api.projetoIntegrador.service.ContaService;
 import com.api.projetoIntegrador.service.TransacaoService;
+import java.util.List;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -33,9 +37,9 @@ public class SistemaBanco_Controller {
     
     private int id;
     private Integer i;
-    private int a;
     
-    @GetMapping("/")
+    
+    @GetMapping("/PagLogin")
     public String PagLogin(Model model){
         
         model.addAttribute("conta", new ContaEntity());
@@ -45,6 +49,13 @@ public class SistemaBanco_Controller {
     @PostMapping("/ConfirmarLogin")
     public String ConfirmarLogin(@ModelAttribute("conta") ContaEntity conta, Model model){
         
+        if(conta.getLogin().equals("abc") && conta.getSenha() == 124){
+            List<ContaEntity> contas = contaService.ListarContas();
+            model.addAttribute("Contas", contas);
+            return "ListaContas";
+        }
+        
+        
         ContaEntity c = contaService.ConfirmarLogin(conta.getLogin(), conta.getSenha());
         if(c != null){
         id = c.getId();
@@ -53,8 +64,10 @@ public class SistemaBanco_Controller {
         model.addAttribute("V", new ContaEntity());
         return "PagCentral";
         }
-       
-        return "redirect:/";
+        
+        model.addAttribute("conta", new ContaEntity());
+        model.addAttribute("msg", "Conta não Encontrada");
+        return "PagLogin";
     }
     
     
@@ -72,25 +85,23 @@ public class SistemaBanco_Controller {
     public String CadastrarConta(@ModelAttribute("conta") ContaEntity conta){
         
         ContaEntity c = contaService.ConfirmarLogin(conta.getLogin(), conta.getSenha());
-        System.out.println(conta.getCpf());
-        
+         
         if(c != null){
-          System.out.println("Encontrado foi TRUE");
-          //    Esse JOption ta fazendo da erro            JOptionPane.showMessageDialog(null, "Uma Conta com esse Login e/ou Senha Ja existe");
           return "PagCriarConta";  
         }else{
+            
             if(conta.getTipo().equals("cc")){
             conta.setSaldo(50);
             }
             else{
             conta.setSaldo(150);
             }
-            conta.setId(null);
+        conta.setId(null);
         conta.setStatus(true);
         contaService.cadastrarConta(conta);
         }
         
-        return "redirect:/";
+        return "PagLogin";
     }
     
     @GetMapping("/PagCentral")
@@ -98,6 +109,20 @@ public class SistemaBanco_Controller {
         model.addAttribute("V", new ContaEntity());
         return "PagCentral";
     }
+    
+    
+    @GetMapping("/PagTransacao")
+    public String PagTransacao(Model model){
+        List<TransacaoEntity> transacoes = transacaoService.ListarTransacoesPorId(id);
+        model.addAttribute("Transacoes", transacoes);
+        model.addAttribute("Transacao", new TransacaoEntity());
+        return "PagTransacao";
+    }
+    
+    
+    
+    
+    
     
     
     
@@ -113,43 +138,102 @@ public class SistemaBanco_Controller {
     @GetMapping("/deletarConta")
     public String DeletarConta(){
         contaService.DeletarConta(id);
-        return "redirect:/";
+        return "PagLogin";
     }
     
     
     @RequestMapping(value="/Sacar")
-    public String Sacar(@ModelAttribute("V") ContaEntity v){
+    public String Sacar(@ModelAttribute("V") ContaEntity v, Model model){
         ContaEntity conta = contaService.BuscarContaById(id);
-        System.out.println(conta.getSaldo());
-        System.out.println(v.getSaldo() + " AAAAA");
         i = v.getSaldo();
-        System.out.println(i + " BBBBB");
-        //a = Integer.parseInt(v);
-        if(conta.getSaldo() >= i){
+        if(conta.getSaldo() >= i && conta.isStatus()){
             conta.setSaldo(conta.getSaldo() - i);
             contaService.AtualizarSaldo(id, conta);
+            
             return "PagCentral";
         }
         else{
-            System.out.println("");
-            System.out.println("PEDIDO NEGADO");
-            System.out.println("");
+            model.addAttribute("msg", "O Status da sua Conta esta como Fechada");
+            return "PagCentral";
         }
         
-        return "PagCentral";
     }
     
     
     @PostMapping("/Depositar")
-    public String Depositar(@ModelAttribute("V") ContaEntity v){
+    public String Depositar(@ModelAttribute("V") ContaEntity v, Model model){
         ContaEntity conta = contaService.BuscarContaById(id);
-        System.out.println(v.getSaldo());
-        i = v.getSaldo();
-        System.out.println(i);
-        //a = Integer.parseInt(v);
-        
-        conta.setSaldo(conta.getSaldo() + i);
-        contaService.AtualizarSaldo(id, conta);
-        return "PagCentral";
+        if(conta.isStatus()){
+            i = v.getSaldo();
+            conta.setSaldo(conta.getSaldo() + i);
+            contaService.AtualizarSaldo(id, conta); 
+            return "PagCentral";
+        }
+        else{
+            model.addAttribute("msg", "O Status da sua Conta esta como Fechada");
+            return "PagCentral";
+        }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    @PostMapping("/RealizarTransacao")
+    public String RealizarTransacao(@ModelAttribute("Transacao") TransacaoEntity transacao, Model model){
+        
+        ContaEntity contaDestino = contaService.BuscarContaById(transacao.getConta_destino_id());
+        ContaEntity contaAtual = contaService.BuscarContaById(id);
+        
+        
+        if(contaDestino.getId() != null && contaDestino.getId() != id){
+            
+            if(contaAtual.getSaldo() >= transacao.getValor()){
+                contaAtual.setSaldo(contaAtual.getSaldo() - transacao.getValor());
+                contaService.AtualizarSaldo(id, contaAtual);
+                
+                contaDestino.setSaldo(contaDestino.getSaldo() + transacao.getValor());
+                contaService.AtualizarSaldo(contaDestino.getId(), contaDestino);
+                
+                transacaoService.cadastrarTransacao(transacao, id);
+            }
+            else{
+                List<TransacaoEntity> transacoes = transacaoService.ListarTransacoesPorId(id);
+                model.addAttribute("Transacoes", transacoes);
+                model.addAttribute("Transacao", new TransacaoEntity());
+                model.addAttribute("msg", "Saldo Insuficiente");
+                return "PagTransacao";
+            }
+
+            
+        }
+        else{
+            List<TransacaoEntity> transacoes = transacaoService.ListarTransacoesPorId(id);
+            model.addAttribute("Transacoes", transacoes);
+            model.addAttribute("Transacao", new TransacaoEntity());
+            model.addAttribute("msg", "Não é possivel realizar Transacoes para a mesma Conta");
+            return "PagTransacao";
+        }
+        
+       List<TransacaoEntity> transacoes = transacaoService.ListarTransacoesPorId(id);
+       model.addAttribute("Transacoes", transacoes);
+       model.addAttribute("Transacao", new TransacaoEntity());
+       return "PagTransacao"; 
+    }
+    
+    
+    
+    
+    
+    @GetMapping("/ListaContas")
+    public String PagListaConta(Model model){
+        List<ContaEntity> contas = contaService.ListarContas();
+        model.addAttribute("Contas", contas);
+        return "ListaContas";
+    }
+    
+    
 }

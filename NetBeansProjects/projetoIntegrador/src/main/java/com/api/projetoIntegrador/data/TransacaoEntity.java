@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import java.io.Serializable;
 import lombok.Data;
 
@@ -18,18 +19,19 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name="Transacao")
+@Table(name="Transacao", uniqueConstraints = {
+    @UniqueConstraint(columnNames = "id")})
 public class TransacaoEntity implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     
-    private int conta_origem_id;
+    private int contaOrigemId;
     
     private int conta_destino_id;
     
     private String alteracao_conta;
     
-    private float valor;
+    private int valor;
 }

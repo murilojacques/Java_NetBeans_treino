@@ -14,7 +14,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
         <div>
             <a th:href="@{/MudarStatus}" class="btn btn-primary">Alterar Status</a>
-            <a href="" class="btn btn-primary">Realizar Transação</a>
+            <a th:href="@{/PagTransacao}" class="btn btn-primary">Realizar Transação</a>
             <a th:href="@{/deletarConta}" class="btn btn-danger">Deletar Conta</a>
         </div>
         
@@ -23,6 +23,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <input type="number" th:field="*{saldo}" name="name">
                 <button th:action="@{/Depositar}" type="submit" class="btn btn-primary">Depositar</button>
                 <button th:formaction="@{/Sacar}" type="submit" class="btn btn-primary">Sacar</button>
+                <span th:text="${msg}" class="text-danger"></span>
             </form>
         </div>
     </body>

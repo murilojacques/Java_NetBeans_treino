@@ -21,10 +21,21 @@ public class TransacaoService {
     TransacaoRepository transacaoRepository;
     
     
-    public TransacaoEntity cadastrarTransacao(TransacaoEntity transacao){
+    public TransacaoEntity cadastrarTransacao(TransacaoEntity transacao, int Conta_Origem_Id){
         
         transacao.setId(null);
+        transacao.setContaOrigemId(Conta_Origem_Id);
+        transacao.setAlteracao_conta("Deposito");
         transacaoRepository.save(transacao);
+        
+        //TransacaoEntity t = new TransacaoEntity();
+        //t.setId(null);
+        //t.setConta_destino_id(transacao.getConta_destino_id());
+        //t.setContaOrigemId(transacao.getContaOrigemId());
+        //t.setValor(transacao.getValor());
+        //t.setAlteracao_conta("Recebido");
+        //transacaoRepository.save(t);
+        
         return transacao;
     }
     
@@ -35,6 +46,11 @@ public class TransacaoService {
         return transacoes;
     }
     
+    
+   public List<TransacaoEntity> ListarTransacoesPorId(int conta_origem_id){
+        List<TransacaoEntity> transacoes = transacaoRepository.findByContaOrigemId(conta_origem_id);
+        return transacoes;
+    }
     
     
     public TransacaoEntity buscarTransacaoById(Integer id){   

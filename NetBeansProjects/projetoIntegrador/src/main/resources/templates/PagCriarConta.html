@@ -13,13 +13,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </head>
     <body>
         <div class="w-50 mx-auto border">
-            <form th:action="@{/cadastrarConta}" th:object="${conta}" method="post">
-                <input type="text" th:field="*{nome_usuario}" name="Campo_NomeUsuario" style="display: block" required>
-                <input type="text" th:field="*{endereco}" name="Campo_Endereco" style="display: block" required>
-                <input type="text" th:field="*{login}" name="Campo_Login" style="display: block" required>
-                <input type="number" th:field="*{senha}" name="Campo_Senha" style="display: block" required>
-                <input type="number" th:field="*{cpf}" name="Campo_CPF" style="display: block" required>
-                <input type="number" th:field="*{cnpj}" name="Campo_CNPJ" style="display: block" required>
+            <form th:action="@{/cadastrarConta}" onsubmit="return check()" th:object="${conta}" method="post">
+                <input type="text" th:field="*{nome_usuario}" placeholder="Nome" name="Campo_NomeUsuario" style="display: block" required>
+                <input type="text" th:field="*{endereco}" placeholder="Endereço" name="Campo_Endereco" style="display: block" required>
+                <input type="text" th:field="*{login}" placeholder="Login" name="Campo_Login" style="display: block" required>
+                <input type="number" th:field="*{senha}" placeholder="Senha" name="Campo_Senha" style="display: block" required>
+                <input type="number" th:field="*{cpf}"  placeholder="CPF" name="Campo_CPF" style="display: block" required>
+                <input type="number" th:field="*{cnpj}"  placeholder="CNPJ" name="Campo_CNPJ" style="display: block" required>
                 <select id="id" th:field="*{pfpj}" name="Campo_Tipo" style="display: block">
                     <option value="pf">Pessoa Fisica</option>
                     <option value="pj">Pessoa Juridica</option>
@@ -32,5 +32,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <input type="submit" name="name" value="Cadastrar" style="display: block">
             </form>
         </div>
+        
     </body>
 </html>

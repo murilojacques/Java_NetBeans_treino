@@ -15,7 +15,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <div class="w-25 mx-auto border" style="margin-top: 200px">
             <form th:action="@{/ConfirmarLogin}" th:object="${conta}" method="post">
                 <input type="text" th:field="*{login}" name="Campo_Login" placeholder="Login" class="form-control mt-5 mb-4 mx-auto col-12" required>
-                <input type="text" th:field="*{senha}"  name="Campo_Senha" placeholder="Senha" class="form-control mt-5 mb-4 mx-auto col-12" required>
+                <input type="text" th:field="*{senha}"  name="Campo_Senha" placeholder="Senha" class="form-control mt-5 mb-2 mx-auto col-12" required>
+                <span th:text="${msg}" class="text-danger"></span>
+                <br>
                 <input type="submit" name="btn_Enviar" value="Entrar" class="col-3 mt-3 btn btn-primary">
             </form>
         </div>

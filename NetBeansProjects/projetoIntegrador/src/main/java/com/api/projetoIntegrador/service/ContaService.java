@@ -6,6 +6,7 @@ package com.api.projetoIntegrador.service;
 
 import com.api.projetoIntegrador.data.ContaEntity;
 import com.api.projetoIntegrador.data.ContaRepository;
+import com.api.projetoIntegrador.exceptions.ResourceNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +67,9 @@ public class ContaService {
     
     
     public ContaEntity BuscarContaById(Integer id){
-        return contaRepository.findById(id).orElse(null);
+        return contaRepository.findById(id).orElseThrow(()-> {
+            return new ResourceNotFoundException("Conta não Encontrada");
+        });
     }
     
     

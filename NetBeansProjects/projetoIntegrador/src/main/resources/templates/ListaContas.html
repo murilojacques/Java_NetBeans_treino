@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <table border="1" class="table table-striped table-responsive-md">
+                    <thead>
+                        <tr>
+                            <td>Id</td>
+                            <td>nome_usuario</td>
+                            <td>enderecom</td>
+                            <td>login</td>
+                            <td>senha</td>
+                            <td>cpf</td>
+                            <td>cnpj</td>
+                            <td>tipo</td>
+                            <td>saldo</td>
+                            <td>status</td>
+                            <td>pfpj</td>
+                        </tr>
+                    </thead>  
+                    <tbody>
+                        <tr th:each="conta : ${Contas}">
+                            <td th:text="${transacao.id}">
+                            <td th:text="${transacao.contaOrigemId}">
+                            <td th:text="${transacao.conta_destino_id}">
+                            <td th:text="${transacao.alteracao_conta}">
+                            <td th:text="${transacao.valor}">
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+    </body>
+</html>
