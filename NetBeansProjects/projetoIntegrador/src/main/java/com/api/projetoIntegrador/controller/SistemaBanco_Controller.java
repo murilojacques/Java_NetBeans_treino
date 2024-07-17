@@ -60,10 +60,13 @@ public class SistemaBanco_Controller {
         if(c != null){
         id = c.getId();
         //Adicionar os Model 
-        
+        List<TransacaoEntity> transacoes = transacaoService.ListarTransacoesPorId(id);
+        model.addAttribute("Transacoes", transacoes);
+        model.addAttribute("Transacao", new TransacaoEntity());
         model.addAttribute("V", new ContaEntity());
         return "PagCentral";
         }
+        
         
         model.addAttribute("conta", new ContaEntity());
         model.addAttribute("msg", "Conta não Encontrada");
@@ -81,7 +84,7 @@ public class SistemaBanco_Controller {
         return "PagCriarConta";
     }
     
-    @RequestMapping(value="/cadastrarConta")
+    @PostMapping("/cadastrarConta")
     public String CadastrarConta(@ModelAttribute("conta") ContaEntity conta){
         
         ContaEntity c = contaService.ConfirmarLogin(conta.getLogin(), conta.getSenha());
@@ -106,6 +109,9 @@ public class SistemaBanco_Controller {
     
     @GetMapping("/PagCentral")
     public String PagCentral(Model model){
+        List<TransacaoEntity> transacoes = transacaoService.ListarTransacoesPorId(id);
+        model.addAttribute("Transacoes", transacoes);
+        model.addAttribute("Transacao", new TransacaoEntity());
         model.addAttribute("V", new ContaEntity());
         return "PagCentral";
     }
@@ -149,11 +155,13 @@ public class SistemaBanco_Controller {
         if(conta.getSaldo() >= i && conta.isStatus()){
             conta.setSaldo(conta.getSaldo() - i);
             contaService.AtualizarSaldo(id, conta);
-            
+            List<TransacaoEntity> transacoes = transacaoService.ListarTransacoesPorId(id);
+            model.addAttribute("Transacoes", transacoes);
+            model.addAttribute("Transacao", new TransacaoEntity());
             return "PagCentral";
         }
         else{
-            model.addAttribute("msg", "O Status da sua Conta esta como Fechada");
+            model.addAttribute("msg1", "O Status da sua Conta esta como Fechada");
             return "PagCentral";
         }
         
@@ -167,10 +175,13 @@ public class SistemaBanco_Controller {
             i = v.getSaldo();
             conta.setSaldo(conta.getSaldo() + i);
             contaService.AtualizarSaldo(id, conta); 
+            List<TransacaoEntity> transacoes = transacaoService.ListarTransacoesPorId(id);
+            model.addAttribute("Transacoes", transacoes);
+            model.addAttribute("Transacao", new TransacaoEntity());
             return "PagCentral";
         }
         else{
-            model.addAttribute("msg", "O Status da sua Conta esta como Fechada");
+            model.addAttribute("msg1", "O Status da sua Conta esta como Fechada");
             return "PagCentral";
         }
     }
@@ -205,7 +216,8 @@ public class SistemaBanco_Controller {
                 model.addAttribute("Transacoes", transacoes);
                 model.addAttribute("Transacao", new TransacaoEntity());
                 model.addAttribute("msg", "Saldo Insuficiente");
-                return "PagTransacao";
+                model.addAttribute("V", new ContaEntity());
+                return "PagCentral";
             }
 
             
@@ -215,13 +227,16 @@ public class SistemaBanco_Controller {
             model.addAttribute("Transacoes", transacoes);
             model.addAttribute("Transacao", new TransacaoEntity());
             model.addAttribute("msg", "Não é possivel realizar Transacoes para a mesma Conta");
-            return "PagTransacao";
+            model.addAttribute("V", new ContaEntity());
+            return "PagCentral";
         }
-        
+       
        List<TransacaoEntity> transacoes = transacaoService.ListarTransacoesPorId(id);
        model.addAttribute("Transacoes", transacoes);
        model.addAttribute("Transacao", new TransacaoEntity());
-       return "PagTransacao"; 
+       
+       model.addAttribute("V", new ContaEntity());
+       return "PagCentral"; 
     }
     
     

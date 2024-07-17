@@ -3,11 +3,13 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+        accesskey=""integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     </head>
     <body>
         <div>
@@ -16,12 +18,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <tr>
                             <td>Id</td>
                             <td>nome_usuario</td>
-                            <td>enderecom</td>
+                            <td>endereço</td>
                             <td>login</td>
                             <td>senha</td>
-                            <td>cpf</td>
-                            <td>cnpj</td>
-                            <td>tipo</td>
+                            <td>CPF</td>
+                            <td>CNPJ</td>
+                            <td>Tipo de Conta</td>
                             <td>saldo</td>
                             <td>status</td>
                             <td>pfpj</td>
@@ -29,14 +31,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     </thead>  
                     <tbody>
                         <tr th:each="conta : ${Contas}">
-                            <td th:text="${transacao.id}">
-                            <td th:text="${transacao.contaOrigemId}">
-                            <td th:text="${transacao.conta_destino_id}">
-                            <td th:text="${transacao.alteracao_conta}">
-                            <td th:text="${transacao.valor}">
+                            <td th:text="${conta.id}">
+                            <td th:text="${conta.nome_usuario}">
+                            <td th:text="${conta.endereco}">
+                            <td th:text="${conta.login}">
+                            <td th:text="${conta.senha}">
+                            <td th:text="${conta.cpf}">
+                            <td th:text="${conta.cnpj}">
+                            <td th:text="${conta.tipo}">
+                            <td th:text="${conta.saldo}">
+                            <td th:text="${conta.status}">
+                            <td th:text="${conta.pfpj}">
                         </tr>
                     </tbody>
                 </table>
+            <a th:href="@{/PagLogin}">voltar</a>
         </div>
     </body>
 </html>

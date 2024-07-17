@@ -12,25 +12,31 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         accesskey=""integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     </head>
     <body>
-        <div class="w-50 mx-auto border">
-            <form th:action="@{/cadastrarConta}" onsubmit="return check()" th:object="${conta}" method="post">
-                <input type="text" th:field="*{nome_usuario}" placeholder="Nome" name="Campo_NomeUsuario" style="display: block" required>
-                <input type="text" th:field="*{endereco}" placeholder="Endereço" name="Campo_Endereco" style="display: block" required>
-                <input type="text" th:field="*{login}" placeholder="Login" name="Campo_Login" style="display: block" required>
-                <input type="number" th:field="*{senha}" placeholder="Senha" name="Campo_Senha" style="display: block" required>
-                <input type="number" th:field="*{cpf}"  placeholder="CPF" name="Campo_CPF" style="display: block" required>
-                <input type="number" th:field="*{cnpj}"  placeholder="CNPJ" name="Campo_CNPJ" style="display: block" required>
-                <select id="id" th:field="*{pfpj}" name="Campo_Tipo" style="display: block">
-                    <option value="pf">Pessoa Fisica</option>
-                    <option value="pj">Pessoa Juridica</option>
-                </select>
-                <select id="id" th:field="*{tipo}" name="Campo_Tipo" style="display: block">
-                    <option value="cc">Conta Corrente</option>
-                    <option value="cp">Conta Poupança</option>
-                </select>
+        <div class="w-25 mx-auto" style="margin-top: 100px">
+            <div style="margin-left: 90px">
+                <form th:action="@{/cadastrarConta}"  th:object="${conta}" method="post">
+                <p>Nome Usuario <input type="text" style="width: 360px" class="mt-2" th:field="*{nome_usuario}" placeholder="Nome" name="Campo_NomeUsuario"  required></p>  
+                <p>Endereço <input type="text" style="width: 360px" class="mt-2" th:field="*{endereco}" placeholder="Endereço" name="Campo_Endereco"  required></p> 
+               <p>Login <input type="text" style="width: 360px" class="mt-2" th:field="*{login}" placeholder="Login" name="Campo_Login"  required></p> 
+               <p>Senha <input type="number" style="width: 360px" class="mt-2" th:field="*{senha}" placeholder="Senha" name="Campo_Senha"  required></p> 
+               <p>CPF <input type="number" maxlength="11" style="width: 360px" class="mt-2" th:field="*{cpf}"  placeholder="CPF" name="Campo_CPF"  required></p> 
+               <p>CNPJ <input type="number" maxlength="14" style="width: 360px" class="mt-2" th:field="*{cnpj}"  placeholder="CNPJ" name="Campo_CNPJ"  required></p> 
+               <div style="display: flex">
+                   <select id="id" class="mt-2 ml-4" th:field="*{pfpj}" name="Campo_Tipo" style="display: block">
+                        <option value="pf">Pessoa Fisica</option>
+                        <option value="pj">Pessoa Juridica</option>
+                    </select>
+                    <select id="id" class="mt-2 ml-4" th:field="*{tipo}" name="Campo_Tipo" style="display: block">
+                        <option value="cc">Conta Corrente</option>
+                        <option value="cp">Conta Poupança</option>
+                    </select>
+               </div> 
+               
                     
-                    <input type="submit" name="name" value="Cadastrar" style="display: block">
+                    <input type="submit" class="mt-2 btn btn-primary" name="name" value="Cadastrar" style="display: block">
             </form>
+            </div>
+            
         </div>
         
     </body>
