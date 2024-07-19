@@ -19,8 +19,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <p>Endereço <input type="text" style="width: 360px" class="mt-2" th:field="*{endereco}" placeholder="Endereço" name="Campo_Endereco"  required></p> 
                <p>Login <input type="text" style="width: 360px" class="mt-2" th:field="*{login}" placeholder="Login" name="Campo_Login"  required></p> 
                <p>Senha <input type="number" style="width: 360px" class="mt-2" th:field="*{senha}" placeholder="Senha" name="Campo_Senha"  required></p> 
-               <p>CPF <input type="number" maxlength="11" style="width: 360px" class="mt-2" th:field="*{cpf}"  placeholder="CPF" name="Campo_CPF"  required></p> 
-               <p>CNPJ <input type="number" maxlength="14" style="width: 360px" class="mt-2" th:field="*{cnpj}"  placeholder="CNPJ" name="Campo_CNPJ"  required></p> 
+               <p>CPF <input type="number" maxlength="12" style="width: 360px" class="mt-2" th:field="*{cpf}"  placeholder="CPF" name="Campo_CPF"  required></p> 
+               <p>CNPJ <input type="number" maxlength="15" style="width: 360px" class="mt-2" th:field="*{cnpj}"  placeholder="CNPJ" name="Campo_CNPJ"  required></p> 
                <div style="display: flex">
                    <select id="id" class="mt-2 ml-4" th:field="*{pfpj}" name="Campo_Tipo" style="display: block">
                         <option value="pf">Pessoa Fisica</option>
@@ -31,7 +31,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <option value="cp">Conta Poupança</option>
                     </select>
                </div> 
-               
+               <br>
+               <span th:text="${msg}" class="text-danger"></span>
                     
                     <input type="submit" class="mt-2 btn btn-primary" name="name" value="Cadastrar" style="display: block">
             </form>

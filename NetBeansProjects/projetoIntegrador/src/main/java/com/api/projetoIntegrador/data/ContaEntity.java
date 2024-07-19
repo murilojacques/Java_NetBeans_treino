@@ -35,9 +35,9 @@ public class ContaEntity implements Serializable{
     
     private int senha;
     
-    private int cpf;
+    private long cpf;
     
-    private int cnpj;
+    private long cnpj;
 
     private String tipo;
 

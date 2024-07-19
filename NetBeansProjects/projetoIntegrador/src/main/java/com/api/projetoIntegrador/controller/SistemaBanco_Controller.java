@@ -79,17 +79,23 @@ public class SistemaBanco_Controller {
     
     @GetMapping("/PagCriarConta")
     public String PagCriarConta(Model model){
-        
+        model.addAttribute("msg", "");
         model.addAttribute("conta", new ContaEntity());
         return "PagCriarConta";
     }
     
     @PostMapping("/cadastrarConta")
-    public String CadastrarConta(@ModelAttribute("conta") ContaEntity conta){
+    public String CadastrarConta(@ModelAttribute("conta") ContaEntity conta, Model model){
         
         ContaEntity c = contaService.ConfirmarLogin(conta.getLogin(), conta.getSenha());
          
+        if(conta.getLogin().equals("abc") && conta.getSenha()==124){
+            model.addAttribute("msg", "Login e/ou Senha invalidos");
+            return "PagCriarConta";
+        }
+        
         if(c != null){
+          model.addAttribute("msg", "Login e/ou Senha invalidos");
           return "PagCriarConta";  
         }else{
             
