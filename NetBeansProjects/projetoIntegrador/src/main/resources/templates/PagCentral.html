@@ -19,6 +19,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <br>
                     <button th:action="@{/Depositar}" type="submit" class="mt-2 btn btn-primary">Depositar</button>
                     <button th:formaction="@{/Sacar}" type="submit" class=" mt-2 btn btn-primary">Sacar</button>
+                    <br>
                     <span th:text="${msg1}" class="text-danger"></span>
                 </form>
                
@@ -29,11 +30,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
                 
                 
-                <div style="display: block; margin-left: 110px" >
+                <div style="display: block; margin-left: 110px;" >
                     <form th:action="@{/RealizarTransacao}"  th:object="${Transacao}" method="post">
                       <p>Conta de Destino <input type="number" th:field="*{conta_destino_id}" placeholder="Id Conta Destinatario" name="Campo_Conta_Destino_Id"></p>
                       <p style="margin-left: 85px;">Valor <input type="number" th:field="*{valor}" placeholder="Valor" name="Campo_Valor"></p>
                       <span th:text="${msg}" class="text-danger"></span>
+                      <br>
                       <input  type="submit" class="btn btn-primary mt-1" value="Realizar Transação" name="name">
                     </form>
                 </div>

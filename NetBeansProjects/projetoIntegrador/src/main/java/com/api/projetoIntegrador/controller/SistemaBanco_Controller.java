@@ -143,6 +143,9 @@ public class SistemaBanco_Controller {
     public String MudarStatus(Model model){
         ContaEntity conta = contaService.BuscarContaById(id);
         contaService.AtualizarStatus(conta);
+        List<TransacaoEntity> transacoes = transacaoService.ListarTransacoesPorId(id);
+        model.addAttribute("Transacoes", transacoes);
+        model.addAttribute("Transacao", new TransacaoEntity());
         model.addAttribute("V", new ContaEntity());
         return "PagCentral";
     }
@@ -167,6 +170,9 @@ public class SistemaBanco_Controller {
             return "PagCentral";
         }
         else{
+            List<TransacaoEntity> transacoes = transacaoService.ListarTransacoesPorId(id);
+            model.addAttribute("Transacoes", transacoes);
+            model.addAttribute("Transacao", new TransacaoEntity());
             model.addAttribute("msg1", "O Status da sua Conta esta como Fechada");
             return "PagCentral";
         }
@@ -187,6 +193,9 @@ public class SistemaBanco_Controller {
             return "PagCentral";
         }
         else{
+            List<TransacaoEntity> transacoes = transacaoService.ListarTransacoesPorId(id);
+            model.addAttribute("Transacoes", transacoes);
+            model.addAttribute("Transacao", new TransacaoEntity());
             model.addAttribute("msg1", "O Status da sua Conta esta como Fechada");
             return "PagCentral";
         }
@@ -205,6 +214,14 @@ public class SistemaBanco_Controller {
         ContaEntity contaDestino = contaService.BuscarContaById(transacao.getConta_destino_id());
         ContaEntity contaAtual = contaService.BuscarContaById(id);
         
+        if(contaAtual.isStatus() == false){
+            List<TransacaoEntity> transacoes = transacaoService.ListarTransacoesPorId(id);
+            model.addAttribute("Transacoes", transacoes);
+            model.addAttribute("Transacao", new TransacaoEntity());
+            model.addAttribute("msg", "O status atual da sua conta é Fechada");
+            model.addAttribute("V", new ContaEntity());
+            return "PagCentral";
+        }
         
         if(contaDestino.getId() != null && contaDestino.getId() != id){
             
@@ -240,7 +257,7 @@ public class SistemaBanco_Controller {
        List<TransacaoEntity> transacoes = transacaoService.ListarTransacoesPorId(id);
        model.addAttribute("Transacoes", transacoes);
        model.addAttribute("Transacao", new TransacaoEntity());
-       
+      
        model.addAttribute("V", new ContaEntity());
        return "PagCentral"; 
     }
