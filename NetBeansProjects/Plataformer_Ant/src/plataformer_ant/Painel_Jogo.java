@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package application.plataformer;
+package plataformer_ant;
 
-import application.plataformer.inputs.KeyboardInputs;
-import application.plataformer.inputs.MouseInputs;
+import plataformer_ant.inputs.MouseInputs;
+import plataformer_ant.inputs.KeyboardInputs;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -71,9 +72,7 @@ public class Painel_Jogo extends JPanel{
     }
 
     private void importImg() {
-        InputStream is = getClass().getResourceAsStream("player_sprites.png");
-        //System.out.println(is.toString());
-        //Objects.requireNonNull(getClass().getResource("C:/Users/Murilo/Documents/Imagem_Plataformer/player_sprites.png"))
+        InputStream is = getClass().getResourceAsStream("res/player_sprites.png");
         
         try{
             img = ImageIO.read(is);
