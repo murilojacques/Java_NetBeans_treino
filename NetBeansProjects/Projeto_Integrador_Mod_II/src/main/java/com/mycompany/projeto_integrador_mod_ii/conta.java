@@ -44,9 +44,9 @@ public class conta implements Serializable {
     private boolean status;
     
     private String pfpj="";
-
     
 
+    
     public String getLogin() {
         return login;
     }

@@ -9,6 +9,7 @@ import application.plataformer.inputs.MouseInputs;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -17,6 +18,7 @@ import java.io.InputStream;
 import java.util.Objects;
 import java.util.Random;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
@@ -30,6 +32,7 @@ public class Painel_Jogo extends JPanel{
     private float xDelta = 100;
     private float yDelta = 100;
     private BufferedImage img;
+    private Image i;
     
     public Painel_Jogo(){
         
@@ -59,6 +62,7 @@ public class Painel_Jogo extends JPanel{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         
+        //g.drawImage(i, 10, 20, null);
         //g.drawImage(null, x, y, null);
     }
 
@@ -72,6 +76,7 @@ public class Painel_Jogo extends JPanel{
 
     private void importImg() {
         InputStream is = getClass().getResourceAsStream("player_sprites.png");
+        //i = new ImageIcon("player_sprites.png").getImage();
         //System.out.println(is.toString());
         //Objects.requireNonNull(getClass().getResource("C:/Users/Murilo/Documents/Imagem_Plataformer/player_sprites.png"))
         
