@@ -11,7 +11,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
         accesskey=""integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     </head>
+    <header>
+        <h1></h1>
+    </header>
     <body>
-        <div>TODO write content</div>
+        <div>
+            <div>
+                <form action="@{/cadastrarUsuario}" th:object="${lutador}">
+                    <input type="text" name="name" th:field="*{nome}" placeholder="Nome">
+                    <input type="text" name="name" th:field="*{idade}" placeholder="Idade">
+                    <input type="text" name="name" th:field="*{altura}" placeholder="Altura">
+                    <input type="text" name="name" th:field="*{peso}" placeholder="Peso">
+                    <input type="text" name="name" th:field="*{nacionalidade}" placeholder="Nacionalidade">
+                        
+                    <input type="submit" value="cadastrar" />
+                </form>
+            </div>
+            
+        </div>
     </body>
 </html>
