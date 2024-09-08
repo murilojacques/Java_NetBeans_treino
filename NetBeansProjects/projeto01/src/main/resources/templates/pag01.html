@@ -15,19 +15,53 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <h1></h1>
     </header>
     <body>
-        <div>
-            <div>
-                <form action="@{/cadastrarUsuario}" th:object="${lutador}">
+        <div class="">
+            <div class="w-50 mx-auto" style="margin-top: 50px">
+                <form th:action="@{/cadastrarUsuario}" th:object="${lutador}" method="post">
                     <input type="text" name="name" th:field="*{nome}" placeholder="Nome">
-                    <input type="text" name="name" th:field="*{idade}" placeholder="Idade">
-                    <input type="text" name="name" th:field="*{altura}" placeholder="Altura">
-                    <input type="text" name="name" th:field="*{peso}" placeholder="Peso">
+                    <input type="text" name="name" th:field="*{idade}" placeholder="Idade" style="width: 100px">
+                    <input type="text" name="name" th:field="*{altura}" placeholder="Altura" style="width: 100px">
+                    <input type="text" name="name" th:field="*{peso}" placeholder="Peso" style="width: 100px">
                     <input type="text" name="name" th:field="*{nacionalidade}" placeholder="Nacionalidade">
-                        
                     <input type="submit" value="cadastrar" />
+                    <br> 
+                    <span class="text-danger" th:text="${msg}"></span>
                 </form>
             </div>
             
+            <div class="w-75 mx-auto" style="margin-top: 80px">
+                <table border="1" class="table table-striped table-responsive-md">
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Idade</th>
+                        <th>Altura</th>
+                        <th>Peso</th>
+                        <th>Nacionalidade</th>
+                        <th>Categoria</th>
+                        <th>Vitorias</th>
+                        <th>Derrotas</th>
+                        <th>Empates</th>
+                        <th>Operações</th>
+                    </tr>
+                    <tr th:each="lutador : ${lutadores}">
+                        <td th:text="${lutador.id}">
+                        <td th:text="${lutador.nome}">
+                        <td th:text="${lutador.idade}">
+                        <td th:text="${lutador.altura}">
+                        <td th:text="${lutador.peso}">
+                        <td th:text="${lutador.nacionalidade}">
+                        <td th:text="${lutador.categoria}">
+                        <td th:text="${lutador.vitorias}">
+                        <td th:text="${lutador.derrotas}">
+                        <td th:text="${lutador.empates}">
+                            <td>
+                                <a th:href="@{/PagAtualizar/{id} (id=${lutador.id})}" class="btn btn-primary">Atualizar</a>
+                                <a th:href="@{/deletar/{id} (id=${lutador.id})}" class="btn btn-danger">Deletar</a>
+                            </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </body>
 </html>

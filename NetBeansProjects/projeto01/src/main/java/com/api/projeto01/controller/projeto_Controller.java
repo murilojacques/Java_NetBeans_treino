@@ -11,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.api.projeto01.service.lutaService;
 import com.api.projeto01.service.lutadoresService;
+import java.util.List;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
@@ -27,16 +29,34 @@ public class projeto_Controller {
     @Autowired
     lutaService lutaService;
     
+    private int id;
     
     @GetMapping("/pag01")
     public String pagInicial(Model model){
+        List<lutadoresEntity> lutadores = lutadoresService.ListaLutadores();
+        
         model.addAttribute("lutador", new lutadoresEntity());
+        model.addAttribute("lutadores", lutadores);
         return "pag01";
     }
     
     @PostMapping("/cadastrarUsuario")
-    public String cadastrarUsuario(@ModelAttribute("lutador") lutadoresEntity lutador){
+    public String cadastrarUsuario(@ModelAttribute("lutador") lutadoresEntity lutador, Model model){
         lutadoresService.CadastrarLutador(lutador);
-        return "redirect:/";
+        if(lutador.getCategoria() == null){
+            model.addAttribute("msg", "Usuario invalido");
+            return "pag01";
+        }
+        return "pag01";
+    }
+    
+    
+    @GetMapping("/PagAtualizar/{id}")
+    public String atualizarLutador(@PathVariable("id") Integer id, Model model){
+        
+        lutadoresEntity lutador = lutadoresService.BuscarPorId(id);
+        model.addAttribute("lutador", lutador);
+        
+        return "PagAtualizarDadosLutador";
     }
 }

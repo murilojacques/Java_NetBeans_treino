@@ -22,6 +22,7 @@ public class lutadoresService {
     
     public lutadoresEntity CadastrarLutador(lutadoresEntity l){
         float peso = Float.parseFloat(l.getPeso());
+        System.out.println(peso);
         l.setId(null);
         l.setVitorias(0);
         l.setDerrotas(0);
@@ -30,11 +31,11 @@ public class lutadoresService {
             l.setCategoria("Peso leve");
             lutadoresRepository.save(l);
         }
-        else if(peso <= 83.9){
+        else if(peso > 70.3 && peso <= 83.9){
             l.setCategoria("Peso Medio");
             lutadoresRepository.save(l);
         }
-        else if(peso <= 120.2){
+        else if(peso > 83.9 && peso <= 120.2){
             l.setCategoria("Peso Pesado");
             lutadoresRepository.save(l);
         }
