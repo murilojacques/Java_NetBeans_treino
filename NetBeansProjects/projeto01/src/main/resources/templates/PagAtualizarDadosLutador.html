@@ -12,36 +12,37 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         accesskey=""integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     </head>
     <body>
-        <div>
-            <form th:action="action" th:object="${lutador}" method="post">
+        <div th:object="${lutador}">
+            <form th:action="@{/AtualizarDados}" th:object="${novosDados}" method="post">
                 <label>Nome: </label>
-                <input type="text" name="name" th:placeholder="${lutador.nome}">
+                <input type="text" name="name" th:field="*{nome}" th:placeholder="${lutador.nome}">
                     <br>
                 <label>Idade: </label>
-                <input type="text" name="name" th:placeholder="${lutador.idade}">
+                <input type="text" name="name" th:field="*{idade}" th:placeholder="${lutador.idade}">
                     <br>
                 <label>Altura: </label>
-                <input type="text" name="name" th:placeholder="${lutador.altura}">
+                <input type="text" name="name" th:field="*{altura}" th:placeholder="${lutador.altura}">
                     <br>
                 <label>Peso: </label>
-                <input type="text" name="name" th:placeholder="${lutador.peso}">
+                <input type="text" name="name" th:field="*{peso}" th:placeholder="${lutador.peso}">
                     <br>
                 <label>Nacionalidade: </label>
-                <input type="text" name="name" th:placeholder="${lutador.nacionalidade}">
+                <input type="text" name="name" th:field="*{nacionalidade}" th:placeholder="${lutador.nacionalidade}">
                     <br>
                 <label>Categoria: </label>
-                <input type="text" name="name" th:placeholder="${lutador.categoria}">
+                <input type="text" name="name" th:field="*{categoria}" th:placeholder="${lutador.categoria}">
                     <br>
                 <label>Vitorias: </label>
-                <input type="text" name="name" th:placeholder="${lutador.vitorias}">
+                <input type="text" name="name" th:field="*{vitorias}" th:placeholder="${lutador.vitorias}">
                     <br>
                 <label>Derrotas: </label>
-                <input type="text" name="name" th:placeholder="${lutador.derrotas}">
+                <input type="text" name="name" th:field="*{derrotas}" th:placeholder="${lutador.derrotas}">
                     <br>
                 <label>Empates: </label>
-                <input type="text" name="name" th:placeholder="${lutador.empates}">
+                <input type="text" name="name" th:field="*{empates}" th:placeholder="${lutador.empates}">
                     <br>
-                <input type="submit" name="name">
+                <input type="submit" name="name" value="Atualizar Dados" class="btn btn-primary">
+                <a th:href="@{/Pag01}" class="btn btn-primary">Voltar</a>
             </form>
         </div>
     </body>

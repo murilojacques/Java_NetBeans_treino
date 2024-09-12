@@ -29,7 +29,7 @@ public class projeto_Controller {
     @Autowired
     lutaService lutaService;
     
-    private int id;
+    private int id=0;
     
     @GetMapping("/pag01")
     public String pagInicial(Model model){
@@ -49,14 +49,25 @@ public class projeto_Controller {
         }
         return "pag01";
     }
+ 
     
     
     @GetMapping("/PagAtualizar/{id}")
-    public String atualizarLutador(@PathVariable("id") Integer id, Model model){
+    public String PagAtualizarLutador(@PathVariable("id") Integer id, Model model){
         
         lutadoresEntity lutador = lutadoresService.BuscarPorId(id);
+        id = lutador.getId();
+        System.out.println(id);
         model.addAttribute("lutador", lutador);
+        model.addAttribute("novosDados", new lutadoresEntity());
         
         return "PagAtualizarDadosLutador";
+    }
+    
+    @PostMapping("/AtualizarDados")
+    public String atualizarDadosLutador(@ModelAttribute("novosDados") lutadoresEntity lutador, Model model){
+        lutadoresService.Atualizar(id, lutador);
+        
+        return "redirect:/pag01";
     }
 }
