@@ -55,24 +55,23 @@ public class lutadoresService {
     
     public void Atualizar(int id, lutadoresEntity lutador){
         lutadoresEntity lutadorB = BuscarPorId(id);
-
         
-        if(lutador.getNome() != null){
+        if(lutador.getNome() != ""){ 
             lutadorB.setNome(lutador.getNome());
         }
-        if(lutador.getIdade() != null){
+        if(lutador.getIdade() != ""){
             lutadorB.setIdade(lutador.getIdade());
         }
-        if(lutador.getAltura() != null){
+        if(lutador.getAltura() != ""){
             lutadorB.setAltura(lutador.getAltura());
         }
-        if(lutador.getPeso() != null){
+        if(lutador.getPeso() != ""){
             lutadorB.setPeso(lutador.getPeso());
         }
-        if(lutador.getNacionalidade() != null){
+        if(lutador.getNacionalidade() != ""){
             lutadorB.setNacionalidade(lutador.getNacionalidade());
         }
-        if(lutador.getCategoria() != null){
+        if(lutador.getCategoria() != ""){
             lutadorB.setCategoria(lutador.getCategoria());
         }
         if(lutador.getVitorias() >= 0){
@@ -85,6 +84,10 @@ public class lutadoresService {
             lutadorB.setEmpates(lutador.getEmpates());
         }
 
-        lutadoresRepository.save(lutador);
+        lutadoresRepository.save(lutadorB);
+    }
+    
+    public void DeletarLutador(int id){
+        lutadoresRepository.deleteById(id);
     }
 }

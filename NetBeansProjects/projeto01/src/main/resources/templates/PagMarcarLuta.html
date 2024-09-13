@@ -3,13 +3,33 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+        accesskey=""integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     </head>
     <body>
-        <div>TODO write content</div>
+        <div>
+            <div>
+                <form th:action="@{/marcarLuta}" th:object="${luta}" method="post">
+                    <label>Desafiado</label>
+                    <input type="number" th:field="*{desafiado_id}" name="name">
+                        <br>
+                    <label>Desafiante</label>
+                    <input type="number" th:field="*{desafiante_id}" name="name">
+                        <br>
+                    <label>Numero de Rounds</label>
+                    <input type="number" th:field="*{rounds}" name="name">
+                        <br>
+                    <label>Data</label>
+                    <input type="date" th:field="*{data}" name="name">
+                        <br>
+                    <input type="submit" name="name"> <span class="class" th:text="${msg}"></span>
+                </form>
+            </div>
+        </div>
     </body>
 </html>

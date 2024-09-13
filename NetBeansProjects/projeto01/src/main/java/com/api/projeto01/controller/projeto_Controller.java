@@ -4,6 +4,7 @@
  */
 package com.api.projeto01.controller;
 
+import com.api.projeto01.data.lutaEntity;
 import com.api.projeto01.data.lutadoresEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,7 @@ public class projeto_Controller {
     @Autowired
     lutaService lutaService;
     
-    private int id=0;
+    private int id;
     
     @GetMapping("/pag01")
     public String pagInicial(Model model){
@@ -47,17 +48,16 @@ public class projeto_Controller {
             model.addAttribute("msg", "Usuario invalido");
             return "pag01";
         }
-        return "pag01";
+        return pagInicial(model);
     }
  
     
     
     @GetMapping("/PagAtualizar/{id}")
-    public String PagAtualizarLutador(@PathVariable("id") Integer id, Model model){
+    public String pagAtualizarLutador(@PathVariable("id") Integer id, Model model){
         
         lutadoresEntity lutador = lutadoresService.BuscarPorId(id);
-        id = lutador.getId();
-        System.out.println(id);
+        this.id = lutador.getId();
         model.addAttribute("lutador", lutador);
         model.addAttribute("novosDados", new lutadoresEntity());
         
@@ -66,8 +66,28 @@ public class projeto_Controller {
     
     @PostMapping("/AtualizarDados")
     public String atualizarDadosLutador(@ModelAttribute("novosDados") lutadoresEntity lutador, Model model){
-        lutadoresService.Atualizar(id, lutador);
+        lutadoresService.Atualizar(this.id, lutador);
         
         return "redirect:/pag01";
+    }
+    
+    @GetMapping("/deletar/{id}")
+    public String deletarLutador(@PathVariable("id") int id, Model model){
+        lutadoresService.DeletarLutador(id);
+        return pagInicial(model);
+    }
+    
+    
+    
+    @GetMapping("/PagMarcarLuta")
+    public String pagMarcarLuta(Model model){
+        model.addAttribute("msg", "");
+        model.addAttribute("luta", new lutaEntity());
+        return "PagMarcarluta";
+    }
+    
+    @PostMapping("/marcarLuta")
+    public String marcarLuta(Model model){
+        return pagInicial(model);
     }
 }
