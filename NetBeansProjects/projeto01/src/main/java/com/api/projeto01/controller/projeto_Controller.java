@@ -33,9 +33,11 @@ public class projeto_Controller {
     private int id;
     
     @GetMapping("/pag01")
-    public String pagInicial(Model model){
+    public String pagInicial(Model model, String msg1, String msg2){
         List<lutadoresEntity> lutadores = lutadoresService.ListaLutadores();
-        
+        model.addAttribute("msg1", msg1);
+        model.addAttribute("msg2", msg2);
+        model.addAttribute("luta", new lutaEntity());
         model.addAttribute("lutador", new lutadoresEntity());
         model.addAttribute("lutadores", lutadores);
         return "pag01";
@@ -45,10 +47,9 @@ public class projeto_Controller {
     public String cadastrarUsuario(@ModelAttribute("lutador") lutadoresEntity lutador, Model model){
         lutadoresService.CadastrarLutador(lutador);
         if(lutador.getCategoria() == null){
-            model.addAttribute("msg", "Usuario invalido");
-            return "pag01";
+            return pagInicial(model, "Usuario Invalido", "");
         }
-        return pagInicial(model);
+        return pagInicial(model, "", "");
     }
  
     
@@ -74,20 +75,39 @@ public class projeto_Controller {
     @GetMapping("/deletar/{id}")
     public String deletarLutador(@PathVariable("id") int id, Model model){
         lutadoresService.DeletarLutador(id);
-        return pagInicial(model);
+        return pagInicial(model, "", "");
     }
     
     
-    
+    /* 
     @GetMapping("/PagMarcarLuta")
     public String pagMarcarLuta(Model model){
         model.addAttribute("msg", "");
         model.addAttribute("luta", new lutaEntity());
         return "PagMarcarluta";
     }
-    
+    */
     @PostMapping("/marcarLuta")
-    public String marcarLuta(Model model){
-        return pagInicial(model);
+    public String marcarLuta(@ModelAttribute("luta") lutaEntity luta, Model model){
+        lutadoresEntity desafiante = lutadoresService.BuscarPorId(luta.getDesafiante_id());
+        lutadoresEntity desafiado = lutadoresService.BuscarPorId(luta.getDesafiado_id());
+        
+        boolean LutadoresDif = desafiado.getId() != desafiante.getId()? true:false;
+        boolean mesmaCategoria = desafiado.getCategoria() == desafiante.getCategoria()? true:false;
+        
+        System.out.println(LutadoresDif);
+        System.out.println(mesmaCategoria);
+        
+        if(LutadoresDif && mesmaCategoria){
+            lutaService.MarcarLuta(luta);
+            return pagInicial(model, "", "");
+        }
+        else if(!LutadoresDif && !mesmaCategoria || !LutadoresDif){
+            return pagInicial(model, "", "Mesmo Lutador");
+        }
+        else if(!mesmaCategoria){
+            return pagInicial(model, "", "Os Lutadores Selecionados");
+        }
+        return pagInicial(model, "", "");
     }
 }

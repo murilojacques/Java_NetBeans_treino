@@ -16,22 +16,38 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </header>
     <body>
         <div class="">
-            <div class="w-50 mx-auto" style="margin-top: 50px">
-                <form th:action="@{/cadastrarUsuario}" th:object="${lutador}" method="post">
-                    <input type="text" name="name" th:field="*{nome}" placeholder="Nome">
-                    <input type="text" name="name" th:field="*{idade}" placeholder="Idade" style="width: 100px">
-                    <input type="text" name="name" th:field="*{altura}" placeholder="Altura" style="width: 100px">
-                    <input type="text" name="name" th:field="*{peso}" placeholder="Peso" style="width: 100px">
-                    <input type="text" name="name" th:field="*{nacionalidade}" placeholder="Nacionalidade">
-                    <input type="submit" value="cadastrar" />
-                    <br> 
-                    <span class="text-danger" th:text="${msg}"></span>
-                </form>
+            <div class="w-50 mx-auto" style="margin-top: 50px; display: flex">
+                <div class="w-50" style="display: inline-block">
+                    <form th:action="@{/cadastrarUsuario}" style="margin-left: 15px" th:object="${lutador}" method="post">
+                        <input type="text" name="name" th:field="*{nome}" placeholder="Nome">
+                        <input type="text" name="name" th:field="*{idade}" placeholder="Idade" style="width: 100px">
+                        <input type="text" name="name" th:field="*{altura}" placeholder="Altura" style="width: 100px">
+                            <br>
+                        <input type="text" name="name" th:field="*{peso}" placeholder="Peso" style="width: 100px; margin-top: 7px">
+                            <input type="text" name="name" th:field="*{nacionalidade}" style="margin-top: 7px" placeholder="Nacionalidade">
+                        <input type="submit" class="btn btn-primary" style="margin-left: 66%; margin-top: 3%" value="Cadastrar" />
+                        <br> 
+                        <span class="text-danger" th:text="${msg1}"></span>
+                    </form>
+                </div>
+
+                <div class="w-50" style="display: inline-block;">
+                    <form th:action="@{/marcarLuta}" style="margin-left: 15px" th:object="${luta}" method="post">
+                        <label>lutador 1</label>
+                        <input type="number" th:field="*{desafiado_id}" name="name">
+                        <label>Rounds</label>
+                        <input type="number" th:field="*{rounds}" style="width: 100px" name="name">
+                            <br>
+                        <label>lutador 2</label>
+                        <input type="number" th:field="*{desafiante_id}" name="name">
+                        <label>Data</label>
+                        <input type="date" th:field="*{data}" name="name">
+                            <input type="submit" class="btn btn-primary" name="name" value="Marcar Luta" style="margin-left: 72%; margin-top: 2%"> 
+                        <span class="text-danger" th:text="${msg2}"></span>
+                    </form>
+                </div>
             </div>
             
-            <div>
-                <a th:href="@{PagMarcarLuta}" class="btn btn-primary">Marcar Luta</a>
-            </div>
             
             <div class="w-75 mx-auto" style="margin-top: 80px">
                 <table border="1" class="table table-striped table-responsive-md">
