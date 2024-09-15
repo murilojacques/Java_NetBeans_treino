@@ -39,4 +39,17 @@ public class lutaService {
     public void AtualizarLuta(lutaEntity luta){
         lutaRepository.save(luta);
     }
+    
+    public void DeletarPorLutador(int id_Lutador){
+        List<lutaEntity> lutas = ListaLutas();
+        for(lutaEntity luta : lutas){
+            if(luta.getDesafiado_id() == id_Lutador || luta.getDesafiante_id() == id_Lutador){
+                lutaRepository.deleteById(luta.getId());
+            }
+        }
+    }
+    
+    public void DeletarLuta(int id){
+        lutaRepository.deleteById(id);
+    }
 }

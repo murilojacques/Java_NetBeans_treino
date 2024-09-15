@@ -35,9 +35,11 @@ public class projeto_Controller {
     @GetMapping("/pag01")
     public String pagInicial(Model model, String msg1, String msg2){
         List<lutadoresEntity> lutadores = lutadoresService.ListaLutadores();
+        List<lutaEntity> lutas = lutaService.ListaLutas();
         model.addAttribute("msg1", msg1);
         model.addAttribute("msg2", msg2);
         model.addAttribute("luta", new lutaEntity());
+        model.addAttribute("lutas", lutas);
         model.addAttribute("lutador", new lutadoresEntity());
         model.addAttribute("lutadores", lutadores);
         return "pag01";
@@ -75,6 +77,7 @@ public class projeto_Controller {
     @GetMapping("/deletar/{id}")
     public String deletarLutador(@PathVariable("id") int id, Model model){
         lutadoresService.DeletarLutador(id);
+        lutaService.DeletarPorLutador(id);
         return pagInicial(model, "", "");
     }
     
@@ -108,6 +111,12 @@ public class projeto_Controller {
         else if(!mesmaCategoria){
             return pagInicial(model, "", "Os Lutadores Selecionados");
         }
+        return pagInicial(model, "", "");
+    }
+    
+    @GetMapping("/deletarLuta/{id}")
+    public String deletarLuta(@PathVariable("id")int id, Model model){
+        lutaService.DeletarLuta(id);
         return pagInicial(model, "", "");
     }
 }
