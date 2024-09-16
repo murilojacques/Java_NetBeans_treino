@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+        accesskey=""integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="w-50 mx-auto" style="display: flex; margin-top: 10%">
+            <div class="w-50" th:object="${desafiante}" style="border-style: solid; border-width: 1px">
+                <div class="w-50 mx-auto">
+                    <div style="display: inline-flex">
+                        <p>Nome: </p>
+                        <p th:text="${desafiante.nome}" style="margin-left: 3%">
+                    </div>
+                        <br>
+                    <div style="display: inline-flex">
+                        <p>Idade: </p>
+                        <p th:text="${desafiante.idade}" style="margin-left: 3%">
+                    </div>
+                        <br>
+                    <div style="display: inline-flex">
+                        <p >Altura: </p>
+                        <p th:text="${desafiante.altura}" style="margin-left: 3%; ">
+                    </div>
+                        <br>
+                    <div style="display: inline-flex">
+                        <p>Peso: </p>
+                        <p th:text="${desafiante.peso}" style="margin-left: 3%">
+                    </div>
+                        <br>
+                    <div style="display: inline-flex">
+                        <p>Nacionalidade: </p>
+                        <p th:text="${desafiante.nacionalidade}" style="margin-left: 3%">
+                    </div>
+                        <br>
+                    <div style="display: inline-flex">
+                        <p>Categoria: </p>
+                        <p th:text="${desafiante.categoria}" style="margin-left: 3%; width: 450px">
+                    </div>
+                        <br>
+                    <div style="display: inline-flex">
+                        <p>Vitorias: </p>
+                        <p th:text="${desafiante.vitorias}" style="margin-left: 3%">
+                    </div>
+                        <br>
+                    <div style="display: inline-flex">
+                        <p>Derrotas: </p>
+                        <p th:text="${desafiante.derrotas}" style="margin-left: 3%">
+                    </div>
+                        <br>
+                    <div style="display: inline-flex">
+                        <p>Empates: </p>
+                        <p th:text="${desafiante.empates}" style="margin-left: 3%">
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="w-50" style="border-style: solid; border-width: 1px">
+                <div class="w-50 mx-auto">
+                    <div style="display: inline-flex">
+                        <p>Nome: </p>
+                        <p th:text="${desafiado.nome}" style="margin-left: 3%">
+                    </div>
+                        <br>
+                    <div style="display: inline-flex">
+                        <p>Idade: </p>
+                        <p th:text="${desafiado.idade}" style="margin-left: 3%">
+                    </div>
+                        <br>
+                    <div style="display: inline-flex">
+                        <p >Altura: </p>
+                        <p th:text="${desafiado.altura}" style="margin-left: 3%; ">
+                    </div>
+                        <br>
+                    <div style="display: inline-flex">
+                        <p>Peso: </p>
+                        <p th:text="${desafiado.peso}" style="margin-left: 3%">
+                    </div>
+                        <br>
+                    <div style="display: inline-flex">
+                        <p>Nacionalidade: </p>
+                        <p th:text="${desafiado.nacionalidade}" style="margin-left: 3%">
+                    </div>
+                        <br>
+                    <div style="display: inline-flex">
+                        <p>Categoria: </p>
+                        <p th:text="${desafiado.categoria}" style="margin-left: 3%; width: 450px">
+                    </div>
+                        <br>
+                    <div style="display: inline-flex">
+                        <p>Vitorias: </p>
+                        <p th:text="${desafiado.vitorias}" style="margin-left: 3%">
+                    </div>
+                        <br>
+                    <div style="display: inline-flex">
+                        <p>Derrotas: </p>
+                        <p th:text="${desafiado.derrotas}" style="margin-left: 3%">
+                    </div>
+                        <br>
+                    <div style="display: inline-flex">
+                        <p>Empates: </p>
+                        <p th:text="${desafiado.empates}" style="margin-left: 3%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

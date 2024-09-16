@@ -38,7 +38,7 @@ public class projeto_Controller {
         List<lutaEntity> lutas = lutaService.ListaLutas();
         model.addAttribute("msg1", msg1);
         model.addAttribute("msg2", msg2);
-        model.addAttribute("luta", new lutaEntity());
+        model.addAttribute("Marcarluta", new lutaEntity());
         model.addAttribute("lutas", lutas);
         model.addAttribute("lutador", new lutadoresEntity());
         model.addAttribute("lutadores", lutadores);
@@ -91,17 +91,18 @@ public class projeto_Controller {
     }
     */
     @PostMapping("/marcarLuta")
-    public String marcarLuta(@ModelAttribute("luta") lutaEntity luta, Model model){
+    public String marcarLuta(@ModelAttribute("Marcarluta") lutaEntity luta, Model model){
         lutadoresEntity desafiante = lutadoresService.BuscarPorId(luta.getDesafiante_id());
         lutadoresEntity desafiado = lutadoresService.BuscarPorId(luta.getDesafiado_id());
         
         boolean LutadoresDif = desafiado.getId() != desafiante.getId()? true:false;
-        boolean mesmaCategoria = desafiado.getCategoria() == desafiante.getCategoria()? true:false;
+        boolean mesmaCategoria = desafiado.getCategoria() == desafiante.getCategoria()? false:true;
         
         System.out.println(LutadoresDif);
         System.out.println(mesmaCategoria);
         
         if(LutadoresDif && mesmaCategoria){
+            luta.setAprovada(true);
             lutaService.MarcarLuta(luta);
             return pagInicial(model, "", "");
         }
@@ -119,4 +120,17 @@ public class projeto_Controller {
         lutaService.DeletarLuta(id);
         return pagInicial(model, "", "");
     }
+    
+    
+    @GetMapping("/verLutadores/{id}")
+    public String verLutadores(@PathVariable("id")int id, Model model){
+        lutaEntity luta = lutaService.BuscarPorId(id);
+        lutadoresEntity desafiante = lutadoresService.BuscarPorId(luta.getDesafiante_id());
+        lutadoresEntity desafiado = lutadoresService.BuscarPorId(luta.getDesafiado_id());
+        
+        model.addAttribute("desafiante", desafiante);
+        model.addAttribute("desafiado", desafiado);
+        return "PagVerLutadores";
+    }
+    
 }
