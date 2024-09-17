@@ -1,0 +1,39 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 2 de set. de 2024, 15:47:42
+    Author     : Murilo
+*/
+
+#TipoDado{
+    font-size: 19px;
+    font-weight: bold;
+    
+}
+#Dado{
+    margin-top: 0px;
+    margin-left: 5%;
+    font-size: 19px;
+}
+
+#divDados{
+    display: flex;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.100);
+}
+
+#divNomeLutador{
+    display: flex;
+}
+
+#DivLutador{
+    padding: 10px;
+    display: block;
+    border-style: solid; 
+    border-width: 1px;
+    border-color: #cccccc;
+    border-radius: 10px;
+}
+
+

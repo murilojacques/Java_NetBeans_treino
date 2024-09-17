@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.api.projeto01.service.lutaService;
 import com.api.projeto01.service.lutadoresService;
 import java.util.List;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -123,11 +124,12 @@ public class projeto_Controller {
     
     
     @GetMapping("/verLutadores/{id}")
-    public String verLutadores(@PathVariable("id")int id, Model model){
+    public String verLutadores(@CookieValue(name = "dados", defaultValue = "arquivoCSS") String tema, @PathVariable("id")int id, Model model){
         lutaEntity luta = lutaService.BuscarPorId(id);
         lutadoresEntity desafiante = lutadoresService.BuscarPorId(luta.getDesafiante_id());
         lutadoresEntity desafiado = lutadoresService.BuscarPorId(luta.getDesafiado_id());
         
+        model.addAttribute("css", tema);
         model.addAttribute("desafiante", desafiante);
         model.addAttribute("desafiado", desafiado);
         return "PagVerLutadores";
