@@ -129,7 +129,7 @@ public class projeto_Controller {
         lutadoresEntity desafiante = lutadoresService.BuscarPorId(luta.getDesafiante_id());
         lutadoresEntity desafiado = lutadoresService.BuscarPorId(luta.getDesafiado_id());
         
-        model.addAttribute("css", tema);
+        model.addAttribute("css", "arquivoCSS");
         model.addAttribute("desafiante", desafiante);
         model.addAttribute("desafiado", desafiado);
         return "PagVerLutadores";
