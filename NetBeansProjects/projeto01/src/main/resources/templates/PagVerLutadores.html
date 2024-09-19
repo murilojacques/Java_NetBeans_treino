@@ -12,111 +12,115 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         accesskey=""integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link th:href="@{/} + ${css} + '.css'" rel="stylesheet" type="text/css"/>
     </head>
+    
+    <header>
+        <h1 id="Titulo" class="col-sm-4 mx-auto">Detalhes dos Lutadores</h1>
+    </header>
     <body>
-        <main class="w-50 mx-auto" style="display: flex; margin-top: 10%">
-            
-            <div class="w-50 mx-auto"> 
-                <div class="w-75 mx-auto">
-                    <div id="divNomeLutador">
-                        <h2 class="mx-auto" th:text="${desafiante.nome}">
+        <main>
+            <div id="divExterna" class="w-50 mx-auto" style="display: flex; margin-left: 50px">
+                <div class="w-50 mx-auto"> 
+                    <div class="w-75 mx-auto">
+                        <div id="divNomeLutador">
+                            <h2 class="mx-auto" th:text="${desafiante.nome}">
+                        </div>
                     </div>
+
+                    <div id="DivLutador" class="w-75 mx-auto">
+                        <div id="divDados">
+                            <p id="TipoDado">Idade: </p>
+                            <p id="Dado" th:text="${desafiante.idade}">
+                        </div>
+                            <br>
+                        <div id="divDados">
+                            <p id="TipoDado">Altura: </p>
+                            <p id="Dado" th:text="${desafiante.altura}">
+                        </div>
+                            <br>
+                        <div id="divDados">
+                            <p id="TipoDado">Peso: </p>
+                            <p id="Dado" th:text="${desafiante.peso}">
+                        </div>
+                            <br>
+                        <div id="divDados">
+                            <p id="TipoDado">Nacionalidade: </p>
+                            <p id="Dado" th:text="${desafiante.nacionalidade}">
+                        </div>
+                            <br>
+                        <div id="divDados">
+                            <p id="TipoDado">Categoria: </p>
+                            <p id="Dado" th:text="${desafiante.categoria}" style="width: 400px">
+                        </div>
+                            <br>
+                        <div id="divDados">
+                            <p id="TipoDado">Vitorias: </p>
+                            <p id="Dado" th:text="${desafiante.vitorias}">
+                        </div>
+                            <br>
+                        <div id="divDados">
+                            <p id="TipoDado">Derrotas: </p>
+                            <p id="Dado" th:text="${desafiante.derrotas}">
+                        </div>
+                            <br>
+                        <div id="divDados">
+                            <p id="TipoDado">Empates: </p>
+                            <p id="Dado" th:text="${desafiante.empates}">
+                        </div>
+                    </div>   
                 </div>
-                
-                <div id="DivLutador" class="w-75 mx-auto">
-                    <div id="divDados">
-                        <p id="TipoDado">Idade: </p>
-                        <p id="Dado" th:text="${desafiante.idade}">
+
+
+                <div class="w-50 mx-auto" >
+                    <div class="w-75 mx-auto">
+                        <div id="divNomeLutador">
+                            <h2 class="mx-auto" th:text="${desafiado.nome}">
+                        </div>
                     </div>
-                        <br>
-                    <div id="divDados">
-                        <p id="TipoDado">Altura: </p>
-                        <p id="Dado" th:text="${desafiante.altura}">
+
+                    <div id="DivLutador" class="w-75 mx-auto">
+                        <div id="divDados">
+                            <p id="TipoDado">Idade: </p>
+                            <p id="Dado" th:text="${desafiado.idade}">
+                        </div>
+                            <br>
+                        <div id="divDados">
+                            <p id="TipoDado">Altura: </p>
+                            <p id="Dado" th:text="${desafiado.altura}">
+                        </div>
+                            <br>
+                        <div id="divDados">
+                            <p id="TipoDado">Peso: </p>
+                            <p id="Dado" th:text="${desafiado.peso}">
+                        </div>
+                            <br>
+                        <div id="divDados">
+                            <p id="TipoDado">Nacionalidade: </p>
+                            <p id="Dado" th:text="${desafiado.nacionalidade}">
+                        </div>
+                            <br>
+                        <div id="divDados">
+                            <p id="TipoDado">Categoria: </p>
+                            <p id="Dado" th:text="${desafiado.categoria}" style="width: 400px">
+                        </div>
+                            <br>
+                        <div id="divDados">
+                            <p id="TipoDado">Vitorias: </p>
+                            <p id="Dado" th:text="${desafiado.vitorias}">
+                        </div>
+                            <br>
+                        <div id="divDados">
+                            <p id="TipoDado">Derrotas: </p>
+                            <p id="Dado" th:text="${desafiado.derrotas}">
+                        </div>
+                            <br>
+                        <div id="divDados">
+                            <p id="TipoDado">Empates: </p>
+                            <p id="Dado" th:text="${desafiado.empates}">
+                        </div>     
                     </div>
-                        <br>
-                    <div id="divDados">
-                        <p id="TipoDado">Peso: </p>
-                        <p id="Dado" th:text="${desafiante.peso}">
-                    </div>
-                        <br>
-                    <div id="divDados">
-                        <p id="TipoDado">Nacionalidade: </p>
-                        <p id="Dado" th:text="${desafiante.nacionalidade}">
-                    </div>
-                        <br>
-                    <div id="divDados">
-                        <p id="TipoDado">Categoria: </p>
-                        <p id="Dado" th:text="${desafiante.categoria}" style="width: 400px">
-                    </div>
-                        <br>
-                    <div id="divDados">
-                        <p id="TipoDado">Vitorias: </p>
-                        <p id="Dado" th:text="${desafiante.vitorias}">
-                    </div>
-                        <br>
-                    <div id="divDados">
-                        <p id="TipoDado">Derrotas: </p>
-                        <p id="Dado" th:text="${desafiante.derrotas}">
-                    </div>
-                        <br>
-                    <div id="divDados">
-                        <p id="TipoDado">Empates: </p>
-                        <p id="Dado" th:text="${desafiante.empates}">
-                    </div>
-                </div>   
+                    <a class="btn btn-primary" id="linkPag" style="margin-left: 73%; margin-top: 5%" th:href="@{/pag01}">Voltar</a>
+                </div>
             </div>
-            
-            
-            <div class="w-50 mx-auto" >
-                <div class="w-75 mx-auto">
-                    <div id="divNomeLutador">
-                        <h2 class="mx-auto" th:text="${desafiado.nome}">
-                    </div>
-                </div>
-                
-                <div id="DivLutador" class="w-75 mx-auto">
-                    <div id="divDados">
-                        <p id="TipoDado">Idade: </p>
-                        <p id="Dado" th:text="${desafiado.idade}">
-                    </div>
-                        <br>
-                    <div id="divDados">
-                        <p id="TipoDado">Altura: </p>
-                        <p id="Dado" th:text="${desafiado.altura}">
-                    </div>
-                        <br>
-                    <div id="divDados">
-                        <p id="TipoDado">Peso: </p>
-                        <p id="Dado" th:text="${desafiado.peso}">
-                    </div>
-                        <br>
-                    <div id="divDados">
-                        <p id="TipoDado">Nacionalidade: </p>
-                        <p id="Dado" th:text="${desafiado.nacionalidade}">
-                    </div>
-                        <br>
-                    <div id="divDados">
-                        <p id="TipoDado">Categoria: </p>
-                        <p id="Dado" th:text="${desafiado.categoria}" style="width: 400px">
-                    </div>
-                        <br>
-                    <div id="divDados">
-                        <p id="TipoDado">Vitorias: </p>
-                        <p id="Dado" th:text="${desafiado.vitorias}">
-                    </div>
-                        <br>
-                    <div id="divDados">
-                        <p id="TipoDado">Derrotas: </p>
-                        <p id="Dado" th:text="${desafiado.derrotas}">
-                    </div>
-                        <br>
-                    <div id="divDados">
-                        <p id="TipoDado">Empates: </p>
-                        <p id="Dado" th:text="${desafiado.empates}">
-                    </div>     
-                </div>
-                <a class="btn btn-primary" style="margin-left: 73%; margin-top: 5%" th:href="@{/pag01}">Voltar</a>
-            </div>
-            
         </main>
     </body>
 </html>

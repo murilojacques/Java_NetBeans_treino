@@ -6,10 +6,37 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Created on : 2 de set. de 2024, 15:47:42
     Author     : Murilo
 */
+header{
+    background-color: goldenrod;
+    padding: 15px;
+    margin-top: 80px;
+}
+
+#Titulo{
+    background-color: whitesmoke;
+    font-size: 45px;
+    border-style: solid;
+    border-width: 1px;
+    padding-left: 70px;
+}
+
+h1{
+    
+}
+
+body{
+    background-color: green
+    
+}
+
+main{
+    margin-top: 3%;
+    background-color: white;
+}
+
 #TipoDado{
     font-size: 19px;
     font-weight: bold;
-    
 }
 
 #Dado{
@@ -20,7 +47,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 #divDados{
     display: flex;
-    box-shadow: 0px 1px 1px rgba(0, 0, 255, 0.500);
+    box-shadow: 0px 1px 1px rgba(0, 0, 200, 0.200);
 }
 
 #divNomeLutador{
@@ -28,7 +55,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 #linkPag{
-    color: red;
+
 }
 
 #DivLutador{
@@ -41,7 +68,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 a{
-    color: red;
     background-color: blue
 }
 
