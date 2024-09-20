@@ -124,7 +124,7 @@ public class projeto_Controller {
     
     
     @GetMapping("/verLutadores/{id}")
-    public String verLutadores(@CookieValue(name = "dados", defaultValue = "arquivoCSS")String tema, @PathVariable("id")int id, Model model){
+    public String verLutadores(String tema, @PathVariable("id")int id, Model model){
         lutaEntity luta = lutaService.BuscarPorId(id);
         lutadoresEntity desafiante = lutadoresService.BuscarPorId(luta.getDesafiante_id());
         lutadoresEntity desafiado = lutadoresService.BuscarPorId(luta.getDesafiado_id());
@@ -135,4 +135,12 @@ public class projeto_Controller {
         return "PagVerLutadores";
     }
     
+    
+    @GetMapping("/AlterarStatus/{id}")
+    public String AlterarStatus(@PathVariable("id")int id, Model model){
+        lutaEntity luta = lutaService.BuscarPorId(id);
+        luta.setAprovada(!luta.isAprovada());
+        lutaService.AtualizarLuta(luta);
+        return pagInicial(model, "", "");
+    }
 }
