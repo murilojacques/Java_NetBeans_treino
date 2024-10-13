@@ -5,6 +5,7 @@
 package com.projetinho01.todoSimple.data;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import jakarta.persistence.Column;
@@ -61,8 +62,16 @@ public class UserEntity implements Serializable{
     @Size(groups = {CreateUser.class, UpdateUser.class}, min = 8, max = 20)
     private String password;
     
+    
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<TaskEntity> tasks = new ArrayList<TaskEntity>();
+
+    public Long getId() {
+        return id;
+    }
+    
+    
     
     
 }

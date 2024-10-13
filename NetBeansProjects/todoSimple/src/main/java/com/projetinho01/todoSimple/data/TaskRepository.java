@@ -20,6 +20,7 @@ public interface TaskRepository extends JpaRepository<TaskEntity, Long>{
     List<TaskEntity> findByUser_Id(Long id);
     
     
+    
     //Versão JPQL do modo de busca de dados no repositorio, não é tão automatizado quando o acima mas permite ser mais especifico nas Buscas
         //@Query(value = "SELECT t FROM TaskEntity t WHERE t.user.id = :user_id")
         //List<TaskEntity> findByUserId(@Param("user_id") Long user_id);
