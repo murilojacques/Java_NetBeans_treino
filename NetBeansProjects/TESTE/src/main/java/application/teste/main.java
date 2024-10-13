@@ -11,7 +11,11 @@ import java.util.Scanner;
  * @author Murilo
  */
 public class main {
+    
+    static int num = 12;
+    
      public static void main(String[] args) {
+        
         int vetor[] = new int[10];
         Scanner scanner = new Scanner(System.in);
         int valor;
@@ -26,7 +30,16 @@ public class main {
 
     System.out.println("Lista de numeros Digitados: ");
     for(int i=0; i<vetor.length; i++){
-        System.out.println(" " + vetor[i]);
+        System.out.print(" " + vetor[i]);
     }
+    
+         System.out.println("\n\n" + calc(num, 5));
     }
+     
+
+     static int calc(int a, int b){
+        return a+b;
+    }
+    
 }
+

@@ -4,6 +4,8 @@
 
 package com.mycompany.pr;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Murilo
@@ -11,6 +13,21 @@ package com.mycompany.pr;
 public class Pr {
 
     public static void main(String[] args) {
-        System.out.println("e importante que essa Funcao seja realizada com exito");
+        Scanner scanner = new Scanner(System.in);
+        String cara;
+        
+        System.out.println("Digite um caracter: ");
+        cara = scanner.nextLine();
+        
+        switch(cara){
+            case "a":
+            case "e":
+            case "i":
+            case "o":
+            case "u":
+                System.out.println("Vogal");
+            default:
+                System.out.println(cara);
+        }
     }
 }
