@@ -41,6 +41,11 @@ public class TaskService {
         return tasks;
     }
     
+    public List<TaskEntity> findAllTasksByUserId(Long userId){
+        List<TaskEntity> tasks = taskRepository.findByUser_Id(userId);
+        return tasks;
+    }
+    
     
     @Transactional
     public TaskEntity createTask(TaskEntity task){
