@@ -6,6 +6,7 @@ package com.projetinho01.todoSimple.controllers;
 
 import com.projetinho01.todoSimple.data.TaskEntity;
 import com.projetinho01.todoSimple.services.TaskService;
+import com.projetinho01.todoSimple.services.UserService;
 import jakarta.validation.Valid;
 import java.net.URI;
 import java.util.List;
@@ -35,6 +36,9 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
     
+    @Autowired
+    private UserService userService;
+    
     
     @GetMapping("/get/{id}")
     public ResponseEntity<TaskEntity> findById(@Valid @PathVariable Long id){
@@ -44,6 +48,7 @@ public class TaskController {
     
     @GetMapping("/getAllTasksByUser/{userId}")
     public ResponseEntity<List<TaskEntity>> findAllTasksByUser(@PathVariable Long userId){
+        userService.findById(userId);
         List<TaskEntity> tasks = taskService.findAllTasksByUserId(userId);
         return ResponseEntity.ok().body(tasks);
     }
