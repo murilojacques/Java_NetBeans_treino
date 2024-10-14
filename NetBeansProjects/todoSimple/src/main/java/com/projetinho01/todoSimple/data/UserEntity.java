@@ -64,6 +64,7 @@ public class UserEntity implements Serializable{
     
     
     @JsonIgnore
+    @JsonProperty(access = Access.WRITE_ONLY)
     @OneToMany(mappedBy = "user")
     private List<TaskEntity> tasks = new ArrayList<TaskEntity>();
 
