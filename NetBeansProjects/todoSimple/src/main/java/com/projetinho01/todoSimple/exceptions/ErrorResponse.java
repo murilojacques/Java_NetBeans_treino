@@ -4,6 +4,7 @@
  */
 package com.projetinho01.todoSimple.exceptions;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -13,6 +14,7 @@ import lombok.Data;
  *
  * @author Murilo
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class ErrorResponse {
     private final int status;
