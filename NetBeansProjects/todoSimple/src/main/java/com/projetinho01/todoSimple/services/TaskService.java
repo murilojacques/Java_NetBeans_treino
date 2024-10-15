@@ -7,6 +7,8 @@ package com.projetinho01.todoSimple.services;
 import com.projetinho01.todoSimple.data.TaskEntity;
 import com.projetinho01.todoSimple.data.TaskRepository;
 import com.projetinho01.todoSimple.data.UserEntity;
+import com.projetinho01.todoSimple.services.exceptions.DataBindingViolationException;
+import com.projetinho01.todoSimple.services.exceptions.ObjectNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,7 @@ public class TaskService {
     @Transactional
     public TaskEntity findById(Long id){
         Optional<TaskEntity> task = this.taskRepository.findById(id);
-        return task.orElseThrow(() -> new RuntimeException(
+        return task.orElseThrow(() -> new ObjectNotFoundException(
                 "Tarefa não encontrada! Id: " + id + ", Tipo: " + TaskEntity.class.getName()
         ));
     }
@@ -73,7 +75,7 @@ public class TaskService {
             taskRepository.deleteById(id);
         }
         catch(Exception e){
-            throw new RuntimeException("Não é possivel excluir, pois há entidade relacionadas!");
+            throw new DataBindingViolationException("Não é possivel excluir, pois há entidade relacionadas!");
         }
     }
 }

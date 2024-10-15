@@ -4,6 +4,7 @@
  */
 package com.projetinho01.todoSimple.config;
 
+import java.util.ArrayList;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -24,5 +25,5 @@ public class WebConfig implements WebMvcConfigurer{
                 .allowedMethods("GET", "PUT", "POST", "PATCH", "DELETE", "OPTIONS");
         
     }
-    
+
 }

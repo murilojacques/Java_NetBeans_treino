@@ -8,6 +8,8 @@ import com.projetinho01.todoSimple.data.TaskEntity;
 import com.projetinho01.todoSimple.data.TaskRepository;
 import com.projetinho01.todoSimple.data.UserEntity;
 import com.projetinho01.todoSimple.data.UserRepository;
+import com.projetinho01.todoSimple.services.exceptions.DataBindingViolationException;
+import com.projetinho01.todoSimple.services.exceptions.ObjectNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +48,7 @@ public class UserService {
     
     public UserEntity findById(Long id){
         Optional<UserEntity> user = this.userRepository.findById(id);
-        return user.orElseThrow(() -> new RuntimeException(
+        return user.orElseThrow(() -> new ObjectNotFoundException(
                 "Usuario não Encontrado! Id: " + id + ", Tipo: " + UserEntity.class.getName()
         ));
     }
@@ -68,7 +70,7 @@ public class UserService {
             this.userRepository.deleteById(id);
         }
         catch(Exception e){
-            throw new RuntimeException("Não é possivel excluir, pois há entidade relacionadas!");
+            throw new DataBindingViolationException("Não é possivel excluir, pois há entidade relacionadas!");
         }
     }
 }
