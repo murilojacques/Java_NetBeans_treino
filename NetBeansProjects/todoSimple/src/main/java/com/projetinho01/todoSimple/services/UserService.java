@@ -4,6 +4,7 @@
  */
 package com.projetinho01.todoSimple.services;
 
+import com.projetinho01.todoSimple.data.ProfileEnum;
 import com.projetinho01.todoSimple.data.TaskEntity;
 import com.projetinho01.todoSimple.data.TaskRepository;
 import com.projetinho01.todoSimple.data.UserEntity;
@@ -12,7 +13,10 @@ import com.projetinho01.todoSimple.services.exceptions.DataBindingViolationExcep
 import com.projetinho01.todoSimple.services.exceptions.ObjectNotFoundException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +28,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
     
     @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
+    
+    @Autowired
     private UserRepository userRepository;
     
     @Autowired
@@ -33,6 +40,8 @@ public class UserService {
     @Transactional
     public UserEntity createUser(UserEntity user){
         user.setId(null);
+        user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setProfiles(Stream.of(ProfileEnum.USER.getCode()).collect(Collectors.toSet()));
         user = this.userRepository.save(user);
         return user;
     }
@@ -42,6 +51,7 @@ public class UserService {
     public UserEntity updateUser(UserEntity user){
         UserEntity newObj = findById(user.getId());
         newObj.setPassword(user.getPassword());
+        newObj.setPassword(this.bCryptPasswordEncoder.encode(newObj.getPassword()));
         return this.userRepository.save(newObj);
     }
     
