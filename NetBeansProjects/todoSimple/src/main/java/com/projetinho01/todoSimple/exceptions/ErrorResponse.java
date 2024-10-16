@@ -14,13 +14,17 @@ import lombok.Data;
  *
  * @author Murilo
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ErrorResponse {
     private final int status;
     private final String message;
     private String stackTrace;
     private List<ValidationError> errors;
+
+    public String toJson() {
+        return "(\"status\": " + getStatus() + ", " + "\"message\": \"" + getMessage() + "\")";
+    }
     
     @Data
     private static class ValidationError{

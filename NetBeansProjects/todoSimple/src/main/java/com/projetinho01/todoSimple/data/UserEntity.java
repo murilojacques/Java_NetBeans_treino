@@ -63,9 +63,9 @@ public class UserEntity implements Serializable{
     
     
     @JsonProperty(access = Access.WRITE_ONLY)
-    @Column(length = 20, nullable = false)
+    @Column(length = 100, nullable = false)
     @NotBlank(groups = {CreateUser.class, UpdateUser.class})
-    @Size(groups = {CreateUser.class, UpdateUser.class}, min = 8, max = 20)
+    @Size(groups = {CreateUser.class, UpdateUser.class}, min = 8, max = 100)
     private String password;
     
     
