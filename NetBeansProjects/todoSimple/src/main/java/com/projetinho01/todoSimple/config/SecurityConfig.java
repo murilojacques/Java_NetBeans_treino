@@ -5,6 +5,7 @@
 package com.projetinho01.todoSimple.config;
 
 import com.projetinho01.todoSimple.Security.JWTAuthenticationFilter;
+import com.projetinho01.todoSimple.Security.JWTAuthorizationFilter;
 import com.projetinho01.todoSimple.Security.JWTUtil;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,7 @@ public class SecurityConfig {
         ).authenticationManager(authenticationManager);
         
         http.addFilter(new JWTAuthenticationFilter(this.authenticationManager, this.jwtUtil));
+        http.addFilter(new JWTAuthorizationFilter(this.authenticationManager, this.jwtUtil, this.userDetailsService));
         
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return http.build();

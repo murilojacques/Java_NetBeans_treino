@@ -46,13 +46,14 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userCredentials.getUsername(), userCredentials.getPassword(), new ArrayList<>());
             Authentication authentication = this.authenticationManager.authenticate(authToken);
             return authentication;
-        }catch(Exception e){
-            throw new RuntimeException();
+        }catch(IOException e){
+            throw new RuntimeException(e);
         }
     }
     
     
-    protected void succeessfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain, Authentication authentication) throws IOException, ServletException{
+    @Override
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain, Authentication authentication) throws IOException, ServletException{
         UserSpringSecurity userSpringSecurity = (UserSpringSecurity) authentication.getPrincipal();
         String username = userSpringSecurity.getUsername();
         String token = this.jwtUtil.generateToken(username);

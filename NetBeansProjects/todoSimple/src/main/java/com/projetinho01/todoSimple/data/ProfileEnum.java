@@ -27,7 +27,7 @@ public enum ProfileEnum {
             return null;
         }
         for(ProfileEnum x : ProfileEnum.values()){
-            if(code == x.getCode()){
+            if(Objects.equals(code, x.getCode())){
                 return x;
             }
         }
