@@ -132,14 +132,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
     }
     
     
-//    @ExceptionHandler(AuthorizationException.class)
-//    @ResponseStatus(HttpStatus.FORBIDDEN)
-//    public ResponseEntity<Object> handleAccessDeniedException(
-//        AuthorizationException authorizationException,
-//        WebRequest request){
-//            log.error("Authorization error", authorizationException);
-//            return buildErrorResponse(authorizationException, HttpStatus.FORBIDDEN, request);
-//    }
+    @ExceptionHandler(AuthorizationException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ResponseEntity<Object> handleAccessDeniedException(
+        AuthorizationException authorizationException,
+        WebRequest request){
+            log.error("Authorization error", authorizationException);
+            return buildErrorResponse(authorizationException, HttpStatus.FORBIDDEN, request);
+    }
     
     
     private ResponseEntity<Object> buildErrorResponse(
@@ -160,15 +160,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
                 errorResponse.setStackTrace(ExceptionUtils.getStackTrace(exception));
         }
         return ResponseEntity.status(httpStatus).body(errorResponse);
-    }
-    
-    
-    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException{
-        Integer status = HttpStatus.UNAUTHORIZED.value();
-        response.setStatus(status);
-        response.setContentType("application/json");
-        ErrorResponse errorResponse = new ErrorResponse(status, "Username or password are invalid");
-        response.getWriter().append(errorResponse.toJson());
     }
 
     

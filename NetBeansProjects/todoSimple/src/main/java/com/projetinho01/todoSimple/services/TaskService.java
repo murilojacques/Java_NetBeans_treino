@@ -4,13 +4,16 @@
  */
 package com.projetinho01.todoSimple.services;
 
+import com.projetinho01.todoSimple.Security.UserSpringSecurity;
+import com.projetinho01.todoSimple.data.ProfileEnum;
 import com.projetinho01.todoSimple.data.TaskEntity;
 import com.projetinho01.todoSimple.data.TaskRepository;
 import com.projetinho01.todoSimple.data.UserEntity;
+import com.projetinho01.todoSimple.exceptions.AuthorizationException;
 import com.projetinho01.todoSimple.services.exceptions.DataBindingViolationException;
 import com.projetinho01.todoSimple.services.exceptions.ObjectNotFoundException;
 import java.util.List;
-import java.util.Optional;
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,10 +34,14 @@ public class TaskService {
     
     @Transactional
     public TaskEntity findById(Long id){
-        Optional<TaskEntity> task = this.taskRepository.findById(id);
-        return task.orElseThrow(() -> new ObjectNotFoundException(
-                "Tarefa não encontrada! Id: " + id + ", Tipo: " + TaskEntity.class.getName()
-        ));
+        TaskEntity task = this.taskRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException(
+                "Tarefa não encontrada! Id: " + id + ", Tipo: " + TaskEntity.class.getName()));
+        
+        UserSpringSecurity userSpringSecurity = UserService.authenticated();
+        if(Objects.isNull(userSpringSecurity) || !userSpringSecurity.hasRole(ProfileEnum.ADMIN) && !userHasTask(userSpringSecurity, task)){
+            throw new AuthorizationException("Acesso Negado!");
+        }
+        return task;
     }
     
     
@@ -43,8 +50,12 @@ public class TaskService {
         return tasks;
     }
     
-    public List<TaskEntity> findAllTasksByUserId(Long userId){
-        List<TaskEntity> tasks = taskRepository.findByUser_Id(userId);
+    public List<TaskEntity> findAllTasksByUser(){
+        UserSpringSecurity userSpringSecurity = UserService.authenticated();
+        if(Objects.isNull(userSpringSecurity)){
+            throw new AuthorizationException("Acesso Negado!");
+        }
+        List<TaskEntity> tasks = taskRepository.findByUser_Id(userSpringSecurity.getId());
         return tasks;
     }
     
@@ -52,12 +63,15 @@ public class TaskService {
     @Transactional
     public TaskEntity createTask(TaskEntity task){
         
-        UserEntity user = userService.findById(task.getUser().getId());
-        if(user != null){
-            task.setId(null);
-            task.setUser(user);
-            task = this.taskRepository.save(task);
-        }   
+        UserSpringSecurity userSpringSecurity = UserService.authenticated();
+        if(Objects.isNull(userSpringSecurity)){
+            throw new AuthorizationException("Acesso Negado!");
+        }
+        
+        UserEntity user = this.userService.findById(userSpringSecurity.getId());
+        task.setId(null);
+        task.setUser(user);
+        task = this.taskRepository.save(task); 
         return task;
     }
     
@@ -77,5 +91,10 @@ public class TaskService {
         catch(Exception e){
             throw new DataBindingViolationException("Não é possivel excluir, pois há entidade relacionadas!");
         }
+    }
+    
+    
+    public boolean userHasTask(UserSpringSecurity userSpringSecurity, TaskEntity task){
+        return task.getUser().getId().equals(userSpringSecurity.getId());
     }
 }

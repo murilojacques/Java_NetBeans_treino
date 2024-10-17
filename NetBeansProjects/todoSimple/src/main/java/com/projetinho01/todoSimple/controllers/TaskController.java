@@ -42,19 +42,18 @@ public class TaskController {
     
     @GetMapping("/get/{id}")
     public ResponseEntity<TaskEntity> findById(@Valid @PathVariable Long id){
-        TaskEntity task = taskService.findById(id);
+        TaskEntity task = this.taskService.findById(id);
         return ResponseEntity.ok().body(task);
     }
     
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<TaskEntity>> findAllTasksByUser(@PathVariable Long userId){
-        userService.findById(userId);
-        List<TaskEntity> tasks = taskService.findAllTasksByUserId(userId);
+    @GetMapping("/user")
+    public ResponseEntity<List<TaskEntity>> findAllTasksByUser(){
+        List<TaskEntity> tasks = taskService.findAllTasksByUser();
         return ResponseEntity.ok().body(tasks);
     }
     
     
-    @PostMapping("/post")
+    @PostMapping
     @Validated
     public ResponseEntity<Void> createTask(@Valid @RequestBody TaskEntity task){
         this.taskService.createTask(task);
