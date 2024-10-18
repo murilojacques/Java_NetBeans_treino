@@ -5,8 +5,8 @@
 package com.projetinho01.todoSimple.controllers;
 
 import com.projetinho01.todoSimple.data.UserEntity;
-import com.projetinho01.todoSimple.data.UserEntity.CreateUser;
-import com.projetinho01.todoSimple.data.UserEntity.UpdateUser;
+import com.projetinho01.todoSimple.data.dto.UserCreateDTO;
+import com.projetinho01.todoSimple.data.dto.UserUpdateDTO;
 import com.projetinho01.todoSimple.services.TaskService;
 import com.projetinho01.todoSimple.services.UserService;
 import jakarta.validation.Valid;
@@ -51,19 +51,19 @@ public class UserController {
     
     
     @PostMapping
-    @Validated(CreateUser.class)
-    public ResponseEntity<Void> createUser(@Valid @RequestBody UserEntity user){
-        this.userService.createUser(user);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
+    public ResponseEntity<Void> createUser(@Valid @RequestBody UserCreateDTO user){
+        UserEntity newUser = this.userService.fromDTO(user);
+        this.userService.createUser(newUser);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newUser.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
     
     
     @PutMapping("/update/{id}")
-    @Validated(UpdateUser.class)
-    public ResponseEntity<Void> updateUser(@PathVariable Long id, @Valid @RequestBody UserEntity user){
+    public ResponseEntity<Void> updateUser(@PathVariable Long id, @Valid @RequestBody UserUpdateDTO user){
         user.setId(id);
-        this.userService.updateUser(user);
+        UserEntity upUser = this.userService.fromDTO(user);
+        this.userService.updateUser(upUser);
         return ResponseEntity.noContent().build();
     }
     

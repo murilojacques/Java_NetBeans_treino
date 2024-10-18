@@ -4,6 +4,7 @@
  */
 package com.projetinho01.todoSimple.controllers;
 
+import com.projetinho01.todoSimple.data.Projection.TaskProjection;
 import com.projetinho01.todoSimple.data.TaskEntity;
 import com.projetinho01.todoSimple.services.TaskService;
 import com.projetinho01.todoSimple.services.UserService;
@@ -47,8 +48,8 @@ public class TaskController {
     }
     
     @GetMapping("/user")
-    public ResponseEntity<List<TaskEntity>> findAllTasksByUser(){
-        List<TaskEntity> tasks = taskService.findAllTasksByUser();
+    public ResponseEntity<List<TaskProjection>> findAllTasksByUser(){
+        List<TaskProjection> tasks = taskService.findAllTasksByUser();
         return ResponseEntity.ok().body(tasks);
     }
     

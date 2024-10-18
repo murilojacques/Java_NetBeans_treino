@@ -6,6 +6,7 @@ package com.projetinho01.todoSimple.services;
 
 import com.projetinho01.todoSimple.Security.UserSpringSecurity;
 import com.projetinho01.todoSimple.data.ProfileEnum;
+import com.projetinho01.todoSimple.data.Projection.TaskProjection;
 import com.projetinho01.todoSimple.data.TaskEntity;
 import com.projetinho01.todoSimple.data.TaskRepository;
 import com.projetinho01.todoSimple.data.UserEntity;
@@ -50,12 +51,12 @@ public class TaskService {
         return tasks;
     }
     
-    public List<TaskEntity> findAllTasksByUser(){
+    public List<TaskProjection> findAllTasksByUser(){
         UserSpringSecurity userSpringSecurity = UserService.authenticated();
         if(Objects.isNull(userSpringSecurity)){
             throw new AuthorizationException("Acesso Negado!");
         }
-        List<TaskEntity> tasks = taskRepository.findByUser_Id(userSpringSecurity.getId());
+        List<TaskProjection> tasks = taskRepository.findByUser_Id(userSpringSecurity.getId());
         return tasks;
     }
     

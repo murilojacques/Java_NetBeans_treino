@@ -4,6 +4,7 @@
  */
 package com.projetinho01.todoSimple.data;
 
+import com.projetinho01.todoSimple.data.Projection.TaskProjection;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,8 +18,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TaskRepository extends JpaRepository<TaskEntity, Long>{
     
-    List<TaskEntity> findByUser_Id(Long id);
-    
+    List<TaskProjection> findByUser_Id(Long id);
+    List<TaskEntity> findByUserId(Long id);
     
     
     //Versão JPQL do modo de busca de dados no repositorio, não é tão automatizado quando o acima mas permite ser mais especifico nas Buscas

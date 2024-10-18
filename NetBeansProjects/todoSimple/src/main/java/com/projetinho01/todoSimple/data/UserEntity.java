@@ -41,11 +41,11 @@ import lombok.Data;
     @UniqueConstraint(columnNames = "id")})
 public class UserEntity implements Serializable{
     
-    public interface CreateUser {
-    }
-    
-    public interface UpdateUser {
-    }
+//    public interface CreateUser {
+//    }
+//    
+//    public interface UpdateUser {
+//    }
     
     public static final String TABLE_NAME = "user";
     
@@ -57,15 +57,15 @@ public class UserEntity implements Serializable{
     
     
     @Column(length = 100, nullable = false, unique = true)
-    @NotBlank(groups = CreateUser.class) //valida se o valor de usuario não é Null nem vazio
-    @Size(groups = CreateUser.class, min = 2, max = 100)
+    @NotBlank() //valida se o valor de usuario não é Null nem vazio
+    @Size(min = 2, max = 100)
     private String username;
     
     
     @JsonProperty(access = Access.WRITE_ONLY)
     @Column(length = 100, nullable = false)
-    @NotBlank(groups = {CreateUser.class, UpdateUser.class})
-    @Size(groups = {CreateUser.class, UpdateUser.class}, min = 8, max = 100)
+    @NotBlank()
+    @Size(min = 8, max = 100)
     private String password;
     
     

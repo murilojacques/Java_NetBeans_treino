@@ -6,13 +6,17 @@ package com.projetinho01.todoSimple.services;
 
 import com.projetinho01.todoSimple.Security.UserSpringSecurity;
 import com.projetinho01.todoSimple.data.ProfileEnum;
+import com.projetinho01.todoSimple.data.Projection.TaskProjection;
 import com.projetinho01.todoSimple.data.TaskEntity;
 import com.projetinho01.todoSimple.data.TaskRepository;
 import com.projetinho01.todoSimple.data.UserEntity;
 import com.projetinho01.todoSimple.data.UserRepository;
+import com.projetinho01.todoSimple.data.dto.UserCreateDTO;
+import com.projetinho01.todoSimple.data.dto.UserUpdateDTO;
 import com.projetinho01.todoSimple.exceptions.AuthorizationException;
 import com.projetinho01.todoSimple.services.exceptions.DataBindingViolationException;
 import com.projetinho01.todoSimple.services.exceptions.ObjectNotFoundException;
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -55,7 +59,7 @@ public class UserService {
     public UserEntity updateUser(UserEntity user){
         UserEntity newObj = findById(user.getId());
         newObj.setPassword(user.getPassword());
-        newObj.setPassword(this.bCryptPasswordEncoder.encode(newObj.getPassword()));
+        newObj.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
         return this.userRepository.save(newObj);
     }
     
@@ -81,7 +85,7 @@ public class UserService {
     public void deleteUser(Long id){
         findById(id);
         try{
-            List<TaskEntity> tasks = taskRepository.findByUser_Id(id);
+            List<TaskEntity> tasks = taskRepository.findByUserId(id);
             for(TaskEntity task : tasks){
                 taskRepository.delete(task);
             }
@@ -99,5 +103,20 @@ public class UserService {
         }catch(Exception e){
             return null;
         }
+    }
+    
+    
+    public UserEntity fromDTO(@Valid UserCreateDTO user){
+        UserEntity newUser = new UserEntity();
+        newUser.setUsername(user.getUsername());
+        newUser.setPassword(user.getPassword());
+        return newUser;
+    }
+    
+    public UserEntity fromDTO(@Valid UserUpdateDTO user){
+        UserEntity newUser = new UserEntity();
+        newUser.setId(user.getId());
+        newUser.setPassword(user.getPassword());
+        return newUser;
     }
 }
