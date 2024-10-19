@@ -29,6 +29,7 @@
     <properties>
         <java.version>21</java.version>
     </properties>
+    <packaging>jar</packaging>
     <dependencies>
         
         <dependency>
@@ -133,6 +134,7 @@
                 <version>3.1.0</version>
             </plugin>
         </plugins>
+        <finalName>todosimpleapp</finalName>
     </build>
 
 </project>
