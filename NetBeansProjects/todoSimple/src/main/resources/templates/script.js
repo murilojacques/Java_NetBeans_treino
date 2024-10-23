@@ -27,8 +27,8 @@ async function getTasks() {
   const response = await fetch(tasksEndpoint, {
     method: "GET",
     headers: new Headers({
-      Authorization: localStorage.getItem(key),
-    }),
+      Authorization: localStorage.getItem(key)
+    })
   });
 
   var data = await response.json();

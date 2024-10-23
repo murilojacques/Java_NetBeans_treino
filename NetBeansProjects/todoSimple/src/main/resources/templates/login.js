@@ -3,21 +3,24 @@ async function login() {
   let password = document.getElementById("password").value;
 
   console.log(username, password);
-
-  const response = await fetch("http://localhost:8080/login", {
-    method: "POST",
-    headers: new Headers({
+  
+  const header = new Headers({
       "Content-Type": "application/json; charset=utf8",
       "Accept": "application/json",
-      'Access-Control-Allow-Origin':'*',
-      'Access-Control-Allow-Methods':'POST,PATCH,GET,OPTIONS'
-    }),
+      "Access-Control-Allow-Origin":"*",
+      "Access-Control-Allow-Methods":"POST,PATCH,GET,OPTIONS"
+    });
+    
+  
+  const response = await fetch("https://localhost8080/login", {
+    method: "POST",
+    headers: header,
     body: JSON.stringify({
       username: username,
-      password: password,
-    }),
+      password: password
+    })
   });
-
+  console.log("DEU RUIM MEU NOBRE");
   let key = "Authorization";
   let token = response.headers.get(key);
   window.localStorage.setItem(key, token);
@@ -26,6 +29,7 @@ async function login() {
     showToast("#okToast");
   } else {
     showToast("#errorToast");
+    
   }
 
   window.setTimeout(function () {

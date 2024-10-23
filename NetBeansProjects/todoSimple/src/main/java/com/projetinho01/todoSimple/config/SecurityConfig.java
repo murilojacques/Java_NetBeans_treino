@@ -49,7 +49,8 @@ public class SecurityConfig {
    
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        http.csrf(csrf -> csrf.disable()).cors(cors -> cors.disable());
+        http.cors(cors -> cors.disable());
+        http.csrf(csrf -> csrf.disable());
         
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
         authenticationManagerBuilder.userDetailsService(this.userDetailsService).passwordEncoder(bCryptPasswordEncoder());
