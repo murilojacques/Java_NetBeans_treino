@@ -21,8 +21,26 @@ public class CandidatosService {
     @Autowired
     private CandidatosRepository candidatosRepository;
     
+    public Boolean cadastrarCandidato(CandidatosEntity candidato){
+        if(candidatosRepository.findByRg(candidato.getRg()) != null){
+            return false;
+        }
+        candidato.setId(null);
+        candidatosRepository.save(candidato);
+        return true;
+    }
+    
     public List<CandidatosEntity> findByVaga(VagasEntity vaga){
         List<CandidatosEntity> candidatos = candidatosRepository.findByVaga(vaga);
         return candidatos;
+    }
+    
+    public CandidatosEntity findByRg(int rg){
+        CandidatosEntity candidatos = candidatosRepository.findByRg(rg);
+        return candidatos;
+    }
+    
+    public void deleteCandidato(CandidatosEntity candidato){
+        candidatosRepository.delete(candidato);
     }
 }

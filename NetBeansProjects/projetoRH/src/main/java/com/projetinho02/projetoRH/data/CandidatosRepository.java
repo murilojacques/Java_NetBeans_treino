@@ -17,5 +17,5 @@ public interface CandidatosRepository extends JpaRepository<CandidatosEntity, Lo
     
     CandidatosEntity findByRg(int rg);
     
-    List<CandidatosEntity> findByNomeCandidato(String nomeCandindato);
+    List<CandidatosEntity> findByNomeCandidato(String nomeCandidato);
 }

@@ -49,7 +49,7 @@ public class VagasEntity implements Serializable{
     
     @NotBlank
     @Column(nullable = false)
-    private int salario;
+    private String salario;
             
     @OneToMany(mappedBy = "vaga", cascade = CascadeType.REMOVE)
     private List<CandidatosEntity> candidatos = new ArrayList<CandidatosEntity>();

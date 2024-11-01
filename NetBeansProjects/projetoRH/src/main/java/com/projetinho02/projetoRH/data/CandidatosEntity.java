@@ -26,7 +26,7 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "cadidato", uniqueConstraints = {@UniqueConstraint(columnNames = "id")})
+@Table(name = "candidato", uniqueConstraints = {@UniqueConstraint(columnNames = "id")})
 public class CandidatosEntity implements Serializable{
     
     @Id
@@ -36,7 +36,7 @@ public class CandidatosEntity implements Serializable{
     
     @NotBlank
     @Size(min = 2, max = 100)
-    private String nomeCandindato;
+    private String nomeCandidato;
     
     @NotBlank
     @Column(unique = true, nullable = false)

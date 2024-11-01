@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,10 +37,15 @@ public class VagasController {
     private CandidatosService candidatosService;
     
     
+    @GetMapping("/pagIndex")
+    public String pagIndex(Model model){
+        return "pagIndex";
+    }
+    
     @GetMapping("/pagCadastrarVaga")
     public String pagCadastrarVaga(Model model){
-         
-        return "CadastrarVaga";
+        model.addAttribute("vaga", new VagasEntity());
+        return "pagCadastrarVaga";
     }
     
     @PostMapping("/cadastrarVaga")
@@ -56,23 +62,81 @@ public class VagasController {
     }
     
     
-    @GetMapping("/ListaVagas")
+    @GetMapping("/pagListaVagas")
     public ModelAndView listarVagas(){
-        ModelAndView modelAndView = new ModelAndView("listaVagas");  //sendo passada qual pagina o ModelAndView tera nesse caso a pagina "listaVagas"
+        ModelAndView modelAndView = new ModelAndView("pagListaVagas");  //sendo passada qual pagina o ModelAndView tera nesse caso a pagina "listaVagas"
         List<VagasEntity> vagas = vagasService.findAllVagas();
         modelAndView.addObject("vagas", vagas);
         return modelAndView;
     }
     
-    @GetMapping("/detalhesVaga/{id}")
-    public ModelAndView detalhesVaga(@PathVariable("id") Long id){
-        ModelAndView modelAndView = new ModelAndView("detalhesVaga");
+    
+    @GetMapping("/pagDetalhesVaga/{id}")
+    public ModelAndView detalhesVaga(@PathVariable("id") Long vagaId){
+        ModelAndView modelAndView = new ModelAndView("pagDetalhesVaga");
         
-        VagasEntity vaga = vagasService.findById(id);
+        VagasEntity vaga = vagasService.findById(vagaId);
         List<CandidatosEntity> candidatos = candidatosService.findByVaga(vaga);
         
         modelAndView.addObject("vaga", vaga);
         modelAndView.addObject("candidatos", candidatos);
+        modelAndView.addObject("newCandidato", new CandidatosEntity());
         return modelAndView;
+    }
+    
+    @PostMapping("/adicCandidatoAVaga/{id}")
+    public String adicionarCandidatoAVaga(@PathVariable("id") Long vagaId, @ModelAttribute("candidato") @Valid CandidatosEntity candidato, BindingResult result, RedirectAttributes attribute){
+        
+        if(result.hasErrors()){
+            attribute.addFlashAttribute("msg", "Verifique os Campos");
+            return "redirect:/detalhesVaga/{id}";
+        }
+        
+        VagasEntity vaga = vagasService.findById(vagaId);
+        
+        boolean verificar = candidatosService.cadastrarCandidato(candidato);
+        if(!verificar){
+            attribute.addFlashAttribute("msg", "O valor do RG informado ja esta cadastrado no Sistema, verifique se o campo foi digitado corretamente");
+            return "redirect:/detalhesVaga/{id}";
+        }
+        
+        vagasService.adicionarCandidato(vaga, candidato);
+        attribute.addFlashAttribute("msg", "Candidato cadastrado com sucesso à vaga");
+        return "redirect:/detalhesVaga/{id}";
+    }
+    
+    
+    @GetMapping("/deletarVaga/{id}")
+    public String deletarVaga(@PathVariable("id") Long id){
+        vagasService.deletarVaga(id);
+        return "redirect:/listaVagas";
+    }
+    
+    @GetMapping("/deletarCandidatoPorRg")
+    public String deletarCandidatoPorRg(@PathVariable("rg") Integer rg){
+        CandidatosEntity candidato = candidatosService.findByRg(rg);
+        VagasEntity vaga = candidato.getVaga();
+        String codigo = String.valueOf(vaga.getId());
+        candidatosService.deleteCandidato(candidato);
+        return "redirect:/detalhesVaga/" + codigo;
+    }
+    
+    
+    @GetMapping("/pagAtualizarVaga")
+    public ModelAndView pagAtualizarVaga(Long id){
+        VagasEntity vaga = vagasService.findById(id);
+        ModelAndView modelAndView = new ModelAndView("pagAtualizarVaga");
+        modelAndView.addObject("vaga", vaga);
+        return modelAndView;
+    }
+    
+    @PostMapping("/atualizarVaga")
+    public String atualizarVaga(@ModelAttribute("vaga") @Valid VagasEntity vaga, RedirectAttributes attributes){
+        vagasService.atualizarVaga(vaga.getId(), vaga);
+        attributes.addFlashAttribute("success", "Vaga Atualizada com Sucesso!");
+        
+        String codigo = String.valueOf(vaga.getId());
+        
+        return "redirect:/detalhesVaga/"+codigo;
     }
 }
