@@ -38,7 +38,6 @@ public class CandidatosEntity implements Serializable{
     @Size(min = 2, max = 100)
     private String nomeCandidato;
     
-    @NotBlank
     @Column(unique = true, nullable = false)
     private int rg;
     

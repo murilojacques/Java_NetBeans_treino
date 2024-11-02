@@ -63,25 +63,25 @@ public class VagasController {
     
     
     @GetMapping("/pagListaVagas")
-    public ModelAndView listarVagas(){
+    public ModelAndView listarVagas(Model model){
         ModelAndView modelAndView = new ModelAndView("pagListaVagas");  //sendo passada qual pagina o ModelAndView tera nesse caso a pagina "listaVagas"
         List<VagasEntity> vagas = vagasService.findAllVagas();
-        modelAndView.addObject("vagas", vagas);
+        model.addAttribute("vagas", vagas);
         return modelAndView;
     }
     
     
     @GetMapping("/pagDetalhesVaga/{id}")
-    public ModelAndView detalhesVaga(@PathVariable("id") Long vagaId){
+    public String detalhesVaga(@PathVariable("id") Long vagaId, Model model){
         ModelAndView modelAndView = new ModelAndView("pagDetalhesVaga");
         
         VagasEntity vaga = vagasService.findById(vagaId);
         List<CandidatosEntity> candidatos = candidatosService.findByVaga(vaga);
         
-        modelAndView.addObject("vaga", vaga);
-        modelAndView.addObject("candidatos", candidatos);
-        modelAndView.addObject("newCandidato", new CandidatosEntity());
-        return modelAndView;
+        model.addAttribute("vaga", vaga);
+        model.addAttribute("candidatos", candidatos);
+        model.addAttribute("newCandidato", new CandidatosEntity());
+        return "pagDetalhesVaga";
     }
     
     @PostMapping("/adicCandidatoAVaga/{id}")
@@ -89,20 +89,20 @@ public class VagasController {
         
         if(result.hasErrors()){
             attribute.addFlashAttribute("msg", "Verifique os Campos");
-            return "redirect:/detalhesVaga/{id}";
+            return "redirect:/pagDetalhesVaga/" + vagaId;
         }
-        
         VagasEntity vaga = vagasService.findById(vagaId);
         
+        candidato.setVaga(vaga);
         boolean verificar = candidatosService.cadastrarCandidato(candidato);
         if(!verificar){
             attribute.addFlashAttribute("msg", "O valor do RG informado ja esta cadastrado no Sistema, verifique se o campo foi digitado corretamente");
-            return "redirect:/detalhesVaga/{id}";
+            return "redirect:/pagDetalhesVaga/"+ vagaId;
         }
         
         vagasService.adicionarCandidato(vaga, candidato);
         attribute.addFlashAttribute("msg", "Candidato cadastrado com sucesso à vaga");
-        return "redirect:/detalhesVaga/{id}";
+        return "redirect:/pagDetalhesVaga/" + vagaId;
     }
     
     

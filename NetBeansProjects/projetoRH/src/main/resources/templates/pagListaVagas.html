@@ -33,8 +33,7 @@
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">App RH</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
@@ -81,8 +80,8 @@
                         <td>R$ <span th:text="${vaga.salario}"></span></td>
                         <td><span th:text="${vaga.data}"></span></td>
                         <td><a th:href="@{/deletarVaga/{id} (id = ${vaga.id})}"><button type="button" class="btn btn-danger">Excluir</button></a></td>
-                        <td><a th:href=""><button type="button" class="btn btn-primary">Editar</button></a></td>
-                        <td><a th:href="${/pagDetalhesVaga/{id} (id = ${vaga.id})}"><button type="button" class="btn btn-success">Adicionar candidato</button></a></td>
+                        <td><a th:href="@{/pagAtualizarVaga}"><button type="button" class="btn btn-primary">Editar</button></a></td>
+                        <td><a th:href="@{/pagDetalhesVaga/{id} (id = ${vaga.id})}"><button type="button" class="btn btn-success">Adicionar candidato</button></a></td>
                     </tr>
                 </tbody>
             </table>
