@@ -85,10 +85,11 @@ public class VagasController {
     }
     
     @PostMapping("/adicCandidatoAVaga/{id}")
-    public String adicionarCandidatoAVaga(@PathVariable("id") Long vagaId, @ModelAttribute("candidato") @Valid CandidatosEntity candidato, BindingResult result, RedirectAttributes attribute){
+    public String adicionarCandidatoAVaga(@PathVariable("id") Long vagaId, @ModelAttribute("newCandidato") @Valid CandidatosEntity candidato, BindingResult result, RedirectAttributes attribute){
         
         if(result.hasErrors()){
             attribute.addFlashAttribute("msg", "Verifique os Campos");
+            attribute.addFlashAttribute("css", "background-color: #F04600; color: white; padding: 15px; border-radius: 10px; font-size: 15px");
             return "redirect:/pagDetalhesVaga/" + vagaId;
         }
         VagasEntity vaga = vagasService.findById(vagaId);
@@ -97,11 +98,14 @@ public class VagasController {
         boolean verificar = candidatosService.cadastrarCandidato(candidato);
         if(!verificar){
             attribute.addFlashAttribute("msg", "O valor do RG informado ja esta cadastrado no Sistema, verifique se o campo foi digitado corretamente");
+            attribute.addFlashAttribute("css", "background-color: #F04600; color: white; padding: 15px; border-radius: 10px; font-size: 15px");
             return "redirect:/pagDetalhesVaga/"+ vagaId;
         }
         
         vagasService.adicionarCandidato(vaga, candidato);
         attribute.addFlashAttribute("msg", "Candidato cadastrado com sucesso à vaga");
+        //attribute.addFlashAttribute("classe", "panel panel-success");
+        attribute.addFlashAttribute("css", "background-color: #0091D9; color: white; padding: 15px; border-radius: 10px; font-size: 15px");
         return "redirect:/pagDetalhesVaga/" + vagaId;
     }
     
@@ -109,34 +113,32 @@ public class VagasController {
     @GetMapping("/deletarVaga/{id}")
     public String deletarVaga(@PathVariable("id") Long id){
         vagasService.deletarVaga(id);
-        return "redirect:/listaVagas";
+        return "redirect:/pagListaVagas";
     }
     
-    @GetMapping("/deletarCandidatoPorRg")
+    @GetMapping("/deletarCandidatoPorRg/{rg}")
     public String deletarCandidatoPorRg(@PathVariable("rg") Integer rg){
         CandidatosEntity candidato = candidatosService.findByRg(rg);
         VagasEntity vaga = candidato.getVaga();
         String codigo = String.valueOf(vaga.getId());
         candidatosService.deleteCandidato(candidato);
-        return "redirect:/detalhesVaga/" + codigo;
+        return "redirect:/pagDetalhesVaga/" + codigo;
     }
     
     
-    @GetMapping("/pagAtualizarVaga")
-    public ModelAndView pagAtualizarVaga(Long id){
+    @GetMapping("/pagAtualizarVaga/{id}")
+    public ModelAndView pagAtualizarVaga(@PathVariable("id") Long id){
         VagasEntity vaga = vagasService.findById(id);
         ModelAndView modelAndView = new ModelAndView("pagAtualizarVaga");
         modelAndView.addObject("vaga", vaga);
         return modelAndView;
     }
     
-    @PostMapping("/atualizarVaga")
-    public String atualizarVaga(@ModelAttribute("vaga") @Valid VagasEntity vaga, RedirectAttributes attributes){
-        vagasService.atualizarVaga(vaga.getId(), vaga);
+    @PostMapping("/atualizarVaga/{id}")
+    public String atualizarVaga(@PathVariable("id") Long id, @ModelAttribute("vaga") @Valid VagasEntity vaga, RedirectAttributes attributes){
+        vagasService.atualizarVaga(id, vaga);
         attributes.addFlashAttribute("success", "Vaga Atualizada com Sucesso!");
         
-        String codigo = String.valueOf(vaga.getId());
-        
-        return "redirect:/detalhesVaga/"+codigo;
+        return "redirect:/pagDetalhesVaga/"+id;
     }
 }

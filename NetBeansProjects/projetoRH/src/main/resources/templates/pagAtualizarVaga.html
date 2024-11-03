@@ -53,9 +53,9 @@
         </header>
 
 
-        <div th:object="${vaga}" class="container">
+        <div class="container">
 
-            <form method="post">
+            <form th:object="${vaga}" th:action="@{/atualizarVaga/{id} (id=${vaga.id})}" method="post">
 
                 <h1>Atualizar vaga</h1>
 
