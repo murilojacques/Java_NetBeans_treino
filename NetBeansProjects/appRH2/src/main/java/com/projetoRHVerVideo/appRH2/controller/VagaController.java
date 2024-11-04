@@ -67,13 +67,13 @@ public class VagaController {
 	@RequestMapping(value = "/vagas", method = RequestMethod.GET)
 	public ModelAndView listaVagas() {
 		ModelAndView mv = new ModelAndView("listaVaga");
-		List<Vaga> vagas = vr.findAll();
+		Iterable<Vaga> vagas = vr.findAll();
 		mv.addObject("vagas", vagas);
 		return mv;
 	}
 
 	//
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "vagas/{id}", method = RequestMethod.GET)
 	public ModelAndView detalhesVaga(@PathVariable("id") long id) {
 		Vaga vaga = vr.findById(id);
 		ModelAndView mv = new ModelAndView("detalhesVaga");
@@ -87,9 +87,9 @@ public class VagaController {
 	}
 
 	// DELETA VAGA
-	@RequestMapping("/deletarVaga")
-	public String deletarVaga(long codigo) {
-		Vaga vaga = vr.findById(codigo);
+	@RequestMapping("deletarVaga/{id}")
+	public String deletarVaga(@PathVariable("id") long id) {
+		Vaga vaga = vr.findById(id);
 		vr.delete(vaga);
 		return "redirect:/vagas";
 	}
@@ -132,9 +132,9 @@ public class VagaController {
 
 	// Métodos que atualizam vaga
 	// formulário edição de vaga
-	@RequestMapping(value = "/editar-vaga", method = RequestMethod.GET)
-	public ModelAndView editarVaga(long codigo) {
-		Vaga vaga = vr.findById(codigo);
+	@RequestMapping(value = "editar-vaga/{id}", method = RequestMethod.GET)
+	public ModelAndView editarVaga(@PathVariable("id") long id) {
+		Vaga vaga = vr.findById(id);
 		ModelAndView mv = new ModelAndView("update-vaga");
 		mv.addObject("vaga", vaga);
 		return mv;
