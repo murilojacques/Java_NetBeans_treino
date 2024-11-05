@@ -61,43 +61,45 @@
                 <br>
 
                 <p>
-                    <b>Vaga:</b> <span></span>
+                    <b>Vaga:</b> <span th:text="${vaga.nome}"></span>
                 </p>
                 <p>
-                    <b>Descrição do cargo:</b> <span></span>
+                    <b>Descrição do cargo:</b> <span th:text="${vaga.descricao}"></span>
                 </p>
                 <p>
-                    <b>Expira em:</b> <span></span>
+                    <b>Expira em:</b> <span th:text="${vaga.data}"></span>
                 </p>
                 <p>
-                    <b>Salário:</b> R$ <span></span>
+                    <b>Salário:</b> R$ <span th:text="${vaga.salario}"></span>
                 </p>
 
                 <br> <br>
 
 
                 <h2>Cadastrar candidato:</h2>
+                
+                <th:block th:include="mensagemValidacao"></th:block>
 
                 <br>
-
-                <form method="post">
+                
+                <form th:action="@{/vagas/{id} (id = ${vaga.id})}" method="post">
 
                     <div class="form-group">
-                        <div class="row">
+                        <div th:object="${newCandidato}" class="row">
 
                             <div class="col">
                                 <label for=""><b>Nome do candidato:</b> </label>
-                                <input type="text" value="" name="nomeCandidato" class="form-control" placeholder="Nome Completo" required />
+                                <input type="text" th:field="*{nomeCandidato}" value="" name="nomeCandidato" class="form-control" placeholder="Nome Completo" required />
                             </div>
 
                             <div class="col">
                                 <label for=""><b>RG: </b> </label>
-                                <input type="text" value="" name="rg" placeholder="Somente números, sem traços ou pontos." class="validate form-control" required />
+                                <input type="text" th:field="*{rg}" value="" name="rg" placeholder="Somente números, sem traços ou pontos." class="validate form-control" required />
                             </div>
 
                             <div class="col">
                                 <label for=""><b>E-mail:</b> </label>
-                                <input type="text" value="" name="email" class="form-control" placeholder="email@email.com" required />
+                                <input type="text" th:field="*{email}" value="" name="email" class="form-control" placeholder="email@email.com" required />
                             </div>
 
                         </div>
@@ -105,7 +107,9 @@
 
 
                     </div>
-
+                    
+                    <br>
+                    
                     <button type="submit" class="btn btn-success">Adicionar
                         Candidato</button>
                 </form>
@@ -126,14 +130,14 @@
                         <th scope="col">E-mail:</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody th:each="candidato : ${candidatos}">
 
                     <tr>
-                        <td><span></span></td>
-                        <td><span></span></td>
-                        <td><span></span></td>
+                        <td><span th:text="${candidato.nomeCandidato}"></span></td>
+                        <td><span th:text="${candidato.rg}"></span></td>
+                        <td><span th:text="${candidato.email}"></span></td>
                         <td>
-                            <a class="waves-effect waves-light btn-small" href="#">
+                            <a class="waves-effect waves-light btn-small" th:href="@{/deletarCandidato/{rg} (rg = ${candidato.rg})}">
                             <button type="button" class="btn btn-danger">Excluir</button></a>
                         </td>
                     </tr>

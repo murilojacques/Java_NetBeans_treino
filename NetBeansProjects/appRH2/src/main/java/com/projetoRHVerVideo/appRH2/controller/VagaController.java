@@ -73,12 +73,14 @@ public class VagaController {
 	}
 
 	//
-	@RequestMapping(value = "vagas/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/vagas/{id}", method = RequestMethod.GET)
 	public ModelAndView detalhesVaga(@PathVariable("id") long id) {
 		Vaga vaga = vr.findById(id);
 		ModelAndView mv = new ModelAndView("detalhesVaga");
 		mv.addObject("vaga", vaga);
-
+                
+                mv.addObject("newCandidato", new Candidato());
+                
 		Iterable<Candidato> canditados = cr.findByVaga(vaga);
 		mv.addObject("candidatos", canditados);
 
@@ -95,38 +97,39 @@ public class VagaController {
 	}
 
 	// ADICIONAR CANDIDATO
-	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/vagas/{id}", method = RequestMethod.POST)
 	public String detalhesVagaPost(@PathVariable("id") long id, @Valid Candidato candidato,
 			BindingResult result, RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos");
-			return "redirect:/{id}";
+			return "redirect:/vagas/" + id;
 		}
 
 		// rg duplicado
 		if (cr.findByRg(candidato.getRg()) != null) {
 			attributes.addFlashAttribute("mensagem_erro", "RG duplicado");
-			return "redirect:/{id}";
+			return "redirect:/vagas/" + id;
 		}
 
 		Vaga vaga = vr.findById(id);
 		candidato.setVaga(vaga);
+                candidato.setId(null);
 		cr.save(candidato);
 		attributes.addFlashAttribute("mensagem", "Candidato adionado com sucesso!");
-		return "redirect:/{id}";
+		return "redirect:/vagas/" + id;
 	}
 
 	// DELETA CANDIDATO pelo RG
-	@RequestMapping("/deletarCandidato")
-	public String deletarCandidato(String rg) {
+	@RequestMapping("/deletarCandidato/{rg}")
+	public String deletarCandidato(@PathVariable("rg") String rg) {
 		Candidato candidato = cr.findByRg(rg);
 		Vaga vaga = candidato.getVaga();
 		String codigo = "" + vaga.getId();
 
 		cr.delete(candidato);
 
-		return "redirect:/" + codigo;
+		return "redirect:/vagas/" + codigo;
 
 	}
 
@@ -141,14 +144,19 @@ public class VagaController {
 	}
 
 	// UPDATE vaga
-	@RequestMapping(value = "/editar-vaga", method = RequestMethod.POST)
-	public String updateVaga(@Valid Vaga vaga, BindingResult result, RedirectAttributes attributes) {
-		vr.save(vaga);
+	@RequestMapping(value = "/editar-vaga/{id}", method = RequestMethod.POST)
+	public String updateVaga(@PathVariable("id") long id, @Valid Vaga updateVaga , BindingResult result, RedirectAttributes attributes) {
+            Vaga vaga = vr.findById(id);
+            vaga.setData(updateVaga.getData());
+            vaga.setDescricao(updateVaga.getDescricao());
+            vaga.setNome(updateVaga.getNome());
+            vaga.setSalario(updateVaga.getSalario());
+            vr.save(vaga);
 		attributes.addFlashAttribute("success", "Vaga alterada com sucesso!");
 
 		long codigoLong = vaga.getId();
 		String codigo = "" + codigoLong;
-		return "redirect:/" + codigo;
+		return "redirect:/vagas/" + codigo;
 	}
         
 }
