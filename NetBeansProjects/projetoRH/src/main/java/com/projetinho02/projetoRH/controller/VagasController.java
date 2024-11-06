@@ -54,10 +54,12 @@ public class VagasController {
         if(result.hasErrors()){
             //Aparentemente esse RedirectAttributes é basicamente um model mas para quando for redirecionar uma pagina
             attributes.addFlashAttribute("msg", "Verifique os campos preenchidos...");
+            attributes.addFlashAttribute("classe", "alert alert-success alert-danger");
             return "redirect:/pagCadastrarVaga";
         }
         vagasService.cadastrarVaga(vaga);
         attributes.addFlashAttribute("msg", "Vaga Cadastrada com Sucesso!");
+        attributes.addFlashAttribute("classe", "alert alert-success alert-dismissible");
         return "redirect:/pagCadastrarVaga";
     }
     
@@ -89,7 +91,7 @@ public class VagasController {
         
         if(result.hasErrors()){
             attribute.addFlashAttribute("msg", "Verifique os Campos");
-            attribute.addFlashAttribute("css", "background-color: #F04600; color: white; padding: 15px; border-radius: 10px; font-size: 15px");
+            attribute.addFlashAttribute("classe", "alert alert-success alert-danger");
             return "redirect:/pagDetalhesVaga/" + vagaId;
         }
         VagasEntity vaga = vagasService.findById(vagaId);
@@ -98,14 +100,13 @@ public class VagasController {
         boolean verificar = candidatosService.cadastrarCandidato(candidato);
         if(!verificar){
             attribute.addFlashAttribute("msg", "O valor do RG informado ja esta cadastrado no Sistema, verifique se o campo foi digitado corretamente");
-            attribute.addFlashAttribute("css", "background-color: #F04600; color: white; padding: 15px; border-radius: 10px; font-size: 15px");
+            attribute.addFlashAttribute("classe", "alert alert-success alert-danger");
             return "redirect:/pagDetalhesVaga/"+ vagaId;
         }
         
         vagasService.adicionarCandidato(vaga, candidato);
         attribute.addFlashAttribute("msg", "Candidato cadastrado com sucesso à vaga");
-        //attribute.addFlashAttribute("classe", "panel panel-success");
-        attribute.addFlashAttribute("css", "background-color: #0091D9; color: white; padding: 15px; border-radius: 10px; font-size: 15px");
+        attribute.addFlashAttribute("classe", "alert alert-success alert-dismissible");
         return "redirect:/pagDetalhesVaga/" + vagaId;
     }
     

@@ -21,6 +21,7 @@
     <body>
 
         <header>
+
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">App RH</a>
@@ -30,6 +31,13 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/pagIndex}">Home</a></li>
+
+                            <li class="nav-item"><a class="nav-link" th:href="@{/pagListaFuncionarios}">
+                                    << Listar Funcionarios>>
+                                </a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/pagCadastrarFuncionario}">
+                                    << Cadastrar Funcionario>>
+                                </a></li>
 
                             <li class="nav-item"><a class="nav-link" th:href="@{/pagListaVagas}">
                                     << Listar Vagas>>
@@ -42,6 +50,7 @@
                     </div>
                 </div>
             </nav>
+
         </header>
         
         
@@ -59,6 +68,19 @@
                             <p class="card-text">Módulo responsável pelas vagas ofertadas pela agência de RH.</p>
                             <a th:href="@{/pagListaVagas}" class="btn btn-primary">Listar Vagas</a> 
                             <a th:href="@{pagCadastrarVaga}" class="btn btn-success">Cadastrar Vagas</a>
+                        </div>
+                    </div>
+                    
+                    <br> <br>
+                    
+                    <div class="card text-center">
+                        <div class="card-header  card-title">
+                            <h3>Funcionarios</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Módulo responsável pelas vagas ofertadas pela agência de RH.</p>
+                            <a th:href="@{/pagListaFuncionarios}" class="btn btn-primary">Listar Funcionarios</a> 
+                            <a th:href="@{/pagCadastrarFuncionario}" class="btn btn-success">Cadastrar Funcionarios</a>
                         </div>
                     </div>
                 </div>
