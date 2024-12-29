@@ -49,4 +49,5 @@ public class CandidatosEntity implements Serializable{
     @ManyToOne
     @JoinColumn(name = "vaga_id", nullable = false, updatable = false)
     private VagasEntity vaga;
+     
 }

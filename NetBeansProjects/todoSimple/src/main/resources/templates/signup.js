@@ -25,7 +25,7 @@ async function signup() {
     app.use(cors()); // habilitando o cors da aplicação para todas as rotas
 
     app.listen(8080, () => {
-      console.log('CORS-enabled web server listening on port 8080');
+        console.log('CORS-enabled web server listening on port 8080');
     });
 
 

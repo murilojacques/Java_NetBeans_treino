@@ -56,9 +56,9 @@ public class SistemaBanco_Controller {
         }
         
         
-        ContaEntity c = contaService.ConfirmarLogin(conta.getLogin(), conta.getSenha());
+        ContaEntity c = contaService.ConfirmarLogin((String) conta.getLogin(), conta.getSenha());
         if(c != null){
-        id = c.getId();
+        id = (int) c.getId();
         //Adicionar os Model 
         List<TransacaoEntity> transacoes = transacaoService.ListarTransacoesPorId(id);
         model.addAttribute("Transacoes", transacoes);
@@ -87,7 +87,7 @@ public class SistemaBanco_Controller {
     @PostMapping("/cadastrarConta")
     public String CadastrarConta(@ModelAttribute("conta") ContaEntity conta, Model model){
         
-        ContaEntity c = contaService.ConfirmarLogin(conta.getLogin(), conta.getSenha());
+        ContaEntity c = contaService.ConfirmarLogin((String) conta.getLogin(), conta.getSenha());
          
         if(conta.getLogin().equals("abc") && conta.getSenha()==124){
             model.addAttribute("msg", "Login e/ou Senha invalidos");

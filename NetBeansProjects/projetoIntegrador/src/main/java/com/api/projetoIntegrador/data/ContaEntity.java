@@ -17,6 +17,7 @@ import lombok.Data;
  *
  * @author Murilo
  */
+@SuppressWarnings("serial")
 @Data
 @Entity
 @Table(name="Conta", uniqueConstraints = {
@@ -46,4 +47,29 @@ public class ContaEntity implements Serializable{
     private boolean status;
     
     private String pfpj;
+
+    
+    
+	public int getSenha() {
+		// TODO Auto-generated method stub
+		return senha;
+	}
+
+	public void setId(Object object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Object getLogin() {
+		// TODO Auto-generated method stub
+		return login;
+	}
+
+	public Object getId() {
+		// TODO Auto-generated method stub
+		return id;
+	}
+
+
+
 }
