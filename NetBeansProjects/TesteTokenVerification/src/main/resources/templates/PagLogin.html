@@ -12,20 +12,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     </head>
     <body>
-        <div>
-            <div>
-                
-                <div>
-                    <form th:object="${user}" th:action="" method="post">
-                        <div>
-                            <input type="text" th:field="*{user.nome}" name="name">
-                            <input type="text" th:field="*{user.senha}" name="name">
-                            <button type="submit">enviar</button>
-                        </div>
-                        
+        <div class="w-25 mx-auto " style="margin-top: 15%">                
+                    <form th:object="${user}" th:action="@{/ConfirmarLogin}" method="post">
+                            <input type="text" th:field="*{nome}" placeholder="Login" name="name" class="form-control mt-5 mb-4 mx-auto col-12" required>
+                            <input type="text" th:field="*{senha}" placeholder="Senha" name="name" class="form-control mt-5 mb-2 mx-auto col-12" required>
+                            <span th:text="${msg}" class="text-danger"></span>
+                            <br>
+                            <input type="submit" class="col-3 mt-3 btn btn-primary" value="Login">
                     </form>
-                </div>
-            </div>
+                    
+                    <div class="w-25 mx-auto border">
+                        <a th:href="@{/PagCadastrarUser}">Criar Conta</a>
+                    </div>
         </div>
     </body>
 </html>

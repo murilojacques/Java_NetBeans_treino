@@ -17,8 +17,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserService {
+    
     @Autowired
     private UserRepository userRepository;
+    
     
     public Boolean cadastrarUser(UserEntity user){
         if(userRepository.findByRg(user.getRg()) != null){
@@ -26,15 +28,12 @@ public class UserService {
         }
         
         user.setId(null);
+        user.setSaldo(100);
         userRepository.save(user);
         return true;
     }
     
-    public List<UserEntity> findAllUsers(){
-        List<UserEntity> users = userRepository.findAll();
-        return users;
-    }
-    
+   
     public UserEntity atualizarUser(UserEntity user){
         UserEntity newUser = new UserEntity();
         newUser = getUserById(user.getId());
@@ -43,7 +42,22 @@ public class UserService {
         return newUser;
     }
     
+    
+    public UserEntity ConfirmarLogin(String senha, String nome){
+        UserEntity user = userRepository.findByNomeAndSenha(nome, senha);
+        return user;
+    }
+    
+    
+    
+    
     public UserEntity getUserById(Long id){
         return userRepository.findById(id).orElse(null);
     }
+    
+    public List<UserEntity> findAllUsers(){
+        List<UserEntity> users = userRepository.findAll();
+        return users;
+    }
+    
 }

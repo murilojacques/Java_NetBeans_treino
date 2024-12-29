@@ -230,7 +230,7 @@ public class SistemaBanco_Controller {
                 contaService.AtualizarSaldo(id, contaAtual);
                 
                 contaDestino.setSaldo(contaDestino.getSaldo() + transacao.getValor());
-                contaService.AtualizarSaldo(contaDestino.getId(), contaDestino);
+                contaService.AtualizarSaldo((Integer) contaDestino.getId(), contaDestino);
                 
                 transacaoService.cadastrarTransacao(transacao, id);
             }

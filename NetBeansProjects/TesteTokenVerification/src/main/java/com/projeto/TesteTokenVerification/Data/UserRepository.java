@@ -17,5 +17,5 @@ public interface UserRepository extends JpaRepository<UserEntity, Long>{
     
     List<UserEntity> findByNome(String name);
 
-   
+   UserEntity findByNomeAndSenha(String name, String senha);
 }

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+        accesskey=""integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container w-50">
+            <br>
+            <br>
+            <h1>Cadastrar User</h1>
+             
+            <br>
+            
+            <div th:class="${classe}">
+                <span th:text="${msg}" class="class">text</span>
+            </div>     
+            
+            <form th:action="@{/CadastrarUser}" th:object="${user}" method="post">
+                <div class="form-group">
+                    <label><b>Nome: </b></label>
+                    <input type="text" th:field="*{nome}" class="form-control" name="name">
+                    <small class="form-text text-muted">*Digite o seu Nome</small>
+                </div>
+                
+                <div class="form-group">
+                    <label><b>Senha: </b></label>
+                    <input type="text" th:field="*{senha}" class="form-control" name="name">
+                    <small class="form-text text-muted">*Digite a senha para sua Conta</small>
+                </div>
+                
+                <div class="form-group">
+                    <label><b>Rg: </b></label>
+                    <input type="number" th:field="*{rg}" class="form-control" name="name">
+                    <small class="form-text text-muted">*Digite o seu Rg</small>
+                </div>
+                
+                <div class="form-group">
+                    <label><b>CPF: </b></label>
+                    <input type="number" th:field="*{cpf}" class="form-control" name="name">
+                    <small class="form-text text-muted">*Digite o seu CPF</small>
+                </div>
+                
+                <div>
+                    <Button type="submit" class="btn btn-success" name="name">Cadastrar</Button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

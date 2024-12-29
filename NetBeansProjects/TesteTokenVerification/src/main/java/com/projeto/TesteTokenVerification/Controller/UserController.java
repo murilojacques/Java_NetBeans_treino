@@ -33,12 +33,42 @@ public class UserController {
         return mv;
     }
     
-    
-   /** @PostMapping("/Login")
-    public String FazerLogin(@ModelAttribute("user") @Valid UserEntity user, BindingResult result, RedirectAttributes attribute){
+    @PostMapping("/ConfirmarLogin")
+    public String confirmarLogin(@ModelAttribute("user") @Valid UserEntity user, BindingResult result, RedirectAttributes attribute){
         if(result.hasErrors()){
-            return "redirect/PagLogin";
+            attribute.addAttribute("msg", "Falha ao realizar o Login");
+            return "redirect:/PagLogin";
         }
         
-    }**/
+        UserEntity u = userService.ConfirmarLogin(user.getSenha(), user.getNome());
+        if(u != null){
+            return "PagIndex";
+        }
+        
+        return "redirect:/PagLogin";
+    }
+    
+    
+    
+    @GetMapping("/PagCadastrarUser")
+    public ModelAndView PagCadastrarUser(){
+        ModelAndView mv = new ModelAndView("PagCadastrarUser");
+        mv.addObject("user", new UserEntity());
+        return mv;
+    }
+    
+    @PostMapping("/CadastrarUser")
+    public String cadastrarUser(@ModelAttribute("user") @Valid UserEntity user, BindingResult result, RedirectAttributes attribute){
+        if(result.hasErrors()){
+            attribute.addAttribute("classe", "alert alert-success alert-danger");
+            attribute.addAttribute("msg", "Falha ao Cadastrar User");
+            return "redirect:/PagCadastrarUser";
+        }
+        
+        userService.cadastrarUser(user);
+        attribute.addAttribute("classe", "alert alert-success alert-dismissible");
+        attribute.addAttribute("msg", "Usuario cadstrado com Sucesso");
+        return "redirect:/PagCadastrarUser";
+    }
 }
+//@ModelAttribute("user") @Valid UserEntity user, BindingResult result, RedirectAttributes attribute

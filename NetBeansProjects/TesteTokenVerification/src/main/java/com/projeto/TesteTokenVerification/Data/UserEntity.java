@@ -40,10 +40,18 @@ public class UserEntity implements Serializable{
     private String senha;
     
     @Column(unique = true, nullable = false)
+    @Size(min = 13, max = 13)
     private int rg;
+    
+    @Column(unique = true, nullable = false)
+    @Size(min = 11, max = 11)
+    private int cpf;
     
     
     private float saldo;
+    
+    
+    
 
     public Long getId() {
         return id;
@@ -83,6 +91,14 @@ public class UserEntity implements Serializable{
 
     public void setSaldo(float saldo) {
         this.saldo = saldo;
+    }
+
+    public int getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(int cpf) {
+        this.cpf = cpf;
     }
     
     
