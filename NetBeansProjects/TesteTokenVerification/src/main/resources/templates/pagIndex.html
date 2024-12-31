@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    </head>
+    <body>
+        <header>
+
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/pagIndex}">Home</a></li>
+
+                            <li class="nav-item"><a class="nav-link" th:href="@{/pagCadastrarUser}">
+                                    << Cadastrar User>>
+                                </a></li>
+                            <li class="nav-item"><a class="nav-link" th:href="@{/pagLogin}">
+                                    << Login>>
+                                </a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        </header>
+        
+        <div class="w-25 mx-auto " style="margin-top: 15%">                
+                    <form th:object="${user}" th:action="@{/ConfirmarLogin}" method="post">
+                            <input type="text" th:field="*{nome}" placeholder="Login" name="name" class="form-control mt-5 mb-4 mx-auto col-12" required>
+                            <input type="text" th:field="*{senha}" placeholder="Senha" name="name" class="form-control mt-5 mb-2 mx-auto col-12" required>
+                            <span th:text="${msg}" class="text-danger"></span>
+                            <br>
+                            <input type="submit" class="col-3 mt-3 btn btn-primary" value="Login">
+                    </form>
+                    
+                    <div class="w-25 mx-auto border">
+                        <a th:href="@{/PagCadastrarUser}">Criar Conta</a>
+                    </div>
+        </div>
+        
+        <div style="height: 100px;"></div>
+
+        <div class="footer-copyright fixed-bottom bg-dark text-center py-3">
+            <span class="text-light align-middle">| App RH - UC 12 | - ©
+                2022 Copyright: CTM Supervisão de Educação Online</span>
+        </div>
+    </body>
+</html>

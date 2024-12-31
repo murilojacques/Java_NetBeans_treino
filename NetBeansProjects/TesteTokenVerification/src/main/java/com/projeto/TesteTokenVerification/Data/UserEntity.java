@@ -40,11 +40,9 @@ public class UserEntity implements Serializable{
     private String senha;
     
     @Column(unique = true, nullable = false)
-    @Size(min = 13, max = 13)
     private int rg;
     
     @Column(unique = true, nullable = false)
-    @Size(min = 11, max = 11)
     private int cpf;
     
     

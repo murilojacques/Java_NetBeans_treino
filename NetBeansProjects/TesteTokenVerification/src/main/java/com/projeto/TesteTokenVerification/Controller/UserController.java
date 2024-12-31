@@ -26,9 +26,9 @@ public class UserController {
     @Autowired
     UserService userService;
     
-    @GetMapping("/PagLogin")
+    @GetMapping("/pagIndex")
     public ModelAndView PagLogin(){
-        ModelAndView mv = new ModelAndView("PagLogin");
+        ModelAndView mv = new ModelAndView("pagIndex");
         mv.addObject("user", new UserEntity());
         return mv;
     }
@@ -37,22 +37,23 @@ public class UserController {
     public String confirmarLogin(@ModelAttribute("user") @Valid UserEntity user, BindingResult result, RedirectAttributes attribute){
         if(result.hasErrors()){
             attribute.addAttribute("msg", "Falha ao realizar o Login");
-            return "redirect:/PagLogin";
+            return "redirect:/pagIndex";
         }
         
         UserEntity u = userService.ConfirmarLogin(user.getSenha(), user.getNome());
         if(u != null){
-            return "PagIndex";
+            attribute.addAttribute("user", user);
+            return "pagDadosUser";
         }
         
-        return "redirect:/PagLogin";
+        return "redirect:/pagIndex";
     }
     
     
     
-    @GetMapping("/PagCadastrarUser")
+    @GetMapping("/pagCadastrarUser")
     public ModelAndView PagCadastrarUser(){
-        ModelAndView mv = new ModelAndView("PagCadastrarUser");
+        ModelAndView mv = new ModelAndView("pagCadastrarUser");
         mv.addObject("user", new UserEntity());
         return mv;
     }
@@ -62,13 +63,15 @@ public class UserController {
         if(result.hasErrors()){
             attribute.addAttribute("classe", "alert alert-success alert-danger");
             attribute.addAttribute("msg", "Falha ao Cadastrar User");
-            return "redirect:/PagCadastrarUser";
+            return "redirect:/pagCadastrarUser";
         }
         
         userService.cadastrarUser(user);
         attribute.addAttribute("classe", "alert alert-success alert-dismissible");
         attribute.addAttribute("msg", "Usuario cadstrado com Sucesso");
-        return "redirect:/PagCadastrarUser";
+        return "redirect:/pagCadastrarUser";
     }
+    
+    
 }
 //@ModelAttribute("user") @Valid UserEntity user, BindingResult result, RedirectAttributes attribute
