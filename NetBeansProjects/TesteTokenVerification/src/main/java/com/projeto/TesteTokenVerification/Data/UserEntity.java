@@ -4,17 +4,26 @@
  */
 package com.projeto.TesteTokenVerification.Data;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
@@ -24,6 +33,7 @@ import lombok.Data;
 @Entity
 @Table(name = "user", uniqueConstraints = {
     @UniqueConstraint(columnNames = "id")})
+@NoArgsConstructor
 public class UserEntity implements Serializable{
     
     @Id
@@ -38,6 +48,11 @@ public class UserEntity implements Serializable{
     @NotNull
     @Size(min = 2, max = 15)
     private String senha;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))      
+    private List<Roles> role = new ArrayList<>();
+    
     
     @Column(unique = true, nullable = false)
     private int rg;
@@ -47,6 +62,11 @@ public class UserEntity implements Serializable{
     
     
     private float saldo;
+
+    @java.lang.SuppressWarnings(value = "all")
+    public UserEntity() {
+
+    }
     
     
     
