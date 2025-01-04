@@ -4,14 +4,18 @@
  */
 package com.projeto.TesteTokenVerification.Data;
 
-import java.util.Optional;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author Murilo
  */
-public interface UserRepository extends JpaRepository<PessoaEntity, Integer>{
-    Optional<RolesEntity> findByUsername(String username);
-    Boolean existByUsername(String username);
+public interface PessoaRepository extends JpaRepository<PessoaEntity, Long>{
+    
+    PessoaEntity findByRg(int rg);
+    
+    List<PessoaEntity> findByNome(String name);
+
+   PessoaEntity findByNomeAndSenha(String name, String senha);
 }
