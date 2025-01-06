@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
@@ -25,6 +26,8 @@ import lombok.NoArgsConstructor;
 **/ 
 //@Data
 @Entity
+@Table(name = "users")
+@Data
 @NoArgsConstructor
 public class UserEntity {
     
@@ -32,10 +35,10 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    @Column(unique = true, nullable = false)
+
     private String username;
     
-    @Column(unique = true, nullable = false)
+
     private String password;
     
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

@@ -13,5 +13,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface UserRepository extends JpaRepository<PessoaEntity, Integer>{
     Optional<RolesEntity> findByUsername(String username);
-    Boolean existByUsername(String username);
+    Boolean existsByUsername(String username);
 }

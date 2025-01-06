@@ -45,14 +45,17 @@ public class SecurityConfig {
                 })
                 .authorizeHttpRequests((authorize) -> {
                     authorize
-                            .requestMatchers(HttpMethod.GET).authenticated()
+                            .requestMatchers("/api/auth/**").permitAll()
                             .anyRequest().authenticated();
                 });
         return http.build();
     }
     
+   
     
-    @Bean
+    
+  //Quando o Custom UserDetailsService for criado apaga ou torna o UserDetailsService abaixo um Comentario para não dar conflito e bugar tudo  
+  /**  @Bean
     public UserDetailsService users(){
         UserDetails admin = User.builder()
                 .username("admin")
@@ -68,6 +71,8 @@ public class SecurityConfig {
         
         return new InMemoryUserDetailsManager(admin, user);
     }
+  **/
+    
     
     
     @Bean

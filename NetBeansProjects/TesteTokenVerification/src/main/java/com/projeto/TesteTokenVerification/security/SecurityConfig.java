@@ -31,9 +31,8 @@ public class SecurityConfig {
                 })
                 .authorizeHttpRequests((authorize) -> 
                         authorize
-                                .requestMatchers(HttpMethod.GET).permitAll()
-                                .anyRequest().authenticated())
-                .httpBasic();
+                                .requestMatchers("/api/auth/**").permitAll()
+                                .anyRequest().authenticated());
         return http.build();
     }
     
