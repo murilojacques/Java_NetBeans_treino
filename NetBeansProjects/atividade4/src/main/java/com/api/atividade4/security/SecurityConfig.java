@@ -12,6 +12,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,6 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  *
@@ -28,11 +30,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
     
+    private JwtAuthEntryPoint authEntryPoint;
     private CustomUserDetailsService userDetailsService;
     
     @Autowired
-    public SecurityConfig(CustomUserDetailsService userDetailsService) {
+    public SecurityConfig(CustomUserDetailsService userDetailsService, JwtAuthEntryPoint authEntryPoint) {
         this.userDetailsService = userDetailsService;
+        this.authEntryPoint = authEntryPoint;
     }
     
     
@@ -43,11 +47,20 @@ public class SecurityConfig {
                 .csrf((csrf) -> {
                     csrf.disable();
                 })
+                .exceptionHandling((exception) -> {
+                    exception.authenticationEntryPoint(authEntryPoint);
+                })
+                .sessionManagement((session) -> {
+                    session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                })
                 .authorizeHttpRequests((authorize) -> {
                     authorize
                             .requestMatchers("/api/auth/**").permitAll()
                             .anyRequest().authenticated();
                 });
+        
+        http.addFilterBefore(jWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        
         return http.build();
     }
     
@@ -55,7 +68,8 @@ public class SecurityConfig {
     
     
   //Quando o Custom UserDetailsService for criado apaga ou torna o UserDetailsService abaixo um Comentario para não dar conflito e bugar tudo  
-  /**  @Bean
+  /**
+     * @param authenticationConfiguration *   @Bean
     public UserDetailsService users(){
         UserDetails admin = User.builder()
                 .username("admin")
@@ -71,6 +85,8 @@ public class SecurityConfig {
         
         return new InMemoryUserDetailsManager(admin, user);
     }
+     * @return 
+     * @throws java.lang.Exception
   **/
     
     
@@ -84,5 +100,11 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+    }
+    
+    
+    @Bean
+    public JWTAuthenticationFilter jWTAuthenticationFilter(){
+        return new JWTAuthenticationFilter();
     }
 }
