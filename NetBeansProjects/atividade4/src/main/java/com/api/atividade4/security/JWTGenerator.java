@@ -4,7 +4,6 @@
  */
 package com.api.atividade4.security;
 
-import static com.api.atividade4.security.SecurityConstants.JWT_EXPIRATION;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -12,9 +11,7 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
-import java.security.Key;
 import java.util.Date;
-import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -37,15 +34,16 @@ public class JWTGenerator {
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(expireDate)
-                .signWith(SignatureAlgorithm.HS512, SecurityConstants.JWT_SECRET)
+                .signWith(SecurityConstants.KEY, SignatureAlgorithm.HS256)
                 .compact();
         
         return token;
     }
     
     public String getUsernameFromJWT(String token){
-        Claims claims = Jwts.parser()
-                .setSigningKey(SecurityConstants.JWT_SECRET)
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(SecurityConstants.KEY)
+                .build()
                 .parseClaimsJws(token)
                 .getBody();
         
@@ -55,8 +53,9 @@ public class JWTGenerator {
     
     public boolean validateToken(String token){
         try{
-            Jwts.parser()
-                    .setSigningKey(SecurityConstants.JWT_SECRET)
+            Jwts.parserBuilder()
+                    .setSigningKey(SecurityConstants.KEY)
+                    .build()
                     .parseClaimsJws(token);
             return true;
         }catch(ExpiredJwtException | MalformedJwtException | SignatureException | UnsupportedJwtException | IllegalArgumentException ex){

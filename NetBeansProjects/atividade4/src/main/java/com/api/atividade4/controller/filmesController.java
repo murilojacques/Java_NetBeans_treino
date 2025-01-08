@@ -6,6 +6,7 @@ package com.api.atividade4.controller;
 
 import com.api.atividade4.data.AnaliseEntity;
 import com.api.atividade4.data.FilmeEntity;
+import com.api.atividade4.data.UserEntity;
 import com.api.atividade4.models.Preferencias;
 import com.api.atividade4.service.AnaliseService;
 import com.api.atividade4.service.FilmeService;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -36,7 +38,27 @@ public class filmesController {
     AnaliseService analiseService;
     
     
+    
+    
+    
+    
     @GetMapping("/")
+    public ModelAndView pagLogin(@CookieValue(name = "preferencia", defaultValue = "claro") String tema){
+        ModelAndView mv = new ModelAndView("pagLogin");
+        mv.addObject("user", new UserEntity());
+        mv.addObject("preferencias", new Preferencias());
+        mv.addObject("css", tema);
+        return mv;
+    }
+    
+    //@PostMapping("/register")
+    
+    
+    
+    
+    
+    
+    @GetMapping("/index")
     public String pagListaFilmes(@CookieValue(name="preferencia", defaultValue = "claro") String tema ,Model model){
         List<FilmeEntity> filmes = filmeService.listarTodosFilmes();
         List<AnaliseEntity> analises = analiseService.getTodasAnalises();
