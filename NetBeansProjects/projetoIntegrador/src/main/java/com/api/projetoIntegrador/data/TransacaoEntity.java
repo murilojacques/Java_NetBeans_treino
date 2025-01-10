@@ -17,7 +17,7 @@ import lombok.Data;
  *
  * @author Murilo
  */
-@Data
+//@Data
 @Entity
 @Table(name="Transacao", uniqueConstraints = {
     @UniqueConstraint(columnNames = "id")})
@@ -34,4 +34,48 @@ public class TransacaoEntity implements Serializable{
     private String alteracao_conta;
     
     private int valor;
+
+    
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public int getContaOrigemId() {
+        return contaOrigemId;
+    }
+
+    public void setContaOrigemId(int contaOrigemId) {
+        this.contaOrigemId = contaOrigemId;
+    }
+
+    public int getConta_destino_id() {
+        return conta_destino_id;
+    }
+
+    public void setConta_destino_id(int conta_destino_id) {
+        this.conta_destino_id = conta_destino_id;
+    }
+
+    public String getAlteracao_conta() {
+        return alteracao_conta;
+    }
+
+    public void setAlteracao_conta(String alteracao_conta) {
+        this.alteracao_conta = alteracao_conta;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
+    
+    
+    
 }

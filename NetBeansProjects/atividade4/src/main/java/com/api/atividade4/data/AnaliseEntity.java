@@ -17,7 +17,7 @@ import lombok.Data;
  *
  * @author Murilo
  */
-//@Data
+@Data
 @Entity
 @Table(name="Analises")
 public class AnaliseEntity implements Serializable{

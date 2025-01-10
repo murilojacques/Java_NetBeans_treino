@@ -16,7 +16,7 @@ import javax.crypto.SecretKey;
 public class SecurityConstants {
     public static final long JWT_EXPIRATION = 70000;
     
-    public static final String JWT_SECRET = "secretKeyofThisApplicationforSecurityReasons";
+    public static final String JWT_SECRET = "secretKeyofThisApplicationforSecurityReasons ";
     public static final SecretKey KEY = Keys.hmacShaKeyFor(JWT_SECRET.getBytes(StandardCharsets.UTF_8));
     
 }

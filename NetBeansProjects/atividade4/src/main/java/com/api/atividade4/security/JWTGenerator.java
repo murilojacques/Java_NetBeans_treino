@@ -36,7 +36,7 @@ public class JWTGenerator {
                 .setExpiration(expireDate)
                 .signWith(SecurityConstants.KEY, SignatureAlgorithm.HS256)
                 .compact();
-        
+        System.out.println(token);
         return token;
     }
     
@@ -46,7 +46,7 @@ public class JWTGenerator {
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
-        
+        System.out.println(claims.getSubject());
         return claims.getSubject();
     }
     
@@ -57,6 +57,7 @@ public class JWTGenerator {
                     .setSigningKey(SecurityConstants.KEY)
                     .build()
                     .parseClaimsJws(token);
+            System.out.println("Validated");
             return true;
         }catch(ExpiredJwtException | MalformedJwtException | SignatureException | UnsupportedJwtException | IllegalArgumentException ex){
             throw new AuthenticationCredentialsNotFoundException("JWT was expired or incorrect");
