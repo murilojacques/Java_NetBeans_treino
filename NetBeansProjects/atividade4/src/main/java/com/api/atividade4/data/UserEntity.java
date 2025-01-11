@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 //@Data
 @Entity
 @Table(name = "users")
-@Data
+//@Data
 @NoArgsConstructor
 public class UserEntity {
     
@@ -47,15 +47,11 @@ public class UserEntity {
     private List<RolesEntity> roles = new ArrayList<>();
 
     
-    
-    
-    
     private List<FilmeEntity> filmes;
     
+    private List<AnaliseEntity> analises;
     
-    
-    
-    
+
     public int getId() {
         return id;
     }
@@ -87,5 +83,22 @@ public class UserEntity {
     public void setRoles(List<RolesEntity> roles) {
         this.roles = roles;
     }
+
+    public List<FilmeEntity> getFilmes() {
+        return filmes;
+    }
+
+    public void setFilmes(List<FilmeEntity> filmes) {
+        this.filmes = filmes;
+    }
+
+    public List<AnaliseEntity> getAnalises() {
+        return analises;
+    }
+
+    public void setAnalises(List<AnaliseEntity> analises) {
+        this.analises = analises;
+    }
+    
     
 }
