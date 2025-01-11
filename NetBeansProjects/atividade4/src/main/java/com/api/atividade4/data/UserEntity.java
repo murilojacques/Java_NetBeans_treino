@@ -48,6 +48,14 @@ public class UserEntity {
 
     
     
+    
+    
+    private List<FilmeEntity> filmes;
+    
+    
+    
+    
+    
     public int getId() {
         return id;
     }

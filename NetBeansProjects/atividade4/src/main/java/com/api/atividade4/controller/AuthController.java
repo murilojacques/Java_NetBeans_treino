@@ -63,6 +63,13 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtGenerator.generateToken(authentication);
         System.out.println("Token: " + token);
+        UserEntity user = userRepository.findByUsername(loginDto.getUsername()).orElse(null);
+        
+        if(token != null && user != null){
+            System.out.println("aaa");
+        }
+        System.out.println(user.getId());
+        
         return new ResponseEntity<>(new AuthResponseDto(token), HttpStatus.OK);
     }
     
