@@ -4,6 +4,7 @@
  */
 package com.api.atividade4.controller;
 
+import com.api.atividade4.Dto.LoginDto;
 import com.api.atividade4.data.AnaliseEntity;
 import com.api.atividade4.data.FilmeEntity;
 import com.api.atividade4.data.UserEntity;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -36,9 +38,29 @@ public class filmesController {
     
     @Autowired
     AnaliseService analiseService;
+
+    
+    @Autowired
+    public filmesController(FilmeService filmeService, AnaliseService analiseService) {
+        this.filmeService = filmeService;
+        this.analiseService = analiseService;
+    }
     
     
     
+
+    
+    private String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+   
     
     
     
@@ -48,6 +70,7 @@ public class filmesController {
         mv.addObject("user", new UserEntity());
         mv.addObject("preferencias", new Preferencias());
         mv.addObject("css", tema);
+        mv.addObject("login", new LoginDto());
         return mv;
     }
     
@@ -60,6 +83,7 @@ public class filmesController {
     
     @GetMapping("/index")
     public String pagListaFilmes(@CookieValue(name="preferencia", defaultValue = "claro") String tema ,Model model){
+        //System.out.println(username);
         List<FilmeEntity> filmes = filmeService.listarTodosFilmes();
         List<AnaliseEntity> analises = analiseService.getTodasAnalises();
         model.addAttribute("preferencias", new Preferencias());
@@ -69,6 +93,11 @@ public class filmesController {
         model.addAttribute("filme", new FilmeEntity());
         return "index";
     }
+    
+    
+    
+    
+    
     
     @GetMapping("/atualizarFilme/{id}")
     public String PagAtualizarFilme(@CookieValue(name="preferencia", defaultValue = "escuro") String tema, @PathVariable(value = "id") Integer id, Model model){
@@ -90,13 +119,16 @@ public class filmesController {
         return "redirect:/";
     }
     
-    
     @GetMapping("/deletarFilme/{id}")
     public String deletarFilme(@PathVariable(value="id") Integer id, Model model){
         analiseService.DeletarAnalisesPorFilme(id);
         filmeService.deletarFilme(id);
         return "redirect:/";
     }
+    
+    
+    
+    
     
     
 
@@ -121,8 +153,6 @@ public class filmesController {
         analiseService.adicionarAnalise(a);
         return "redirect:/";
     }
-    
-    
     
     @GetMapping("/deletarAnalise/{id}")
     public String deletarAnalise(@PathVariable(value = "id") Integer id){
