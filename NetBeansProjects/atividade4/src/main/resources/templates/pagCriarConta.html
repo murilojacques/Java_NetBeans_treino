@@ -3,13 +3,32 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+        accesskey=""integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link th:href="@{/css/}+${css}+'.css'" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div>TODO write content</div>
+        <div class="w-25 mx-auto" style="margin-top: 100px">
+            <div style="margin-left: 90px">
+                
+                <form th:action="" th:object="${user}">
+                    <p>Username: <input type="text" style="width: 360px" class="mt-2" th:field="*{user.username}" placeholder="Username" name="name" required></p>
+                    <p>Password: <input type="text" style="width: 360px" class="mt-2" th:field="*{user.password}" placeholder="Password" name="name" required></p>
+                    
+                    <br>
+                        
+                    <div th:class="${classe}">
+                        <span th:text="${msg}" class="class">text</span>
+                    </div>
+                    
+                    <input type="submit" class="mt-2 btn btn-primary" name="name" value="Cadastrar" style="display: block">
+                </form> 
+            </div>
+        </div>
     </body>
 </html>

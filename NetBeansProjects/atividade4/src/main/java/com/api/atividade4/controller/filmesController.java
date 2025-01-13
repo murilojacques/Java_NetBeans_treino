@@ -8,9 +8,11 @@ import com.api.atividade4.Dto.LoginDto;
 import com.api.atividade4.data.AnaliseEntity;
 import com.api.atividade4.data.FilmeEntity;
 import com.api.atividade4.data.UserEntity;
+import com.api.atividade4.data.UserRepository;
 import com.api.atividade4.models.Preferencias;
 import com.api.atividade4.service.AnaliseService;
 import com.api.atividade4.service.FilmeService;
+import com.api.atividade4.service.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -38,7 +41,9 @@ public class filmesController {
     
     @Autowired
     AnaliseService analiseService;
-
+    
+    @Autowired
+    UserService userService;
     
     @Autowired
     public filmesController(FilmeService filmeService, AnaliseService analiseService) {
@@ -49,24 +54,20 @@ public class filmesController {
     
     
 
+    private String pagLoginMsg;
     
-    private String username = SecurityContextHolder.getContext().getAuthentication().getName();
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-   
+    private final String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    
+    private final UserEntity user = userService.findByUsername(username);
+    
     
     
     
     @GetMapping("/")
-    public ModelAndView pagLogin(@CookieValue(name = "preferencia", defaultValue = "claro") String tema){
+    public ModelAndView pagLogin(@CookieValue(name = "preferencia", defaultValue = "claro") String tema, String m){
         ModelAndView mv = new ModelAndView("pagLogin");
+        pagLoginMsg = m;
+        mv.addObject("msg", pagLoginMsg);
         mv.addObject("user", new UserEntity());
         mv.addObject("preferencias", new Preferencias());
         mv.addObject("css", tema);
@@ -82,10 +83,11 @@ public class filmesController {
     
     
     @GetMapping("/index")
-    public String pagListaFilmes(@CookieValue(name="preferencia", defaultValue = "claro") String tema ,Model model){
+    public String pagListaFilmes(@CookieValue(name="preferencia", defaultValue = "claro") String tema, Model model){
         //System.out.println(username);
-        List<FilmeEntity> filmes = filmeService.listarTodosFilmes();
-        List<AnaliseEntity> analises = analiseService.getTodasAnalises();
+        
+        List<FilmeEntity> filmes = user.getFilmes();
+        List<AnaliseEntity> analises = user.getAnalises();
         model.addAttribute("preferencias", new Preferencias());
         model.addAttribute("css", tema);
         model.addAttribute("analises", analises);
@@ -95,6 +97,15 @@ public class filmesController {
     }
     
     
+    @GetMapping("/pagCriarConta")
+    public String pagCriarConta(@CookieValue(name = "preferencias", defaultValue = "claro") String tema, Model model, String msg, String classe,RedirectAttributes attribute){
+        
+        attribute.addFlashAttribute("msg", msg);
+        attribute.addFlashAttribute("classe", classe);
+        model.addAttribute("users", new UserEntity());
+        model.addAttribute("css", tema);
+        return "pagCriarConta";
+    }
     
     
     
@@ -111,10 +122,12 @@ public class filmesController {
     public String cadastrarFilme(@ModelAttribute("filme") FilmeEntity filme, Model model){
         System.out.println(filme.getId());
         if(filme.getId() == null){
-            filmeService.cadastrarFilme(filme);
+            //filmeService.cadastrarFilme(filme);
+            userService.salvarFilme(user, filme);
         }
         else{
-            filmeService.atualizarFilme(filme.getId(), filme);
+            //filmeService.atualizarFilme(filme.getId(), filme);
+            userService.atualizarFilme(user, filme);
         }
         return "redirect:/";
     }

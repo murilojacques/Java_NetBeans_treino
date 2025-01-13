@@ -69,20 +69,20 @@ public class AuthController {
         String token = jwtGenerator.generateToken(authentication);
         System.out.println("Token: " + token);
         UserEntity user = userRepository.findByUsername(loginDto.getUsername()).orElse(null);
+        
         if(token != null && user != null){
             System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
-            //filmesCon.pagListaFilmes("claro", model);
-            
+            filmesCon.pagListaFilmes("claro", model);
         }
-        
         
         return new ResponseEntity<>(new AuthResponseDto(token), HttpStatus.OK);
     }
     
     
     @PostMapping("register")
-    public ResponseEntity<String> register(@RequestBody RegisterDto registerDto){
+    public ResponseEntity<String> register(@RequestBody RegisterDto registerDto, Model model, RedirectAttributes attribute){
         if(userRepository.existsByUsername(registerDto.getUsername())){
+            filmesCon.pagCriarConta("claro", model, "Falha ao cadastrar Funcionario, verifique os campos", "alert alert-success alert-danger", attribute);
             return new ResponseEntity("username is taken!", HttpStatus.BAD_REQUEST);
         }
         
@@ -90,15 +90,18 @@ public class AuthController {
             UserEntity user = new UserEntity();
          user.setUsername(registerDto.getUsername());
          user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
-
+         user.setAnalises(null);
+         user.setFilmes(null);
          RolesEntity roles = roleRepository.findByName("USER").get();
          user.setRoles(Collections.singletonList(roles));
 
          userRepository.save(user);
+         filmesCon.pagCriarConta("claro", model, "Successo ao Cadastrar Usuario", "alert alert-success alert-dismissible", attribute);
          return new ResponseEntity<>("User Registered Success", HttpStatus.OK); 
         }
         
         else{
+            filmesCon.pagCriarConta("claro", model, "Falha ao cadastrar Funcionario, verifique os campos", "alert alert-success alert-danger", attribute);
             return new ResponseEntity<>("Foi de ralo", HttpStatus.BAD_REQUEST); 
         }
         

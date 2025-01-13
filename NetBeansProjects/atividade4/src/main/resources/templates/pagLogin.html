@@ -11,13 +11,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         accesskey=""integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/css/}+${css}+'.css'" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div class="w-25 mx-auto border" style="margin-top: 200px">
             <form th:action="@{/api/auth/login}" th:object="${login}" method="post">
                 <input type="text" th:field="*{username}" name="Campo_Login" placeholder="Login" class="form-control mt-5 mb-4 mx-auto col-12" required>
                 <input type="text" th:field="*{password}"  name="Campo_Senha" placeholder="Senha" class="form-control mt-5 mb-2 mx-auto col-12" required>
-                <span th:text="${msg}" class="text-danger"></span>
+                
+                <div th:class="${classe}">
+                    <span th:text="${msg}" class="class">text</span>
+                </div>
+                    
                 <br>
                 <input type="submit" name="btn_Enviar" value="Entrar" class="col-3 mt-3 btn btn-primary">
             </form>
