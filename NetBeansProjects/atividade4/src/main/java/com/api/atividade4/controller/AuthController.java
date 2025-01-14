@@ -74,12 +74,16 @@ public class AuthController {
             System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
             filmesCon.pagListaFilmes("claro", model);
         }
+        else{
+            filmesCon.pagLogin("claro", "Falha ao realizar o Login, por favor verifique se os dados foram inseridos corretamente", "alert alert-success alert-danger");
+        }
         
         return new ResponseEntity<>(new AuthResponseDto(token), HttpStatus.OK);
     }
     
     
-    @PostMapping("register")
+    @RequestMapping(value = "register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
+            produces = {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> register(@RequestBody RegisterDto registerDto, Model model, RedirectAttributes attribute){
         if(userRepository.existsByUsername(registerDto.getUsername())){
             filmesCon.pagCriarConta("claro", model, "Falha ao cadastrar Funcionario, verifique os campos", "alert alert-success alert-danger", attribute);
@@ -88,16 +92,16 @@ public class AuthController {
         
         if(!userRepository.existsByUsername(registerDto.getUsername())){
             UserEntity user = new UserEntity();
-         user.setUsername(registerDto.getUsername());
-         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
-         user.setAnalises(null);
-         user.setFilmes(null);
-         RolesEntity roles = roleRepository.findByName("USER").get();
-         user.setRoles(Collections.singletonList(roles));
+            user.setUsername(registerDto.getUsername());
+            user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
+            user.setAnalises(null);
+            user.setFilmes(null);
+            RolesEntity roles = roleRepository.findByName("USER").get();
+            user.setRoles(Collections.singletonList(roles));
 
-         userRepository.save(user);
-         filmesCon.pagCriarConta("claro", model, "Successo ao Cadastrar Usuario", "alert alert-success alert-dismissible", attribute);
-         return new ResponseEntity<>("User Registered Success", HttpStatus.OK); 
+            userRepository.save(user);
+            filmesCon.pagCriarConta("claro", model, "Successo ao Cadastrar Usuario", "alert alert-success alert-dismissible", attribute);
+            return new ResponseEntity<>("User Registered Success", HttpStatus.OK); 
         }
         
         else{

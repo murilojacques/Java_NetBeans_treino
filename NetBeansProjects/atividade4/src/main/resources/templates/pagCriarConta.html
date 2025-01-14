@@ -16,9 +16,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <div class="w-25 mx-auto" style="margin-top: 100px">
             <div style="margin-left: 90px">
                 
-                <form th:action="" th:object="${user}">
-                    <p>Username: <input type="text" style="width: 360px" class="mt-2" th:field="*{user.username}" placeholder="Username" name="name" required></p>
-                    <p>Password: <input type="text" style="width: 360px" class="mt-2" th:field="*{user.password}" placeholder="Password" name="name" required></p>
+                <form th:action="@{/api/auth/register}" th:object="${user}" method="post">
+                    <p>Username: <input type="text" th:field="*{username}" style="width: 360px" class="mt-2" placeholder="Username" name="name" required></p>
+                    <br>
+                    <br>
+                    <p>Password: <input type="text" style="width: 360px" class="mt-2" th:field="*{password}" placeholder="Password" name="name" required></p>
                     
                     <br>
                         

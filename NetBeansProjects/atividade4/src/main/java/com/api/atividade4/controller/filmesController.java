@@ -5,6 +5,7 @@
 package com.api.atividade4.controller;
 
 import com.api.atividade4.Dto.LoginDto;
+import com.api.atividade4.Dto.RegisterDto;
 import com.api.atividade4.data.AnaliseEntity;
 import com.api.atividade4.data.FilmeEntity;
 import com.api.atividade4.data.UserEntity;
@@ -45,46 +46,57 @@ public class filmesController {
     @Autowired
     UserService userService;
     
+    
     @Autowired
-    public filmesController(FilmeService filmeService, AnaliseService analiseService) {
+    public filmesController(FilmeService filmeService, AnaliseService analiseService, UserService userService) {
         this.filmeService = filmeService;
         this.analiseService = analiseService;
+        this.userService = userService;
     }
     
     
     
 
     private String pagLoginMsg;
+    private String pagLoginClass;
     
-    private final String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    private String username;
     
-    private final UserEntity user = userService.findByUsername(username);
-    
+    private UserEntity user;
     
     
     
     @GetMapping("/")
-    public ModelAndView pagLogin(@CookieValue(name = "preferencia", defaultValue = "claro") String tema, String m){
+    public ModelAndView pagLogin(@CookieValue(name = "preferencia", defaultValue = "claro") String tema, String msg, String classe){
         ModelAndView mv = new ModelAndView("pagLogin");
-        pagLoginMsg = m;
+        
+        if(msg == null){
+           pagLoginMsg = ""; 
+           pagLoginClass = "";
+        }
+        else{
+           pagLoginMsg = msg;
+           pagLoginClass = classe;
+        }
+        
         mv.addObject("msg", pagLoginMsg);
-        mv.addObject("user", new UserEntity());
+        //mv.addObject("user", new UserEntity());
         mv.addObject("preferencias", new Preferencias());
+        mv.addObject("classe", pagLoginClass);
         mv.addObject("css", tema);
         mv.addObject("login", new LoginDto());
         return mv;
     }
     
-    //@PostMapping("/register")
-    
-    
-    
-    
+
     
     
     @GetMapping("/index")
     public String pagListaFilmes(@CookieValue(name="preferencia", defaultValue = "claro") String tema, Model model){
         //System.out.println(username);
+        
+        username = SecurityContextHolder.getContext().getAuthentication().getName();
+        user = userService.findByUsername(username);
         
         List<FilmeEntity> filmes = user.getFilmes();
         List<AnaliseEntity> analises = user.getAnalises();
@@ -97,12 +109,14 @@ public class filmesController {
     }
     
     
+    
+    
     @GetMapping("/pagCriarConta")
-    public String pagCriarConta(@CookieValue(name = "preferencias", defaultValue = "claro") String tema, Model model, String msg, String classe,RedirectAttributes attribute){
+    public String pagCriarConta(@CookieValue(name = "preferencias", defaultValue = "claro") String tema, Model model, String msg, String classe, RedirectAttributes attribute){
         
         attribute.addFlashAttribute("msg", msg);
         attribute.addFlashAttribute("classe", classe);
-        model.addAttribute("users", new UserEntity());
+        model.addAttribute("user", new RegisterDto());
         model.addAttribute("css", tema);
         return "pagCriarConta";
     }
