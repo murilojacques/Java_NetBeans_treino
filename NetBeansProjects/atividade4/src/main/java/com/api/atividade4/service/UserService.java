@@ -9,7 +9,6 @@ import com.api.atividade4.data.AnaliseEntity;
 import com.api.atividade4.data.FilmeEntity;
 import com.api.atividade4.data.UserEntity;
 import com.api.atividade4.data.UserRepository;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +22,17 @@ public class UserService {
     
     @Autowired
     UserRepository userRepository;
+
+    
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    
+    public UserService() {
+    }
+    
     
     
     public UserEntity findByUsername(String username){

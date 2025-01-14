@@ -92,10 +92,11 @@ public class filmesController {
     
     
     @GetMapping("/index")
-    public String pagListaFilmes(@CookieValue(name="preferencia", defaultValue = "claro") String tema, Model model){
+    public ModelAndView pagListaFilmes(@CookieValue(name="preferencia", defaultValue = "claro") String tema, Model model){
         //System.out.println(username);
-        
+        ModelAndView mv = new ModelAndView("index");
         username = SecurityContextHolder.getContext().getAuthentication().getName();
+        System.out.println(username);
         user = userService.findByUsername(username);
         
         List<FilmeEntity> filmes = user.getFilmes();
@@ -105,20 +106,20 @@ public class filmesController {
         model.addAttribute("analises", analises);
         model.addAttribute("filmes", filmes);
         model.addAttribute("filme", new FilmeEntity());
-        return "index";
+        return mv;
     }
     
     
     
     
     @GetMapping("/pagCriarConta")
-    public String pagCriarConta(@CookieValue(name = "preferencias", defaultValue = "claro") String tema, Model model, String msg, String classe, RedirectAttributes attribute){
-        
+    public ModelAndView pagCriarConta(@CookieValue(name = "preferencias", defaultValue = "claro") String tema, Model model, String msg, String classe, RedirectAttributes attribute){
+        ModelAndView mv = new ModelAndView("pagCriarConta");
         attribute.addFlashAttribute("msg", msg);
         attribute.addFlashAttribute("classe", classe);
         model.addAttribute("user", new RegisterDto());
         model.addAttribute("css", tema);
-        return "pagCriarConta";
+        return mv;
     }
     
     
