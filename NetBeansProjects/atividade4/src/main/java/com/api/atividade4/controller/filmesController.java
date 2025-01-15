@@ -135,9 +135,12 @@ public class filmesController {
     
     @PostMapping("/salvarFilme")
     public String cadastrarFilme(@ModelAttribute("filme") FilmeEntity filme, Model model){
-        System.out.println(filme.getId());
+        System.out.println(user.getUsername() + " salve");
+        System.out.println(filme.getTitulo());
+        
         if(filme.getId() == null){
             //filmeService.cadastrarFilme(filme);
+            
             userService.salvarFilme(user, filme);
         }
         else{
