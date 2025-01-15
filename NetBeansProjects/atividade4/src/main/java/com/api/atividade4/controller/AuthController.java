@@ -86,12 +86,13 @@ public class AuthController {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtGenerator.generateToken(authentication);
+        
         System.out.println("Token: " + token);
+        
         UserEntity user = userRepository.findByUsername(loginDto.getUsername()).orElse(null);
         
         if(token != null && user != null){
-            System.out.println(SecurityContextHolder.getContext().getAuthentication().getName());
-           return filmesCon.pagListaFilmes("claro", model);
+           return filmesCon.pagListaFilmes("claro", model, SecurityContextHolder.getContext().getAuthentication().getName());
         }
         else{
             return filmesCon.pagLogin("claro", "Falha ao realizar o Login, por favor verifique se os dados foram inseridos corretamente", "alert alert-success alert-danger");
@@ -110,15 +111,8 @@ public class AuthController {
         }
         
         if(!userRepository.existsByUsername(registerDto.getUsername())){
-            UserEntity user = new UserEntity();
-            user.setUsername(registerDto.getUsername());
-            user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
-            user.setAnalises(null);
-            user.setFilmes(null);
             RolesEntity roles = roleRepository.findByName("USER").get();
-            user.setRoles(Collections.singletonList(roles));
-
-            userRepository.save(user);
+            userService.cadastrarUser(registerDto.getUsername(), registerDto.getPassword(), roles);
             return filmesCon.pagCriarConta("claro", model, "Successo ao Cadastrar Usuario", "alert alert-success alert-dismissible", attribute);
             //return new ResponseEntity<>("User Registered Success", HttpStatus.OK); 
         }

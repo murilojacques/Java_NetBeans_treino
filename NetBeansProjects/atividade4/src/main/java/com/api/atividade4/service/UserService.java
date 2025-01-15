@@ -7,10 +7,14 @@ package com.api.atividade4.service;
 
 import com.api.atividade4.data.AnaliseEntity;
 import com.api.atividade4.data.FilmeEntity;
+import com.api.atividade4.data.RolesEntity;
 import com.api.atividade4.data.UserEntity;
 import com.api.atividade4.data.UserRepository;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,29 +27,66 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
+
+    private UserEntity user;
+    
+   /** @Bean
+    public UserEntity userEntity(){
+        return new UserEntity();
+    }**/
     
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    
     public UserService() {
     }
     
     
+    
+    public void cadastrarUser(String username, String password, RolesEntity roles){
+        UserEntity nUser = new UserEntity();
+        List<FilmeEntity> filmes = new ArrayList<FilmeEntity>();
+        List<AnaliseEntity> analises = new ArrayList<AnaliseEntity>();
+        nUser.setUsername(username);
+        nUser.setPassword(password);
+        nUser.setAnalises(analises);
+        nUser.setFilmes(filmes);
+        nUser.setRoles(Collections.singletonList(roles));
+        userRepository.save(user);
+    }
+    
+    public void setUserByUsername(String username){
+        user = findByUsername(username);
+    }
     
     public UserEntity findByUsername(String username){
         return userRepository.findByUsername(username).orElse(null);
     }
     
     
-    public UserEntity salvarFilme(UserEntity user, FilmeEntity filme){
-        user.getFilmes().add(filme);
+    
+    
+    public UserEntity salvarFilme(String username, FilmeEntity filme){
+        UserEntity nUser = findByUsername(username); 
+        System.out.println(nUser.getId());
+        System.out.println(nUser.getUsername());
+        System.out.println(nUser.getPassword());
+        nUser.getFilmes().addLast(filme);
+        userRepository.save(nUser);
         return user;
     }
     
-    public UserEntity atualizarFilme(UserEntity user, FilmeEntity filme){
+    public List<FilmeEntity> allFilmesByUser(){
+        System.out.println(user.getId());
+        System.out.println(user.getUsername());
+        System.out.println(user.getPassword());
+        System.out.println("Filmes: " + user.getFilmes());
+        return user.getFilmes();
+    }
+    
+    public UserEntity atualizarFilme(FilmeEntity filme){
         List<FilmeEntity> filmes = user.getFilmes();
         
         for(int i = 0; i<filmes.size(); i++){
@@ -76,4 +117,7 @@ public class UserService {
         return user;
     }
     
+    public List<AnaliseEntity> allAnalisesByUser(){
+        return user.getAnalises();
+    }
 }

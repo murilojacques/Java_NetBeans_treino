@@ -24,10 +24,10 @@ import lombok.NoArgsConstructor;
  *
  * @author Murilo
 **/ 
-//@Data
+
 @Entity
 @Table(name = "users")
-//@Data
+@Data
 @NoArgsConstructor
 public class UserEntity {
     

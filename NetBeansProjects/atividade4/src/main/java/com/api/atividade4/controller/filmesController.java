@@ -60,9 +60,17 @@ public class filmesController {
     private String pagLoginMsg;
     private String pagLoginClass;
     
-    private String username;
+    private String username = "murilo";
     
-    private UserEntity user;
+    //private UserEntity user;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
     
     
     
@@ -89,29 +97,6 @@ public class filmesController {
     }
     
 
-    
-    
-    @GetMapping("/index")
-    public ModelAndView pagListaFilmes(@CookieValue(name="preferencia", defaultValue = "claro") String tema, Model model){
-        //System.out.println(username);
-        ModelAndView mv = new ModelAndView("index");
-        username = SecurityContextHolder.getContext().getAuthentication().getName();
-        System.out.println(username);
-        user = userService.findByUsername(username);
-        
-        List<FilmeEntity> filmes = user.getFilmes();
-        List<AnaliseEntity> analises = user.getAnalises();
-        model.addAttribute("preferencias", new Preferencias());
-        model.addAttribute("css", tema);
-        model.addAttribute("analises", analises);
-        model.addAttribute("filmes", filmes);
-        model.addAttribute("filme", new FilmeEntity());
-        return mv;
-    }
-    
-    
-    
-    
     @GetMapping("/pagCriarConta")
     public ModelAndView pagCriarConta(@CookieValue(name = "preferencias", defaultValue = "claro") String tema, Model model, String msg, String classe, RedirectAttributes attribute){
         ModelAndView mv = new ModelAndView("pagCriarConta");
@@ -125,6 +110,43 @@ public class filmesController {
     
     
     
+    
+    @GetMapping("/index")
+    public ModelAndView pagListaFilmes(@CookieValue(name="preferencia", defaultValue = "claro") String tema, Model model, String username){
+        ModelAndView mv = new ModelAndView("index");
+        
+        this.setUsername(username);
+        //System.out.println(this.username);
+        userService.setUserByUsername(username);
+        
+        List<FilmeEntity> filmes = userService.allFilmesByUser();
+        List<AnaliseEntity> analises = userService.allAnalisesByUser();
+        model.addAttribute("preferencias", new Preferencias());
+        model.addAttribute("css", tema);
+        model.addAttribute("analises", analises);
+        model.addAttribute("filmes", filmes);
+        model.addAttribute("filme", new FilmeEntity());
+        model.addAttribute("username", this.username);
+        return mv;
+    }
+    
+
+    @PostMapping("/salvarFilme/{username}")
+    public String cadastrarFilme(@ModelAttribute("filme") FilmeEntity filme, @PathVariable("username") String username, Model model){
+        
+        if(filme.getId() == null){
+            //filmeService.cadastrarFilme(filme);
+            System.out.println("Username: " + username);
+            userService.salvarFilme(username, filme);
+        }
+        else{
+            //filmeService.atualizarFilme(filme.getId(), filme);
+            userService.atualizarFilme(filme);
+        }
+        return "redirect:/";
+    }
+    
+    
     @GetMapping("/atualizarFilme/{id}")
     public String PagAtualizarFilme(@CookieValue(name="preferencia", defaultValue = "escuro") String tema, @PathVariable(value = "id") Integer id, Model model){
         FilmeEntity filme = filmeService.getFilmeById(id);
@@ -133,22 +155,6 @@ public class filmesController {
        return "atualizarFilme";
     }
     
-    @PostMapping("/salvarFilme")
-    public String cadastrarFilme(@ModelAttribute("filme") FilmeEntity filme, Model model){
-        System.out.println(user.getUsername() + " salve");
-        System.out.println(filme.getTitulo());
-        
-        if(filme.getId() == null){
-            //filmeService.cadastrarFilme(filme);
-            
-            userService.salvarFilme(user, filme);
-        }
-        else{
-            //filmeService.atualizarFilme(filme.getId(), filme);
-            userService.atualizarFilme(user, filme);
-        }
-        return "redirect:/";
-    }
     
     @GetMapping("/deletarFilme/{id}")
     public String deletarFilme(@PathVariable(value="id") Integer id, Model model){
@@ -156,8 +162,6 @@ public class filmesController {
         filmeService.deletarFilme(id);
         return "redirect:/";
     }
-    
-    
     
     
     
