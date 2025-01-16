@@ -27,7 +27,8 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-
+    
+    
     private UserEntity user = new UserEntity();
     
    /**
@@ -66,12 +67,16 @@ public class UserService {
         return userRepository.findByUsername(username).orElse(null);
     }
     
+    public String getUsername(){
+        return user.getUsername();
+    }
     
     
     
     public UserEntity salvarFilme(String username, FilmeEntity filme){
-        System.out.println(username);
+        System.out.println("Username1: "+user.getUsername());
         setUserByUsername(username); 
+        System.out.println("Filmes: "+user.getFilmes());
         //System.out.println(user.getId());
         //System.out.println(user.getUsername());
         //System.out.println(user.getPassword());

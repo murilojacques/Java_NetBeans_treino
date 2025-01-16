@@ -120,7 +120,7 @@ public class filmesController {
     public ModelAndView pagListaFilmes(@CookieValue(name="preferencia", defaultValue = "claro") String tema, Model model, String username){
         ModelAndView mv = new ModelAndView("index");
         
-        //System.out.println(this.username);
+        System.out.println(username);
         userService.setUserByUsername(username);
         this.setUsername(username);
         List<FilmeEntity> filmes = userService.allFilmesByUser();
@@ -135,10 +135,9 @@ public class filmesController {
     }
     
 
-    @PostMapping("/salvarFilme")
-    public String cadastrarFilme(@ModelAttribute("filme") FilmeEntity filme, Model model){
+    @PostMapping("/salvarFilme/{username}")
+    public String cadastrarFilme(@ModelAttribute("filme") FilmeEntity filme, @PathVariable("username") String username, Model model){
         
-        //String username = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
         System.out.println("Username: "+username);
         if(filme.getId() == null){
             //filmeService.cadastrarFilme(filme);

@@ -89,6 +89,9 @@ public class AuthController {
         
         System.out.println("Token: " + token);
         
+        
+        System.out.println("Username2: " + SecurityContextHolder.getContext().getAuthentication().getName());
+        
         UserEntity user = userRepository.findByUsername(loginDto.getUsername()).orElse(null);
         
         if(token != null && user != null){
@@ -105,6 +108,7 @@ public class AuthController {
     @RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
   produces = {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ModelAndView register(RegisterDto registerDto, Model model, RedirectAttributes attribute){
+        
         if(userRepository.existsByUsername(registerDto.getUsername())){
             return filmesCon.pagCriarConta("claro", model, "Falha ao cadastrar Funcionario, verifique os campos", "alert alert-success alert-danger", attribute);
             //return new ResponseEntity("username is taken!", HttpStatus.BAD_REQUEST);
@@ -112,7 +116,8 @@ public class AuthController {
         
         if(!userRepository.existsByUsername(registerDto.getUsername())){
             RolesEntity roles = roleRepository.findByName("USER").get();
-            userService.cadastrarUser(registerDto.getUsername(), registerDto.getPassword(), roles);
+            String password = passwordEncoder.encode((registerDto.getPassword()));
+            userService.cadastrarUser(registerDto.getUsername(), password, roles);
             return filmesCon.pagCriarConta("claro", model, "Successo ao Cadastrar Usuario", "alert alert-success alert-dismissible", attribute);
             //return new ResponseEntity<>("User Registered Success", HttpStatus.OK); 
         }
@@ -123,6 +128,5 @@ public class AuthController {
         }
         
     }
-    
     
 }

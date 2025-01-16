@@ -23,7 +23,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <input type="submit" name="name">
                         </form>
                     </header>
-            <form th:action="@{/salvarFilme}" th:object="${filme}" method="post">
+            <form th:action="@{/salvarFilme/{username} (username = ${username})}" th:object="${filme}" method="post">
                 <input type="text" th:field="*{titulo}" name="titulo" placeholder="Titulo" required>
                 <input type="text" th:field="*{sinopse}" name="sinopse" placeholder="Sinopse" required>
                 <input type="text" th:field="*{genero}" name="genero" placeholder="Genero" required>
