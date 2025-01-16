@@ -71,7 +71,12 @@ public class filmesController {
     public void setUsername(String username) {
         this.username = username;
     }
-    
+    /**
+     * @param tema
+     * @param msg
+     * @param classe
+     * @return 
+    **/
     
     
     @GetMapping("/")
@@ -115,10 +120,9 @@ public class filmesController {
     public ModelAndView pagListaFilmes(@CookieValue(name="preferencia", defaultValue = "claro") String tema, Model model, String username){
         ModelAndView mv = new ModelAndView("index");
         
-        this.setUsername(username);
         //System.out.println(this.username);
         userService.setUserByUsername(username);
-        
+        this.setUsername(username);
         List<FilmeEntity> filmes = userService.allFilmesByUser();
         List<AnaliseEntity> analises = userService.allAnalisesByUser();
         model.addAttribute("preferencias", new Preferencias());
@@ -126,22 +130,24 @@ public class filmesController {
         model.addAttribute("analises", analises);
         model.addAttribute("filmes", filmes);
         model.addAttribute("filme", new FilmeEntity());
-        model.addAttribute("username", this.username);
+        model.addAttribute("username", username);
         return mv;
     }
     
 
-    @PostMapping("/salvarFilme/{username}")
-    public String cadastrarFilme(@ModelAttribute("filme") FilmeEntity filme, @PathVariable("username") String username, Model model){
+    @PostMapping("/salvarFilme")
+    public String cadastrarFilme(@ModelAttribute("filme") FilmeEntity filme, Model model){
         
+        //String username = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        System.out.println("Username: "+username);
         if(filme.getId() == null){
             //filmeService.cadastrarFilme(filme);
-            System.out.println("Username: " + username);
+            //System.out.println("Username: " + username);
             userService.salvarFilme(username, filme);
         }
         else{
             //filmeService.atualizarFilme(filme.getId(), filme);
-            userService.atualizarFilme(filme);
+            userService.atualizarFilme(username, filme);
         }
         return "redirect:/";
     }

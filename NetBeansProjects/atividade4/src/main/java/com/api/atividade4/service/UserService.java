@@ -28,9 +28,10 @@ public class UserService {
     UserRepository userRepository;
 
 
-    private UserEntity user;
+    private UserEntity user = new UserEntity();
     
-   /** @Bean
+   /**
+     * @param userRepository *  @Bean
     public UserEntity userEntity(){
         return new UserEntity();
     }**/
@@ -46,19 +47,19 @@ public class UserService {
     
     
     public void cadastrarUser(String username, String password, RolesEntity roles){
-        UserEntity nUser = new UserEntity();
-        List<FilmeEntity> filmes = new ArrayList<FilmeEntity>();
-        List<AnaliseEntity> analises = new ArrayList<AnaliseEntity>();
-        nUser.setUsername(username);
-        nUser.setPassword(password);
-        nUser.setAnalises(analises);
-        nUser.setFilmes(filmes);
-        nUser.setRoles(Collections.singletonList(roles));
+        //findByUsername(username);
+        List<FilmeEntity> filmes = new ArrayList<>();
+        List<AnaliseEntity> analises = new ArrayList<>();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setAnalises(analises);
+        user.setFilmes(filmes);
+        user.setRoles(Collections.singletonList(roles));
         userRepository.save(user);
     }
     
     public void setUserByUsername(String username){
-        user = findByUsername(username);
+        this.user = findByUsername(username);
     }
     
     public UserEntity findByUsername(String username){
@@ -69,12 +70,13 @@ public class UserService {
     
     
     public UserEntity salvarFilme(String username, FilmeEntity filme){
-        UserEntity nUser = findByUsername(username); 
-        System.out.println(nUser.getId());
-        System.out.println(nUser.getUsername());
-        System.out.println(nUser.getPassword());
-        nUser.getFilmes().addLast(filme);
-        userRepository.save(nUser);
+        System.out.println(username);
+        setUserByUsername(username); 
+        //System.out.println(user.getId());
+        //System.out.println(user.getUsername());
+        //System.out.println(user.getPassword());
+        user.getFilmes().add(filme);
+        userRepository.save(user);
         return user;
     }
     
@@ -86,7 +88,8 @@ public class UserService {
         return user.getFilmes();
     }
     
-    public UserEntity atualizarFilme(FilmeEntity filme){
+    public UserEntity atualizarFilme(String username, FilmeEntity filme){
+        setUserByUsername(username);
         List<FilmeEntity> filmes = user.getFilmes();
         
         for(int i = 0; i<filmes.size(); i++){
