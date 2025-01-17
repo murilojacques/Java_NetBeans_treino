@@ -49,8 +49,8 @@ public class UserService {
     
     public void cadastrarUser(String username, String password, RolesEntity roles){
         //findByUsername(username);
-        List<FilmeEntity> filmes = new ArrayList<>();
-        List<AnaliseEntity> analises = new ArrayList<>();
+        List<Integer> filmes = new ArrayList<>();
+        List<Integer> analises = new ArrayList<>();
         user.setUsername(username);
         user.setPassword(password);
         user.setAnalises(analises);
@@ -74,22 +74,17 @@ public class UserService {
     
     
     public UserEntity salvarFilme(String username, FilmeEntity filme){
-        System.out.println("Username1: "+user.getUsername());
         setUserByUsername(username); 
-        System.out.println("Filmes: "+user.getFilmes());
-        //System.out.println(user.getId());
-        //System.out.println(user.getUsername());
-        //System.out.println(user.getPassword());
-        user.getFilmes().add(filme);
+        user.getFilmes().addLast(filme);
+        int i = user.getFilmes().indexOf(filme);
+        filme.setId(user.getFilmes().indexOf(filme));
+        user.getFilmes().remove(i);
+        user.getFilmes().add(i, filme);
         userRepository.save(user);
         return user;
     }
     
     public List<FilmeEntity> allFilmesByUser(){
-        System.out.println(user.getId());
-        System.out.println(user.getUsername());
-        System.out.println(user.getPassword());
-        System.out.println("Filmes: " + user.getFilmes());
         return user.getFilmes();
     }
     
@@ -116,6 +111,14 @@ public class UserService {
         
         return user;
     }
+    
+    public void deletarFilme(String username, int id){
+        setUserByUsername(username);
+        user.getFilmes().remove(id);
+    }
+    
+    
+    
     
     
     

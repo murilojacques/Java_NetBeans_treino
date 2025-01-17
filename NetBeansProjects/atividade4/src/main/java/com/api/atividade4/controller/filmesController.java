@@ -131,12 +131,13 @@ public class filmesController {
         model.addAttribute("filmes", filmes);
         model.addAttribute("filme", new FilmeEntity());
         model.addAttribute("username", username);
+        model.addAttribute("username1", username);
         return mv;
     }
     
 
     @PostMapping("/salvarFilme/{username}")
-    public String cadastrarFilme(@ModelAttribute("filme") FilmeEntity filme, @PathVariable("username") String username, Model model){
+    public ModelAndView cadastrarFilme(@ModelAttribute("filme") FilmeEntity filme, @PathVariable("username") String username, Model model){
         
         System.out.println("Username: "+username);
         if(filme.getId() == null){
@@ -148,7 +149,7 @@ public class filmesController {
             //filmeService.atualizarFilme(filme.getId(), filme);
             userService.atualizarFilme(username, filme);
         }
-        return "redirect:/";
+        return pagListaFilmes("claro", model, username);
     }
     
     
@@ -165,6 +166,7 @@ public class filmesController {
     public String deletarFilme(@PathVariable(value="id") Integer id, Model model){
         analiseService.DeletarAnalisesPorFilme(id);
         filmeService.deletarFilme(id);
+        userService.deletarFilme(username, id);
         return "redirect:/";
     }
     
