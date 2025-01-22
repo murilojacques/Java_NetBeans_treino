@@ -8,11 +8,13 @@ import com.api.atividade4.Dto.LoginDto;
 import com.api.atividade4.Dto.RegisterDto;
 import com.api.atividade4.data.AnaliseEntity;
 import com.api.atividade4.data.FilmeEntity;
+import com.api.atividade4.data.FilmeRepository;
 import com.api.atividade4.data.UserEntity;
 import com.api.atividade4.data.UserRepository;
 import com.api.atividade4.models.Preferencias;
 import com.api.atividade4.service.AnaliseService;
 import com.api.atividade4.service.FilmeService;
+import com.api.atividade4.service.UserFilmeService;
 import com.api.atividade4.service.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -46,12 +48,15 @@ public class filmesController {
     @Autowired
     UserService userService;
     
+    @Autowired
+    UserFilmeService userFilmeService = new UserFilmeService();
     
     @Autowired
-    public filmesController(FilmeService filmeService, AnaliseService analiseService, UserService userService) {
+    public filmesController(FilmeService filmeService, AnaliseService analiseService, UserService userService, UserFilmeService userFilmeService) {
         this.filmeService = filmeService;
         this.analiseService = analiseService;
         this.userService = userService;
+        this.userFilmeService = userFilmeService;
     }
     
     
@@ -62,7 +67,7 @@ public class filmesController {
     
     private String username = "murilo";
     
-    //private UserEntity user;
+    private UserEntity user;
 
     public String getUsername() {
         return username;
@@ -120,14 +125,15 @@ public class filmesController {
     public ModelAndView pagListaFilmes(@CookieValue(name="preferencia", defaultValue = "claro") String tema, Model model, String username){
         ModelAndView mv = new ModelAndView("index");
         
-        System.out.println(username);
         userService.setUserByUsername(username);
         this.setUsername(username);
-        List<FilmeEntity> filmes = userService.allFilmesByUser();
-        List<AnaliseEntity> analises = userService.allAnalisesByUser();
+        user = userService.findByUsername(username);
+        UserFilmeService u = new UserFilmeService();
+        List<FilmeEntity> filmes = u.findFilmesByUser(user.getId());
+        //List<AnaliseEntity> analises = userService.allAnalisesByUser();
         model.addAttribute("preferencias", new Preferencias());
         model.addAttribute("css", tema);
-        model.addAttribute("analises", analises);
+        //model.addAttribute("analises", analises);
         model.addAttribute("filmes", filmes);
         model.addAttribute("filme", new FilmeEntity());
         model.addAttribute("username", username);
@@ -141,13 +147,13 @@ public class filmesController {
         
         System.out.println("Username: "+username);
         if(filme.getId() == null){
-            //filmeService.cadastrarFilme(filme);
-            //System.out.println("Username: " + username);
-            userService.salvarFilme(username, filme);
+            UserEntity user = userService.findByUsername(username);
+            FilmeEntity filmeSalvo = filmeService.cadastrarFilme(filme);
+            userFilmeService.saveUserFilme(user.getId(), filmeSalvo);
         }
         else{
             //filmeService.atualizarFilme(filme.getId(), filme);
-            userService.atualizarFilme(username, filme);
+            //userService.atualizarFilme(username, filme);
         }
         return pagListaFilmes("claro", model, username);
     }
@@ -166,7 +172,7 @@ public class filmesController {
     public String deletarFilme(@PathVariable(value="id") Integer id, Model model){
         analiseService.DeletarAnalisesPorFilme(id);
         filmeService.deletarFilme(id);
-        userService.deletarFilme(username, id);
+        //userService.deletarFilme(username, id);
         return "redirect:/";
     }
     

@@ -47,7 +47,7 @@ public class UserEntity {
     private List<RolesEntity> roles = new ArrayList<>();
 
     
-    private List<Integer> filmes;
+    //private List<Integer> filmes;
     
     private List<Integer> analises;
     
@@ -84,14 +84,14 @@ public class UserEntity {
         this.roles = roles;
     }
 
-    public List<Integer> getFilmes() {
+   /** public List<Integer> getFilmes() {
         return filmes;
     }
 
     public void setFilmes(List<Integer> filmes) {
         this.filmes = filmes;
     }
-
+**/
     public List<Integer> getAnalises() {
         return analises;
     }

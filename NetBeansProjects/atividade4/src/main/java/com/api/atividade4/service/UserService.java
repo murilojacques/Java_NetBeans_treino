@@ -49,12 +49,10 @@ public class UserService {
     
     public void cadastrarUser(String username, String password, RolesEntity roles){
         //findByUsername(username);
-        List<Integer> filmes = new ArrayList<>();
         List<Integer> analises = new ArrayList<>();
         user.setUsername(username);
         user.setPassword(password);
         user.setAnalises(analises);
-        user.setFilmes(filmes);
         user.setRoles(Collections.singletonList(roles));
         userRepository.save(user);
     }
@@ -72,22 +70,33 @@ public class UserService {
     }
     
     
-    
+    /**
     public UserEntity salvarFilme(String username, FilmeEntity filme){
         setUserByUsername(username); 
-        user.getFilmes().addLast(filme);
+        
+        
+         * user.getFilmes().addLast(filme);
         int i = user.getFilmes().indexOf(filme);
         filme.setId(user.getFilmes().indexOf(filme));
         user.getFilmes().remove(i);
         user.getFilmes().add(i, filme);
         userRepository.save(user);
+        * 
         return user;
     }
+    **/
+   
     
+    
+    /**
     public List<FilmeEntity> allFilmesByUser(){
         return user.getFilmes();
     }
+   **/
     
+    
+    
+    /**
     public UserEntity atualizarFilme(String username, FilmeEntity filme){
         setUserByUsername(username);
         List<FilmeEntity> filmes = user.getFilmes();
@@ -111,18 +120,21 @@ public class UserService {
         
         return user;
     }
+    **/
+
     
+    /**
     public void deletarFilme(String username, int id){
         setUserByUsername(username);
         user.getFilmes().remove(id);
     }
+    **/
     
     
     
     
     
-    
-    
+    /**
     public UserEntity salvarAnalise(UserEntity user, AnaliseEntity analise){
         user.getAnalises().add(analise);
         return user;
@@ -131,4 +143,5 @@ public class UserService {
     public List<AnaliseEntity> allAnalisesByUser(){
         return user.getAnalises();
     }
+    * **/
 }

@@ -14,6 +14,7 @@ import com.api.atividade4.data.UserRepository;
 import com.api.atividade4.security.JWTGenerator;
 import com.api.atividade4.service.AnaliseService;
 import com.api.atividade4.service.FilmeService;
+import com.api.atividade4.service.UserFilmeService;
 import com.api.atividade4.service.UserService;
 import java.util.Collection;
 import java.util.Collections;
@@ -59,6 +60,9 @@ public class AuthController {
     @Autowired
     private UserService userService;
     
+    @Autowired
+    private UserFilmeService userFilmeService;
+    
     private final filmesController filmesCon;
     
     @Autowired
@@ -67,7 +71,7 @@ public class AuthController {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.userService = new UserService(userRepository);
-        this.filmesCon = new filmesController(filmeService, analiseService, userService);
+        this.filmesCon = new filmesController(filmeService, analiseService, userService, userFilmeService);
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtGenerator = jwtGenerator;
