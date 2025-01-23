@@ -10,6 +10,7 @@ import com.api.atividade4.data.AnaliseEntity;
 import com.api.atividade4.data.FilmeEntity;
 import com.api.atividade4.data.FilmeRepository;
 import com.api.atividade4.data.UserEntity;
+import com.api.atividade4.data.UserFilmeRepository;
 import com.api.atividade4.data.UserRepository;
 import com.api.atividade4.models.Preferencias;
 import com.api.atividade4.service.AnaliseService;
@@ -50,6 +51,9 @@ public class filmesController {
     
     @Autowired
     UserFilmeService userFilmeService = new UserFilmeService();
+    
+    @Autowired
+    UserFilmeRepository userFilme;
     
     @Autowired
     public filmesController(FilmeService filmeService, AnaliseService analiseService, UserService userService, UserFilmeService userFilmeService) {
@@ -128,7 +132,7 @@ public class filmesController {
         userService.setUserByUsername(username);
         this.setUsername(username);
         user = userService.findByUsername(username);
-        UserFilmeService u = new UserFilmeService();
+        UserFilmeService u = new UserFilmeService(userFilme);
         List<FilmeEntity> filmes = u.findFilmesByUser(user.getId());
         //List<AnaliseEntity> analises = userService.allAnalisesByUser();
         model.addAttribute("preferencias", new Preferencias());

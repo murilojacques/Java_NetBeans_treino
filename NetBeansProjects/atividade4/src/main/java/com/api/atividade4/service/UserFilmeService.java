@@ -5,13 +5,14 @@
 package com.api.atividade4.service;
 
 import com.api.atividade4.data.FilmeEntity;
-import com.api.atividade4.data.UserEntity;
 import com.api.atividade4.data.UserFilmeEntity;
 import com.api.atividade4.data.UserFilmeRepository;
-import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,15 +20,20 @@ import org.springframework.stereotype.Service;
  * @author Murilo
  */
 @Service
-public class UserFilmeService implements Serializable{
+public class UserFilmeService {
     
     @Autowired
     UserFilmeRepository userFilmeRepository;
 
-    
+    /**
+     *
+     * @param userFilmeRepository
+     */
+    @Autowired
     public UserFilmeService(UserFilmeRepository userFilmeRepository) {
         this.userFilmeRepository = userFilmeRepository;
     }
+    
 
     public UserFilmeService() {
     }
@@ -44,7 +50,11 @@ public class UserFilmeService implements Serializable{
     }
     
     public List<FilmeEntity> findFilmesByUser(Integer id){
-        List<UserFilmeEntity> user = userFilmeRepository.findByUserId(id);
+        if(userFilmeRepository == null){
+            System.out.println("NULO");
+        }
+        List<UserFilmeEntity> user = new ArrayList<>();
+        //List<UserFilmeEntity> user = userFilmeRepository.findByUserId(id);
         List<FilmeEntity> filmes = new ArrayList<>();
         for (UserFilmeEntity u : user) {
             filmes.add(u.getFilme());
@@ -52,4 +62,10 @@ public class UserFilmeService implements Serializable{
         
         return filmes;
     }
+    
+   /** @Bean 
+    public UserFilmeRepository userFilmeRepository(UserFilmeRepository userFilmeRepository){
+        return userFilmeRepository;
+    }
+    * **/
 }

@@ -50,7 +50,9 @@ public class FilmeService {
         return filmeRepository.findById(id).orElse(null);
     }
     
-    
+     public List<FilmeEntity> getFilmes(){
+        return filmeRepository.findAll();
+    }
     
     public List<FilmeEntity> listarTodosFilmes(){
         return filmeRepository.findAll();

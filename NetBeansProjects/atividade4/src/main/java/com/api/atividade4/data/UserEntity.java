@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "users")
-//@Data
+@Data
 @NoArgsConstructor
 public class UserEntity {
     

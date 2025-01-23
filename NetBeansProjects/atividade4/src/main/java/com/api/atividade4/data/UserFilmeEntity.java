@@ -8,7 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
@@ -16,13 +18,15 @@ import lombok.Data;
  */
 @Entity
 @Data
+//@Table(name = "userFilmes")
+@NoArgsConstructor
 public class UserFilmeEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer Id;
+    private int Id;
     
-    private Integer userId;
+    private int userId;
     
     private FilmeEntity filme;
 
