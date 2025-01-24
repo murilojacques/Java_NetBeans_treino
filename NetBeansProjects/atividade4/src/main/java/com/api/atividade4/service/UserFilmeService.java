@@ -7,6 +7,7 @@ package com.api.atividade4.service;
 import com.api.atividade4.data.FilmeEntity;
 import com.api.atividade4.data.UserFilmeEntity;
 import com.api.atividade4.data.UserFilmeRepository;
+import com.api.atividade4.data.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +24,16 @@ import org.springframework.stereotype.Service;
 public class UserFilmeService {
     
     @Autowired
-    UserFilmeRepository userFilmeRepository;
+    private UserFilmeRepository userFilmeRepository;
 
+    /**@Autowired
+    PegarRepository pegarRepository = new PegarRepository();
+**/
     /**
      *
      * @param userFilmeRepository
      */
-    @Autowired
+    
     public UserFilmeService(UserFilmeRepository userFilmeRepository) {
         this.userFilmeRepository = userFilmeRepository;
     }
@@ -41,6 +45,9 @@ public class UserFilmeService {
     
     
     public Void saveUserFilme(Integer id, FilmeEntity filme){
+        if(userFilmeRepository != null){
+            System.out.println("NÃO NULO");
+        }
         UserFilmeEntity userFilme = new UserFilmeEntity();
         userFilme.setId(null);
         userFilme.setUserId(id);
@@ -53,9 +60,10 @@ public class UserFilmeService {
         if(userFilmeRepository == null){
             System.out.println("NULO");
         }
-        List<UserFilmeEntity> user = new ArrayList<>();
-        //List<UserFilmeEntity> user = userFilmeRepository.findByUserId(id);
+        //List<UserFilmeEntity> user = new ArrayList<>();
+        List<UserFilmeEntity> user = userFilmeRepository.findByUserId(id);
         List<FilmeEntity> filmes = new ArrayList<>();
+        
         for (UserFilmeEntity u : user) {
             filmes.add(u.getFilme());
         }
@@ -63,9 +71,10 @@ public class UserFilmeService {
         return filmes;
     }
     
-   /** @Bean 
-    public UserFilmeRepository userFilmeRepository(UserFilmeRepository userFilmeRepository){
-        return userFilmeRepository;
+    /**
+    @Bean 
+    public PegarRepository pegarRepository(PegarRepository pegarRepository){
+        return pegarRepository;
     }
-    * **/
+**/
 }

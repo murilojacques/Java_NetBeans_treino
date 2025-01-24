@@ -21,6 +21,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,6 +55,7 @@ public class filmesController {
     
     @Autowired
     UserFilmeRepository userFilme;
+
     
     @Autowired
     public filmesController(FilmeService filmeService, AnaliseService analiseService, UserService userService, UserFilmeService userFilmeService) {
@@ -132,7 +134,7 @@ public class filmesController {
         userService.setUserByUsername(username);
         this.setUsername(username);
         user = userService.findByUsername(username);
-        UserFilmeService u = new UserFilmeService(userFilme);
+        UserFilmeService u = new UserFilmeService();
         List<FilmeEntity> filmes = u.findFilmesByUser(user.getId());
         //List<AnaliseEntity> analises = userService.allAnalisesByUser();
         model.addAttribute("preferencias", new Preferencias());

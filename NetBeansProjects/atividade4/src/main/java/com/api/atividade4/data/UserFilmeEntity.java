@@ -24,9 +24,9 @@ public class UserFilmeEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Id;
+    private Integer Id;
     
-    private int userId;
+    private Integer userId;
     
     private FilmeEntity filme;
 
