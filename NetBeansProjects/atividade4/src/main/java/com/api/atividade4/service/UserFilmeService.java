@@ -26,9 +26,6 @@ public class UserFilmeService {
     @Autowired
     private UserFilmeRepository userFilmeRepository;
 
-    /**@Autowired
-    PegarRepository pegarRepository = new PegarRepository();
-**/
     /**
      *
      * @param userFilmeRepository
@@ -56,12 +53,14 @@ public class UserFilmeService {
         return null;
     }
     
-    public List<FilmeEntity> findFilmesByUser(Integer id){
+    public List<FilmeEntity> findFilmesByUser(Integer id, UserFilmeRepository userFilme){
+        this.userFilmeRepository = userFilme;
         if(userFilmeRepository == null){
             System.out.println("NULO");
         }
+        
         //List<UserFilmeEntity> user = new ArrayList<>();
-        List<UserFilmeEntity> user = userFilmeRepository.findByUserId(id);
+        List<UserFilmeEntity> user = this.userFilmeRepository.findByUserId(id);
         List<FilmeEntity> filmes = new ArrayList<>();
         
         for (UserFilmeEntity u : user) {

@@ -6,7 +6,6 @@ package com.api.atividade4.data;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Repository;
  * @author Murilo
  */
 @Repository
-public interface UserFilmeRepository extends CrudRepository<UserFilmeEntity, Integer>{
+public interface UserFilmeRepository extends JpaRepository<UserFilmeEntity, Integer>{
     
     /**
      *

@@ -115,6 +115,7 @@ public class filmesController {
 
     @GetMapping("/pagCriarConta")
     public ModelAndView pagCriarConta(@CookieValue(name = "preferencias", defaultValue = "claro") String tema, Model model, String msg, String classe, RedirectAttributes attribute){
+        
         ModelAndView mv = new ModelAndView("pagCriarConta");
         attribute.addFlashAttribute("msg", msg);
         attribute.addFlashAttribute("classe", classe);
@@ -128,15 +129,17 @@ public class filmesController {
     
     
     @GetMapping("/index")
-    public ModelAndView pagListaFilmes(@CookieValue(name="preferencia", defaultValue = "claro") String tema, Model model, String username){
+    public ModelAndView pagListaFilmes(@CookieValue(name="preferencia", defaultValue = "claro") String tema, Model model, String username, UserFilmeRepository userFilme){
         ModelAndView mv = new ModelAndView("index");
         
         userService.setUserByUsername(username);
         this.setUsername(username);
         user = userService.findByUsername(username);
+        
         UserFilmeService u = new UserFilmeService();
-        List<FilmeEntity> filmes = u.findFilmesByUser(user.getId());
+        List<FilmeEntity> filmes = u.findFilmesByUser(user.getId(), userFilme);
         //List<AnaliseEntity> analises = userService.allAnalisesByUser();
+        
         model.addAttribute("preferencias", new Preferencias());
         model.addAttribute("css", tema);
         //model.addAttribute("analises", analises);
@@ -153,15 +156,15 @@ public class filmesController {
         
         System.out.println("Username: "+username);
         if(filme.getId() == null){
-            UserEntity user = userService.findByUsername(username);
+            UserEntity user1 = userService.findByUsername(username);
             FilmeEntity filmeSalvo = filmeService.cadastrarFilme(filme);
-            userFilmeService.saveUserFilme(user.getId(), filmeSalvo);
+            userFilmeService.saveUserFilme(user1.getId(), filmeSalvo);
         }
         else{
             //filmeService.atualizarFilme(filme.getId(), filme);
             //userService.atualizarFilme(username, filme);
         }
-        return pagListaFilmes("claro", model, username);
+        return pagListaFilmes("claro", model, username, userFilme);
     }
     
     
