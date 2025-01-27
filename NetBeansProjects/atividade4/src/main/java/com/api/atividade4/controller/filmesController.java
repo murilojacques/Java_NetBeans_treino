@@ -20,6 +20,7 @@ import com.api.atividade4.service.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,6 +31,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -52,6 +55,9 @@ public class filmesController {
     
     @Autowired
     UserFilmeService userFilmeService = new UserFilmeService();
+    
+    @Autowired
+    FilmeRepository filmeRepository;
     
     @Autowired
     UserFilmeRepository userFilme;
@@ -129,7 +135,8 @@ public class filmesController {
     
     
     @GetMapping("/index")
-    public ModelAndView pagListaFilmes(@CookieValue(name="preferencia", defaultValue = "claro") String tema, Model model, String username, UserFilmeRepository userFilme){
+    public ModelAndView pagListaFilmes(@CookieValue(name="preferencia", defaultValue = "claro") String tema, Model model, String username, 
+            UserFilmeRepository userFilme, FilmeRepository filmeRepository){
         ModelAndView mv = new ModelAndView("index");
         
         userService.setUserByUsername(username);
@@ -137,7 +144,8 @@ public class filmesController {
         user = userService.findByUsername(username);
         
         UserFilmeService u = new UserFilmeService();
-        List<FilmeEntity> filmes = u.findFilmesByUser(user.getId(), userFilme);
+        System.out.println("userId: "+user.getId());
+        List<FilmeEntity> filmes = u.findFilmesByUser(user.getId(), userFilme, new FilmeService(), filmeRepository);
         //List<AnaliseEntity> analises = userService.allAnalisesByUser();
         
         model.addAttribute("preferencias", new Preferencias());
@@ -154,25 +162,38 @@ public class filmesController {
     @PostMapping("/salvarFilme/{username}")
     public ModelAndView cadastrarFilme(@ModelAttribute("filme") FilmeEntity filme, @PathVariable("username") String username, Model model){
         
-        System.out.println("Username: "+username);
+        //System.out.println("Username: "+username);
         if(filme.getId() == null){
             UserEntity user1 = userService.findByUsername(username);
             FilmeEntity filmeSalvo = filmeService.cadastrarFilme(filme);
+            System.out.println("FilmeSalvo: "+filmeSalvo.getId());
             userFilmeService.saveUserFilme(user1.getId(), filmeSalvo);
         }
         else{
-            //filmeService.atualizarFilme(filme.getId(), filme);
+            filmeService.atualizarFilme(filme.getId(), filme);
+            //UserEntity user = userService.findByUsername(username);
+            //userFilmeService.atualizarFilme(user, updatedFilme, filmeService);
             //userService.atualizarFilme(username, filme);
         }
-        return pagListaFilmes("claro", model, username, userFilme);
+        return pagListaFilmes("claro", model, username, userFilme, filmeRepository);
     }
     
-    
-    @GetMapping("/atualizarFilme/{id}")
-    public String PagAtualizarFilme(@CookieValue(name="preferencia", defaultValue = "escuro") String tema, @PathVariable(value = "id") Integer id, Model model){
-        FilmeEntity filme = filmeService.getFilmeById(id);
-        model.addAttribute("css", tema);
-        model.addAttribute("filme", filme);
+    /**
+     *
+     * @param id
+     * @param username
+     * @param tema
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/atualizarFilme/{id}/{username1}", method = RequestMethod.GET, produces = {"application/json"})
+    public String PagAtualizarFilme(@PathVariable("id") Integer id, @PathVariable("username1") String username, 
+            @CookieValue(name="preferencia", defaultValue = "escuro") String tema, Model model){
+
+       FilmeEntity filme = filmeService.getFilmeById(id);
+       model.addAttribute("username", username);
+       model.addAttribute("css", tema);
+       model.addAttribute("filme", filme);
        return "atualizarFilme";
     }
     

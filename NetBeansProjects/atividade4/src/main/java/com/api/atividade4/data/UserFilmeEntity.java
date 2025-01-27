@@ -28,7 +28,7 @@ public class UserFilmeEntity {
     
     private Integer userId;
     
-    private FilmeEntity filme;
+    private Integer filmeId;
 
     
     
@@ -48,12 +48,12 @@ public class UserFilmeEntity {
         this.userId = userId;
     }
 
-    public FilmeEntity getFilme() {
-        return filme;
+    public Integer getFilmeId() {
+        return filmeId;
     }
 
-    public void setFilme(FilmeEntity filme) {
-        this.filme = filme;
+    public void setFilme(Integer filme) {
+        this.filmeId = filme;
     }
     
     

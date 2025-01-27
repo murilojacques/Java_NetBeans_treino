@@ -7,6 +7,7 @@ package com.api.atividade4.controller;
 import com.api.atividade4.Dto.AuthResponseDto;
 import com.api.atividade4.Dto.LoginDto;
 import com.api.atividade4.Dto.RegisterDto;
+import com.api.atividade4.data.FilmeRepository;
 import com.api.atividade4.data.RoleRepository;
 import com.api.atividade4.data.RolesEntity;
 import com.api.atividade4.data.UserEntity;
@@ -20,6 +21,7 @@ import com.api.atividade4.service.UserService;
 import java.util.Collection;
 import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +43,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  *
  * @author Murilo
  */
+@Primary
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -68,6 +71,9 @@ public class AuthController {
     private UserFilmeRepository userFilmeRepository;
     
     private final filmesController filmesCon;
+    
+    @Autowired
+    private FilmeRepository filmeRepository;
     
     @Autowired
     public AuthController(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository roleRepository,
@@ -98,12 +104,12 @@ public class AuthController {
         System.out.println("Token: " + token);
         
         
-        System.out.println("Username2: " + SecurityContextHolder.getContext().getAuthentication().getName());
+        //System.out.println("Username2: " + SecurityContextHolder.getContext().getAuthentication().getName());
         
         UserEntity user = userRepository.findByUsername(loginDto.getUsername()).orElse(null);
         
         if(token != null && user != null){
-           return filmesCon.pagListaFilmes("claro", model, SecurityContextHolder.getContext().getAuthentication().getName(), userFilmeRepository);
+           return filmesCon.pagListaFilmes("claro", model, SecurityContextHolder.getContext().getAuthentication().getName(), userFilmeRepository, filmeRepository);
         }
         else{
             return filmesCon.pagLogin("claro", "Falha ao realizar o Login, por favor verifique se os dados foram inseridos corretamente", "alert alert-success alert-danger");

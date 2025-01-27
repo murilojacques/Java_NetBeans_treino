@@ -50,6 +50,13 @@ public class FilmeService {
         return filmeRepository.findById(id).orElse(null);
     }
     
+    public FilmeEntity getFilmeById(Integer id, FilmeRepository filmeRepository){
+        this.filmeRepository = filmeRepository;
+        return this.filmeRepository.findById(id).orElse(null);
+    }
+    
+    
+    
      public List<FilmeEntity> getFilmes(){
         return filmeRepository.findAll();
     }

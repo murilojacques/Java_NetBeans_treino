@@ -13,7 +13,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <link th:href="@{/css/}+${css}+'.css'" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <form th:action="@{/salvarFilme}" th:object="${filme}" method="post">
+        <form th:action="@{/salvarFilme/{username} (username = ${username})}" th:object="${filme}" method="post">
             <p>Titulo <input type="text" th:field="*{titulo}" name="titulo" class="form-control mb-4 col-4"></p>
             <p>Sinopse <input type="text" th:field="*{sinopse}" name="sinopse" class="form-control mb-4 col-4"></p>
             <p>Genero <input type="text" th:field="*{genero}" name="genero" class="form-control mb-4 col-4"></p>
