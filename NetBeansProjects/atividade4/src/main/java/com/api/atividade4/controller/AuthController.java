@@ -7,6 +7,7 @@ package com.api.atividade4.controller;
 import com.api.atividade4.Dto.AuthResponseDto;
 import com.api.atividade4.Dto.LoginDto;
 import com.api.atividade4.Dto.RegisterDto;
+import com.api.atividade4.data.AnaliseRepository;
 import com.api.atividade4.data.FilmeRepository;
 import com.api.atividade4.data.RoleRepository;
 import com.api.atividade4.data.RolesEntity;
@@ -76,6 +77,9 @@ public class AuthController {
     private FilmeRepository filmeRepository;
     
     @Autowired
+    private AnaliseRepository analiseRepository;
+    
+    @Autowired
     public AuthController(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository roleRepository,
             PasswordEncoder passwordEncoder, JWTGenerator jwtGenerator) {
         this.authenticationManager = authenticationManager;
@@ -109,7 +113,7 @@ public class AuthController {
         UserEntity user = userRepository.findByUsername(loginDto.getUsername()).orElse(null);
         
         if(token != null && user != null){
-           return filmesCon.pagListaFilmes("claro", model, SecurityContextHolder.getContext().getAuthentication().getName(), userFilmeRepository, filmeRepository);
+           return filmesCon.pagListaFilmes("claro", model, SecurityContextHolder.getContext().getAuthentication().getName(), userFilmeRepository, filmeRepository, analiseRepository);
         }
         else{
             return filmesCon.pagLogin("claro", "Falha ao realizar o Login, por favor verifique se os dados foram inseridos corretamente", "alert alert-success alert-danger");

@@ -7,9 +7,11 @@ package com.api.atividade4.controller;
 import com.api.atividade4.Dto.LoginDto;
 import com.api.atividade4.Dto.RegisterDto;
 import com.api.atividade4.data.AnaliseEntity;
+import com.api.atividade4.data.AnaliseRepository;
 import com.api.atividade4.data.FilmeEntity;
 import com.api.atividade4.data.FilmeRepository;
 import com.api.atividade4.data.UserEntity;
+import com.api.atividade4.data.UserFilmeEntity;
 import com.api.atividade4.data.UserFilmeRepository;
 import com.api.atividade4.data.UserRepository;
 import com.api.atividade4.models.Preferencias;
@@ -19,6 +21,7 @@ import com.api.atividade4.service.UserFilmeService;
 import com.api.atividade4.service.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +63,9 @@ public class filmesController {
     FilmeRepository filmeRepository;
     
     @Autowired
+    AnaliseRepository analiseRepository;
+    
+    @Autowired
     UserFilmeRepository userFilme;
 
     
@@ -77,7 +83,7 @@ public class filmesController {
     private String pagLoginMsg;
     private String pagLoginClass;
     
-    private String username = "murilo";
+    private String username;
     
     private UserEntity user;
 
@@ -132,33 +138,77 @@ public class filmesController {
     
     
     
-    
-    
+    /**
+     *
+     * @param tema
+     * @param model
+     * @param username
+     * @param userFilme
+     * @param filmeRepository
+     * @param analiseRepository
+     * @return
+     */
     @GetMapping("/index")
     public ModelAndView pagListaFilmes(@CookieValue(name="preferencia", defaultValue = "claro") String tema, Model model, String username, 
-            UserFilmeRepository userFilme, FilmeRepository filmeRepository){
+            UserFilmeRepository userFilme, FilmeRepository filmeRepository, AnaliseRepository analiseRepository){
+        
         ModelAndView mv = new ModelAndView("index");
+        UserFilmeService u = new UserFilmeService();
+        List<FilmeEntity> filmes = new ArrayList<>();
+        List<AnaliseEntity> analises = new ArrayList<>();
         
         userService.setUserByUsername(username);
         this.setUsername(username);
         user = userService.findByUsername(username);
-        
-        UserFilmeService u = new UserFilmeService();
-        System.out.println("userId: "+user.getId());
-        List<FilmeEntity> filmes = u.findFilmesByUser(user.getId(), userFilme, new FilmeService(), filmeRepository);
-        //List<AnaliseEntity> analises = userService.allAnalisesByUser();
+        filmes = u.findFilmesByUser(user.getId(), userFilme, new FilmeService(), filmeRepository);
+        analises = u.findAnalisesByUser(user.getId(), userFilme, new AnaliseService(), analiseRepository);
         
         model.addAttribute("preferencias", new Preferencias());
         model.addAttribute("css", tema);
-        //model.addAttribute("analises", analises);
+        model.addAttribute("analises", analises);
         model.addAttribute("filmes", filmes);
         model.addAttribute("filme", new FilmeEntity());
         model.addAttribute("username", username);
-        model.addAttribute("username1", username);
+        //model.addAttribute("username1", username);
+        //model.addAttribute("username2", username);
+
         return mv;
     }
     
+    @GetMapping("/index/{username}")
+    public ModelAndView pagListaFilmes(@CookieValue(name="preferencia", defaultValue = "claro") String tema, Model model,
+            @PathVariable("username") String username){
+        
+        ModelAndView mv = new ModelAndView("index");
+        UserFilmeService u = new UserFilmeService();
+        List<FilmeEntity> filmes = new ArrayList<>();
+        List<AnaliseEntity> analises = new ArrayList<>();
+        
+        if(this.username == null){
+            userService.setUserByUsername(username);
+            this.setUsername(username);
+        }
+        
+        user = userService.findByUsername(username);
+        filmes = u.findFilmesByUser(user.getId(), userFilme, new FilmeService(), filmeRepository);
+        analises = u.findAnalisesByUser(user.getId(), userFilme, new AnaliseService(), analiseRepository);
+        
+        model.addAttribute("preferencias", new Preferencias());
+        model.addAttribute("css", tema);
+        model.addAttribute("analises", analises);
+        model.addAttribute("filmes", filmes);
+        model.addAttribute("filme", new FilmeEntity());
+        model.addAttribute("username", username);
+        //model.addAttribute("username1", username2);
+        //model.addAttribute("username2", username2);
 
+        return mv;
+    }
+    
+    
+    
+    
+    
     @PostMapping("/salvarFilme/{username}")
     public ModelAndView cadastrarFilme(@ModelAttribute("filme") FilmeEntity filme, @PathVariable("username") String username, Model model){
         
@@ -166,16 +216,13 @@ public class filmesController {
         if(filme.getId() == null){
             UserEntity user1 = userService.findByUsername(username);
             FilmeEntity filmeSalvo = filmeService.cadastrarFilme(filme);
-            System.out.println("FilmeSalvo: "+filmeSalvo.getId());
+            //System.out.println("FilmeSalvo: "+filmeSalvo.getId());
             userFilmeService.saveUserFilme(user1.getId(), filmeSalvo);
         }
         else{
             filmeService.atualizarFilme(filme.getId(), filme);
-            //UserEntity user = userService.findByUsername(username);
-            //userFilmeService.atualizarFilme(user, updatedFilme, filmeService);
-            //userService.atualizarFilme(username, filme);
         }
-        return pagListaFilmes("claro", model, username, userFilme, filmeRepository);
+        return pagListaFilmes("claro", model, username, userFilme, filmeRepository, analiseRepository);
     }
     
     /**
@@ -186,8 +233,8 @@ public class filmesController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/atualizarFilme/{id}/{username1}", method = RequestMethod.GET, produces = {"application/json"})
-    public String PagAtualizarFilme(@PathVariable("id") Integer id, @PathVariable("username1") String username, 
+    @RequestMapping(value = "/atualizarFilme/{id}/{username}", method = RequestMethod.GET, produces = {"application/json"})
+    public String PagAtualizarFilme(@PathVariable("id") Integer id, @PathVariable("username") String username, 
             @CookieValue(name="preferencia", defaultValue = "escuro") String tema, Model model){
 
        FilmeEntity filme = filmeService.getFilmeById(id);
@@ -201,6 +248,7 @@ public class filmesController {
     @GetMapping("/deletarFilme/{id}")
     public String deletarFilme(@PathVariable(value="id") Integer id, Model model){
         analiseService.DeletarAnalisesPorFilme(id);
+        //userFilmeService.
         filmeService.deletarFilme(id);
         //userService.deletarFilme(username, id);
         return "redirect:/";
@@ -209,27 +257,32 @@ public class filmesController {
     
     
     
+    
 
-    @GetMapping("/adicionarAnalise/{id}")
-    public String PagAdicionarAnalise(@CookieValue(name="preferencia", defaultValue = "claro") String tema, @PathVariable(value = "id") Integer id, Model model){
+    @GetMapping("/adicionarAnalise/{id}/{username}")
+    public String PagAdicionarAnalise(@CookieValue(name="preferencia", defaultValue = "claro") String tema, @PathVariable(value = "id") Integer id,
+            @PathVariable("username") String username, Model model){
         FilmeEntity filme = filmeService.getFilmeById(id);
+        
+        System.out.println("Username: " + username);
+        
+        model.addAttribute("username", username);
         model.addAttribute("css", tema);
         model.addAttribute("filme", filme);
         model.addAttribute("Analises", new AnaliseEntity());
         return "adicionarAnalise";
     }
     
-   @PostMapping("/salvarAnalise/{id}")
-    public String salvarAnalise(@ModelAttribute("Analises") AnaliseEntity a, @PathVariable(value="id") int filmeId, Model model){
-        System.out.println(a.getAnalise());
-        System.out.println(a.getId());
-        a.setFilme(filmeId);
-        System.out.println(a.getFilme());
-        System.out.println(a.getNota());
-        
-
-        analiseService.adicionarAnalise(a);
-        return "redirect:/";
+    
+   @PostMapping("/salvarAnalise/{id}/{username}")
+    public ModelAndView salvarAnalise(@ModelAttribute("Analises") AnaliseEntity analise, @PathVariable("username") String username, @PathVariable(value="id") int filmeId, Model model){
+        analise.setFilme(filmeId);
+        AnaliseEntity savedAnalise = analiseService.adicionarAnalise(analise);
+        UserEntity user1 = userService.findByUsername(username);
+        System.out.println("username5: " + username);
+        System.out.println("username6: " + model.getAttribute("username"));
+        userFilmeService.salvarAnalise(filmeId, user1.getId(), savedAnalise);
+        return pagListaFilmes("claro", model, username, userFilme, filmeRepository, analiseRepository);
     }
     
     @GetMapping("/deletarAnalise/{id}")
@@ -238,11 +291,14 @@ public class filmesController {
         return "redirect:/";
     }
     
-    @GetMapping("atualizarAnalise/{id}")
-    public String atualizarAnalise(@CookieValue(name="preferencia", defaultValue = "claro") String tema, @PathVariable(value = "id") Integer id, Model model){
+    @GetMapping("atualizarAnalise/{id}/{username}")
+    public String atualizarAnalise(@CookieValue(name="preferencia", defaultValue = "claro") String tema, @PathVariable(value = "id") Integer id,
+            @PathVariable(value = "username") String username, Model model){
         AnaliseEntity analise = analiseService.getAnaliseById(id);
+        System.out.println("username: "+username);
         model.addAttribute("css", tema);
         model.addAttribute("Analise", analise);
+        model.addAttribute("username", username);
         return "atualizarAnalise";
     }
     

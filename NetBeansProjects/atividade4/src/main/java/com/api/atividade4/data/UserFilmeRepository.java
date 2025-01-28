@@ -22,4 +22,6 @@ public interface UserFilmeRepository extends JpaRepository<UserFilmeEntity, Inte
      */
     List<UserFilmeEntity> findByUserId(int userId);
     UserFilmeEntity findByFilmeId(int filmeId);
+    UserFilmeEntity findByAnaliseId(int analiseId);
+    UserFilmeEntity findByUserIdAndFilmeId(int userId, int filmeId);
 }

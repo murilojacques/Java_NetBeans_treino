@@ -4,6 +4,8 @@
  */
 package com.api.atividade4.service;
 
+import com.api.atividade4.data.AnaliseEntity;
+import com.api.atividade4.data.AnaliseRepository;
 import com.api.atividade4.data.FilmeEntity;
 import com.api.atividade4.data.FilmeRepository;
 import com.api.atividade4.data.UserEntity;
@@ -31,6 +33,9 @@ public class UserFilmeService {
     
     @Autowired
     private FilmeRepository filmeRepository;
+    
+    @Autowired
+    private AnaliseRepository analiseRepository;
 
     /**
      *
@@ -48,9 +53,6 @@ public class UserFilmeService {
     
     
     public Void saveUserFilme(Integer id, FilmeEntity filme){
-        if(userFilmeRepository != null){
-            System.out.println("NÃO NULO");
-        }
         UserFilmeEntity userFilme = new UserFilmeEntity();
         userFilme.setId(null);
         userFilme.setUserId(id);
@@ -61,63 +63,47 @@ public class UserFilmeService {
     
     public List<FilmeEntity> findFilmesByUser(Integer id, UserFilmeRepository userFilme, FilmeService filmeService, FilmeRepository filmeRepository){
         this.userFilmeRepository = userFilme;
-        if(userFilmeRepository == null){
-            System.out.println("NULO");
-        }
         
         //List<UserFilmeEntity> user = new ArrayList<>();
         List<UserFilmeEntity> user = this.userFilmeRepository.findByUserId(id);
         List<FilmeEntity> filmes = new ArrayList<>();
         this.filmeRepository = filmeRepository;
         for (UserFilmeEntity u : user) {
-            System.out.println("FilmeId: "+u.getFilmeId());
+            //System.out.println("FilmeId: "+u.getFilmeId());
             if(u.getFilmeId() != null){
                 FilmeEntity filme = filmeService.getFilmeById(u.getFilmeId(), this.filmeRepository);
                 filmes.add(filme);
             }
-            
-            System.out.println("  BBBBBBB");
         }
         
         return filmes;
     }
     
-   /** 
-    public UserFilmeEntity atualizarFilme(UserEntity user, FilmeEntity updatedFilme, FilmeService filmeService){
+    
+    public List<AnaliseEntity> findAnalisesByUser(Integer id, UserFilmeRepository userFilme, AnaliseService analiseService, AnaliseRepository analiseRepository){
+        this.userFilmeRepository = userFilme;
         
-        UserFilmeEntity newUser = new UserFilmeEntity();
-        UserFilmeEntity oldUser = userFilmeRepository.findByFilmeId(updatedFilme.getId());
+        List<UserFilmeEntity> user = this.userFilmeRepository.findByUserId(id);
+        List<AnaliseEntity> analises = new ArrayList<>();
+        this.analiseRepository = analiseRepository;
         
-        newUser.
-        
-        List<UserFilmeEntity> ListUser = userFilmeRepository.findByUserId(user.getId());
-        List<FilmeEntity> filmes = new ArrayList<>();
-        UserFilmeEntity newUser = new UserFilmeEntity();
-        
-        for(UserFilmeEntity u : ListUser){
-            FilmeEntity addFilme = filmeService.getFilmeById(u.getFilmeId());
-            filmes.add(addFilme);
-        }
-        
-        for(int i = 0; i<filmes.size(); i++){
-            if(Objects.equals(filmes.get(i).getId(), updatedFilme.getId())){
-                FilmeEntity newFilme = filmes.get(i);
-                
-                
-                newUser = ListUser.get(i);
-                newUser.setFilmeId(newFilme.getId());
-                
-                userFilmeRepository.save(newUser);
-                
-            }
-            else{
-                i++;
+        for(UserFilmeEntity u : user){
+            if(u.getAnaliseId() != null){
+                AnaliseEntity analise = analiseService.getAnaliseById(u.getAnaliseId(), this.analiseRepository);
+                analises.add(analise);
             }
         }
-        * 
         
-        return newUser;
+        return analises;
     }
-    **/
+    
+    
+    public UserFilmeEntity salvarAnalise(Integer filmeId, Integer userId, AnaliseEntity analise){
+        
+        UserFilmeEntity userFilme = userFilmeRepository.findByUserIdAndFilmeId(userId, filmeId);
+        userFilme.setAnaliseId(analise.getId());
+        userFilmeRepository.save(userFilme);
+        return userFilme;
+    }
 
 }

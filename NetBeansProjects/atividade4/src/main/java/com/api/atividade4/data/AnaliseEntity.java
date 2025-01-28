@@ -23,7 +23,7 @@ import lombok.Data;
 public class AnaliseEntity implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
     
     private int filme;

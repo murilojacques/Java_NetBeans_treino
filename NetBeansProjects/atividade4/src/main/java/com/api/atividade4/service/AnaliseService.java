@@ -34,6 +34,13 @@ public class AnaliseService {
         return analiseRepository.findById(analiseId).orElse(null);
     }
     
+    public AnaliseEntity getAnaliseById(Integer analiseId, AnaliseRepository analiseRepository){
+        this.analiseRepository = analiseRepository;
+        return this.analiseRepository.findById(analiseId).orElse(null);
+    }
+    
+    
+    
     public List<AnaliseEntity> getTodasAnalises(){
         return analiseRepository.findAll();
     }

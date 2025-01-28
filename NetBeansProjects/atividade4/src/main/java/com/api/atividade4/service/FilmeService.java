@@ -21,8 +21,7 @@ public class FilmeService {
     FilmeRepository filmeRepository;
     
     
-    public FilmeEntity cadastrarFilme(FilmeEntity filme){
-        
+    public FilmeEntity cadastrarFilme(FilmeEntity filme){ 
         filme.setId(null);
         filmeRepository.save(filme);
         return filme;

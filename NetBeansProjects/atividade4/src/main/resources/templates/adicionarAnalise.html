@@ -19,7 +19,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <p><strong>Genero:</strong> <span th:text="${filme.genero}" class="form-control mb-4 col-4"></span></p>
             <p><strong>Ano de Lançamento:</strong> <span th:text="${filme.anoLancamento}" class="form-control mb-4 col-4"></span></p>
         </div>
-        <form th:action="@{/salvarAnalise/{id}(id=${filme.id})}" th:object="${Analises}" method="post">
+        <form th:action="@{/salvarAnalise/{id}/{username}(id=${filme.id}, username=${username})}" th:object="${Analises}" method="post">
                 <br>
                 <input type="text" th:field="*{analise}" name="analise" placeholder="Analise" class="form-control mb-4 col-4" required>
                 <input type="number" th:field="*{nota}" name="Nota" placeholder="Nota" class="form-control mb-4 col-4" required>
@@ -27,6 +27,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <input type="submit" name="name" value="Salvar Analise" class="btn btn-primary">
         </form>
         <br>
-        <a th:href="@{/}">Voltar à Lista de Filmes</a>
+        <a th:href="@{/index/{username} (username=${username})}">Voltar à Lista de Filmes</a>
     </body>
 </html>

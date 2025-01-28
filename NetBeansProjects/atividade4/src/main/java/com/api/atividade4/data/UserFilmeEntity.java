@@ -30,6 +30,7 @@ public class UserFilmeEntity {
     
     private Integer filmeId;
 
+    private Integer analiseId;
     
     
     public Integer getId() {
@@ -54,6 +55,14 @@ public class UserFilmeEntity {
 
     public void setFilme(Integer filme) {
         this.filmeId = filme;
+    }
+
+    public Integer getAnaliseId() {
+        return analiseId;
+    }
+
+    public void setAnaliseId(Integer analiseId) {
+        this.analiseId = analiseId;
     }
     
     
