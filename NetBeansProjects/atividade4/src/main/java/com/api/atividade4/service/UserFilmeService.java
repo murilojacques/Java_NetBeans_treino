@@ -79,6 +79,14 @@ public class UserFilmeService {
         return filmes;
     }
     
+    public void deletarUserFilme (Integer userId, Integer filmeId){
+        UserFilmeEntity userFilme = userFilmeRepository.findByUserIdAndFilmeId(userId, filmeId);
+        userFilmeRepository.delete(userFilme);
+    }
+    
+    
+    
+    
     
     public List<AnaliseEntity> findAnalisesByUser(Integer id, UserFilmeRepository userFilme, AnaliseService analiseService, AnaliseRepository analiseRepository){
         this.userFilmeRepository = userFilme;
@@ -97,7 +105,6 @@ public class UserFilmeService {
         return analises;
     }
     
-    
     public UserFilmeEntity salvarAnalise(Integer filmeId, Integer userId, AnaliseEntity analise){
         
         UserFilmeEntity userFilme = userFilmeRepository.findByUserIdAndFilmeId(userId, filmeId);
@@ -106,4 +113,9 @@ public class UserFilmeService {
         return userFilme;
     }
 
+    public void deletarAnalise(Integer analiseId){
+        UserFilmeEntity user = userFilmeRepository.findByAnaliseId(analiseId);
+        user.setAnaliseId(null);
+        userFilmeRepository.save(user);
+    }
 }

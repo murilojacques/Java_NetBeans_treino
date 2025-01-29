@@ -245,13 +245,15 @@ public class filmesController {
     }
     
     
-    @GetMapping("/deletarFilme/{id}")
-    public String deletarFilme(@PathVariable(value="id") Integer id, Model model){
-        analiseService.DeletarAnalisesPorFilme(id);
-        //userFilmeService.
+    @GetMapping("/deletarFilme/{id}/{username}")
+    public ModelAndView deletarFilme(@PathVariable(value="id") Integer id, @PathVariable("username") String username,Model model){
+        UserEntity user = userService.findByUsername(username);
+        userFilmeService.deletarUserFilme(user.getId(), id);
         filmeService.deletarFilme(id);
+        analiseService.DeletarAnalisesPorFilme(id);
+        
         //userService.deletarFilme(username, id);
-        return "redirect:/";
+        return pagListaFilmes("claro", model, username);
     }
     
     
@@ -285,10 +287,12 @@ public class filmesController {
         return pagListaFilmes("claro", model, username, userFilme, filmeRepository, analiseRepository);
     }
     
-    @GetMapping("/deletarAnalise/{id}")
-    public String deletarAnalise(@PathVariable(value = "id") Integer id){
+    @GetMapping("/deletarAnalise/{id}/{username}")
+    public ModelAndView deletarAnalise(@PathVariable(value = "id") Integer id, @PathVariable("username") String username, Model model){
+        UserEntity user = userService.findByUsername(username);
+        userFilmeService.deletarAnalise(id);
         analiseService.deletarAnalise(id);
-        return "redirect:/";
+        return pagListaFilmes("claro", model, username);
     }
     
     @GetMapping("atualizarAnalise/{id}/{username}")
