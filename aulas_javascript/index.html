@@ -22,7 +22,7 @@
     <br>
     <br>
 
-    <div id="teste" onmouseover="mudaCorV()" onmouseout="mudaCorA()" onmousemove="adicionaTexto()" style="margin: auto auto; width: 80%; height: 200px; background-color: blue;"></div>
+    <div id="teste" onmouseover="mudaCorV()" onmouseout="mudaCorA()" onmousemove="adicionaTexto()" style="margin: auto auto; width: 80%; height: 200px; background-color: cornflowerblue;"></div>
 
     <br>
 
@@ -36,8 +36,31 @@
     <br>
     <br>
 
-    <input id="campoTexto" type="text" onfocus="inputEmFoco()" onblur="inputPerdeFoco()" onkeydown="teclaPressionada()"
+    <input id="campoTexto" type="text" onfocus="inputEmFoco()" !--onblur="inputPerdeFoco()"--! onkeydown="teclaPressionada()"
          style="padding: 80px; font-size: 32px;" placeholder="Digite Algo">
+    <button onclick="verificar()">Clique aqui</button>
+
+    <br>
+    <br>
+    <h2>Cor de Fundo</h2>
+    <input id="cor" type="text" onfocus="inputEmFoco()" !--onblur="inputPerdeFoco()"--! onkeydown="teclaPressionada()"
+         style="padding: 80px; font-size: 24px;" placeholder="Digite Algo">
+    <button onclick="verificarCor()">Clique aqui</button>
+
+    <br>
+    <br>
+    <br>
+
+    <button onclick="numeroFunc()">Clique aqui</button>
+    <button onclick="MostrarLista()">Mostrar Lista</button>
+
+    <br>
+    <br>
+    <br>
+
+    <select name="" id="ano" onchange="onChange()">
+        <option selected disabled>Selecione o ano</option>
+    </select>
 
     <script src="Js/index.js"></script>
 </body>
