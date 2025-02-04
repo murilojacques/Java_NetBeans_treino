@@ -10,9 +10,35 @@
         text-align: center;
     }
 </style>
-<body>
+<body !--onmouseup="alert('clicou na tela! GASP!')"--! onresize="alert('Redimensionou')">
     <h1>Aprendendo Javascript</h1>
+    <br>
+    <h2>Eventos em Javascript</h2>
+
     <p id="texto"></p>
+
+    <button ondblclick="eventoDblClique()">Clique aqui</button>
+    
+    <br>
+    <br>
+
+    <div id="teste" onmouseover="mudaCorV()" onmouseout="mudaCorA()" onmousemove="adicionaTexto()" style="margin: auto auto; width: 80%; height: 200px; background-color: blue;"></div>
+
+    <br>
+
+    <select name="" id="itens" onchange="onChange()">
+        <option value="1">Valor 1</option>
+        <option value="2">Valor 2</option>
+        <option value="3">Valor 3</option>
+        <option value="4">Valor 4</option>
+    </select>
+
+    <br>
+    <br>
+
+    <input id="campoTexto" type="text" onfocus="inputEmFoco()" onblur="inputPerdeFoco()" onkeydown="teclaPressionada()"
+         style="padding: 80px; font-size: 32px;" placeholder="Digite Algo">
+
     <script src="Js/index.js"></script>
 </body>
 
