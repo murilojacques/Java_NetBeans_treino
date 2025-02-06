@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+            <link rel="stylesheet" href="css/css.css" type="text/css"/>
+    </head>
+    
+    <body>
+         <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="#">App RH</a>
+
+                <div id="headerButton">
+                    <button class="openbtn" onclick="openNav()">&#9776; Open Sidebar</button>
+                </div>
+
+                <div id="mySidebar" class="sidebar">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <a href="#">About</a>
+                    <a href="#">Services</a>
+                    <a href="#">Clients</a>
+                    <a href="#">Contact</a>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            
+            <br>
+            <h1>Bem Vindo</h1>
+            <br>
+
+            <button type="button" class="collapsible">Cadastrar-se</button>
+            <div class="divForm w-50 mx-auto" id="divForm">
+
+                <form class="" th:action="@{/cadastrarUser}" th:object="${user}" method="post">
+                    
+                    <div class="form-group">
+                        <label><b>Nome: </b></label>
+                        <input type="text" class="form-control" th:field="*{nome}" placeholder="Nome">
+                        <small class="form-text text-muted">*Digite o seu Nome</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label><b>Email: </b></label>
+                        <input type="text" class="form-control" th:field="*{email}" placeholder="email">
+                        <small class="form-text text-muted">*Digite o seu Email</small>
+                    </div>
+                    
+
+                    <div class="row">
+
+                        <div class="col">
+                            <div class="form-group">
+                                <label><b>RG: </b></label>
+                                <input type="text" class="form-control w-75" th:field="*{rg}" placeholder="cpf">
+                                <small class="form-text text-muted">*Digite o seu CPF</small>
+                            </div>
+                        </div>
+                        
+                        <div class="col">
+                            <div class="form-group">
+                                <label><b>CPF: </b></label>
+                                <input type="text" class="form-control w-75" th:field="*{cpf}" placeholder="rg">
+                                <small class="form-text text-muted">*Digite o seu RG</small>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <input type="button" name="" id="" value="cadastrar">
+                </form>
+                
+            </div>
+        </div>
+    </main>
+        
+        
+        <script src="static/javascript.js"></script>
+    </body>
+    
+</html>
