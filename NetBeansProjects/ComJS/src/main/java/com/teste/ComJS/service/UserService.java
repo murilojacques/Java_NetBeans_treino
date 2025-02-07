@@ -5,6 +5,7 @@
 
 package com.teste.ComJS.service;
 
+import com.teste.ComJS.data.UserEntity;
 import com.teste.ComJS.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,10 @@ public class UserService {
     
     @Autowired
     UserRepository userRepository;
-    
-    
+
+    public void cadastrarUser(UserEntity user){
+        user.setId(null);
+        userRepository.save(user);
+    }
+
 }

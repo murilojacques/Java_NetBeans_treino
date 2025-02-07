@@ -36,11 +36,10 @@ public class UserEntity implements Serializable{
     
     @Column(nullable = false)
     @Size(max = 13, min = 13)
-    private Long rg;
+    private String rg;
     
     @Column(nullable = false)
-    @Size(max = 11, min = 11)
-    private Long cpf;
+    private String cpf;
 
     
     
@@ -68,19 +67,17 @@ public class UserEntity implements Serializable{
         this.email = email;
     }
 
-    public Long getRg() {
-        return rg;
-    }
+    public String getRg() { return rg; }
 
-    public void setRg(Long rg) {
+    public void setRg(String rg) {
         this.rg = rg;
     }
 
-    public Long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
     
