@@ -68,7 +68,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <td th:text="${funcionario.idade}"></td>
                         <td th:text="${funcionario.cpf}"></td>
                         <td th:text="${funcionario.email}"></td>
-                        <td> <a th:href="@{/deletarFuncionario/{id} (id = ${funcionario.id})}"><button type="button" class="btn btn-danger">Excluir</button></a></td>
+                        <td><a th:href="@{/deletarFuncionario/{id} (id = ${funcionario.id})}"><button type="button" class="btn btn-danger">Excluir</button></a></td>
                         <td><a th:href="@{/pagAtualizarFuncionario/{id} (id = ${funcionario.id})}"><button type="button" class="btn btn-primary">Editar</button></a></td>
                         <td><a th:href="@{/pagDetalhesFuncionario/{id} (id = ${funcionario.id})}"><button type="button" class="btn btn-success">Adic. Dependente</button></a></td>
                             

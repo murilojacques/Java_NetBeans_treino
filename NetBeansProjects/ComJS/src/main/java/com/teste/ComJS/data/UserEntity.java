@@ -35,10 +35,11 @@ public class UserEntity implements Serializable{
     private String email;
     
     @Column(nullable = false)
-    @Size(max = 13, min = 13)
+    @Size(max = 13)
     private String rg;
     
     @Column(nullable = false)
+    @Size(max = 13)
     private String cpf;
 
     

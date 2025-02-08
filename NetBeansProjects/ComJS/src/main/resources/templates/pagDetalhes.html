@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+              accesskey=""integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="../css/css.css" type="text/css"/>
+    </head>
+    <body>
+         <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+                <div class="container-fluid">
+
+                    <a class="navbar-brand" href="#">App RH</a>
+
+                    <div id="headerButton">
+                        <button class="openbtn" onclick="openNav()"> Open Sidebar</button>
+                    </div>
+
+                    <div id="mySidebar" class="sidebar">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                        <a href="#">About</a>
+                        <a href="#">Services</a>
+                        <a href="#">Clients</a>
+                        <a href="#">Contact</a>
+                    </div>
+
+                </div>
+            </nav>
+        </header>
+        
+        <br>
+            
+        <main th:object="${user}" class="container w-75">
+            
+            <h1>Detalhes do Funcionario</h1>
+            
+            <br>
+                
+            <div class="container mx-auto w-100">
+                <div id="divDetalhesUser">
+                    <p><b>Id:  </b><span class="dadosUsuario" th:text="${user.id}"></span></p>
+                    <p><b>Nome:  </b><span class="class" th:text="${user.nome}"></span></p>
+                    <p><b>Email:  </b><span class="class" th:text="${user.email}"></span></p>
+                    <p><b>RG:  </b><span class="class" th:text="${user.rg}"></span></p>
+                    <p><b>CPF:  </b><span class="class" th:text="${user.cpf}"></span></p>
+                </div>
+
+                <br>
+                <br>
+
+                <h2>Atualizar dados do Usuario</h2>
+                <br>
+                <div>
+                    <form class="" th:action="@{/atualizarUser/{id} (id = ${user.id})}" th:object="${updateUser}" method="post">
+
+                        <div class="form-group">
+                            <label><b>Nome: </b></label>
+                            <input type="text" class="form-control" th:field="*{nome}" placeholder="${user.nome}">
+                            <small class="form-text text-muted">*Digite o seu Nome</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label><b>Email: </b></label>
+                            <input type="text" class="form-control" th:field="*{email}" placeholder="${user.email}">
+                            <small class="form-text text-muted">*Digite o seu Email</small>
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col">
+                                <div class="form-group">
+                                    <label><b>RG: </b></label>
+                                    <input type="text" class="form-control w-75" th:field="*{rg}" placeholder="${user.rg}">
+                                    <small class="form-text text-muted">*Digite o seu RG</small>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-group">
+                                    <label><b>CPF: </b></label>
+                                    <input type="text" class="form-control w-75" th:field="*{cpf}" placeholder="${user.cpf}">
+                                    <small class="form-text text-muted">*Digite o seu CPF</small>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                       <button type="submit" class="btn btn-success">Cadastrar Usuario</button> 
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                       
+                        
+                        <div class="col" >
+                            <div th:class="${classe}">
+                                <span th:text="${msg}" class="class"></span>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+                <a th:href="@{/}">voltar</a>
+            </div>
+            
+        </main>
+        
+        <br>
+        <br>
+        
+        <div class="footer-copyright fixed-bottom bg-dark text-center py-3">
+                <span class="text-light align-middle">| App RH - UC 12 | - ©
+                    2022 Copyright: CTM Supervisão de Educação Online</span>
+        </div>
+        
+        <script src="../js/js.js" type="text/javascript"></script>
+    </body>
+</html>
