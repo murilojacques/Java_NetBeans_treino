@@ -14,7 +14,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </head>
     <body>
          <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
 
                 <div class="container-fluid">
 
@@ -38,7 +38,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         
         <br>
             
-        <main th:object="${user}" class="container w-75">
+            <main th:object="${user}" id="mainDetalhesFunc" class="container w-75">
             
             <h1>Detalhes do Funcionario</h1>
             
@@ -63,13 +63,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                         <div class="form-group">
                             <label><b>Nome: </b></label>
-                            <input type="text" class="form-control" th:field="*{nome}" placeholder="${user.nome}">
+                            <input type="text" class="form-control" th:field="*{nome}" th:placeholder="${user.nome}">
                             <small class="form-text text-muted">*Digite o seu Nome</small>
                         </div>
 
                         <div class="form-group">
                             <label><b>Email: </b></label>
-                            <input type="text" class="form-control" th:field="*{email}" placeholder="${user.email}">
+                            <input type="text" class="form-control" th:field="*{email}" th:placeholder="${user.email}">
                             <small class="form-text text-muted">*Digite o seu Email</small>
                         </div>
 
@@ -79,7 +79,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <div class="col">
                                 <div class="form-group">
                                     <label><b>RG: </b></label>
-                                    <input type="text" class="form-control w-75" th:field="*{rg}" placeholder="${user.rg}">
+                                    <input type="text" class="form-control w-75" th:field="*{rg}" th:placeholder="${user.rg}">
                                     <small class="form-text text-muted">*Digite o seu RG</small>
                                 </div>
                             </div>
@@ -87,40 +87,47 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <div class="col">
                                 <div class="form-group">
                                     <label><b>CPF: </b></label>
-                                    <input type="text" class="form-control w-75" th:field="*{cpf}" placeholder="${user.cpf}">
+                                    <input type="text" class="form-control w-75" th:field="*{cpf}" th:placeholder="${user.cpf}">
                                     <small class="form-text text-muted">*Digite o seu CPF</small>
                                 </div>
                             </div>
+
+                        </div>
+                        
+                        <br>
+                        
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                   <button type="submit" class="btn btn-success">Cadastrar Usuario</button> 
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <button th:href="@{/}" class="btn btn-dismissible">voltar</button>
+                            </div>
                             
                             <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                       <button type="submit" class="btn btn-success">Cadastrar Usuario</button> 
+                                <div class="col" >
+                                    <div th:class="${classe}">
+                                        <span th:text="${msg}" class="class">aaaa</span>
                                     </div>
                                 </div>
                             </div>
-                            
-                        </div>
-
-                       
-                        
-                        <div class="col" >
-                            <div th:class="${classe}">
-                                <span th:text="${msg}" class="class"></span>
-                            </div>
+                               
                         </div>
                         
                     </form>
                 </div>
-                <a th:href="@{/}">voltar</a>
+                    
             </div>
-            
+                
         </main>
-        
+                
         <br>
         <br>
         
-        <div class="footer-copyright fixed-bottom bg-dark text-center py-3">
+        <div class="footer-copyright fixed-bottom bg-dark text-center py-2">
                 <span class="text-light align-middle">| App RH - UC 12 | - ©
                     2022 Copyright: CTM Supervisão de Educação Online</span>
         </div>

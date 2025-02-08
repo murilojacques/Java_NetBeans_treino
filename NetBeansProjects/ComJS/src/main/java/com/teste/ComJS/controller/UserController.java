@@ -69,7 +69,7 @@ public class UserController {
         UserEntity user = userService.findUserById(id);
         
         mv.addObject("user", user);
-        mv.addObject("updateUser", new UserEntity());
+        mv.addObject("updateUser", user);
         
         return mv;
     }
@@ -81,12 +81,12 @@ public class UserController {
         if(results.hasErrors()){
             attribute.addFlashAttribute("msg", "Falha ao cadastrar ususario, verifique os campos");
             attribute.addFlashAttribute("classe", "alert alert-success alert-danger");
-            return "redirect:/pagDetalhes";
+            return "redirect:/pagDetalhes/"+id;
         }
         
         userService.updateUser(updatedUser, id);
         attribute.addFlashAttribute("msg", "Usuario Cadastrado com Sucesso");
         attribute.addFlashAttribute("classe", "alert alert-success alert-dismissible");
-        return "redirect:/pagDetalhes"+id;
+        return "redirect:/pagDetalhes/"+id;
     }
 }

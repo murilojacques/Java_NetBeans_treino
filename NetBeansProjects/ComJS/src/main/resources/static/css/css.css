@@ -145,4 +145,8 @@ body{
 #navbarNav{
     border: 1px solid red;
 }
+
+#mainDetalhesFunc{
+    margin-bottom: 25px;
+}
 /*------------------------------------------ Id ------------------------------------------*/
