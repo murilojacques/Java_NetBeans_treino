@@ -24,6 +24,8 @@ function addTarefa(){
             <div class="itemBotao">
                 <button class="delete" onclick="deletar(${contador})"><i class="material-symbols-outlined"></i> delete</button>
             </div>
+
+            <a href="pag2.html">pag2</a>
         </div>`;
 
         //Adicionar novo item no Main

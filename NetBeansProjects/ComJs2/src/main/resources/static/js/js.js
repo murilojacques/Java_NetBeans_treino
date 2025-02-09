@@ -6,6 +6,9 @@
 function funcao(){
     let div = document.getElementById("content");
     
-    div.innerHTML += `<a th:href="@{/pag2}"></a>
-    <h1 th:text=""></h1>`;
+    alert("Funcionou");
+    console.log("Funcionou");
+    
+    div.innerHTML += `<a href="@{/pag2}">aaaaaa</a>
+    <h1 th:text="">bbbbbbb</h1>`;
 }
