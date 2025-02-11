@@ -15,12 +15,26 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
         <div class="container w-75 h-75 mx-auto my-auto">
             <button type="button" onclick="funcao()" value="">Botão</button>
-            
+
             <div id="content">
-                
+
             </div>
+
+            <br>
+            <br>
+
+            <button type="button" onclick="addForm()" value="">Botão</button>
+
+
+            <form th:action="@{/cadastrarUser}" th:object="${user}" method="post">
+                <div class="form-group" id="divForm">
+                    
+                </div>
+            </form>
+
+
         </div>
-        
+
         <script src="../js/js.js" type="text/javascript"></script>
     </body>
 </html>

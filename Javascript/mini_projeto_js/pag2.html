@@ -7,5 +7,13 @@
 </head>
 <body>
     <h1>aAAAAAAAAAAAAAAAAAA</h1>
+
+
+    <form th:action="@{/cadastrarUser}" method="post">
+        <p><b>Nome: </b><input type="text" th:field="*{nome}"></p>
+        <p><b>Idade: </b><input type="text" th:field="*{idade}"></p>
+        <p><b>Email: </b><input type="text" th:field="*{email}"></p>
+        <input type="submit" class="btn btn-primary" text="Confirmar">
+    </form>
 </body>
 </html>
