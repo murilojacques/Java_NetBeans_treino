@@ -31,6 +31,8 @@ public class EmpresaEntity {
     
     private String numeroContato;
     
+    private String Descricao;
+    
     private float salario;
     
     @OneToMany(mappedBy = "empregador", cascade = CascadeType.REMOVE)
