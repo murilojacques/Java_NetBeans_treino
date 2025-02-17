@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
 <html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +13,6 @@
     <title>Document</title>
 </head>
 <body>
-    
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
@@ -56,7 +59,7 @@
                     
                     <div class="col">
                         <div class="form-group">
-                            <p><b>Salario: </b><input type="number" class="form-control" pattern="^\d+(\.|\,)\d{2}$"></p>
+                            <p><b>Idade: </b><input type="number" class="form-control" pattern="^\d+(\.|\,)\d{2}$"></p>
                         </div>
                     </div>
                 </div>
@@ -71,14 +74,14 @@
                     
                     <div class="col">
                         <div class="form-group">
-                            <p><b>Numero de Contato: </b><input type="text" class="form-control"></p>
+                            <p><b>CPF: </b><input type="text" class="form-control"></p>
                         </div>
                     </div> 
                 </div>
 
 
                 <div class="form-group">
-                    <p><b>Descricao da Vaga: </b></p>
+                    <p><b>Liste sua Experiência: </b></p>
                     <textarea id="" class="form-control" maxlength="254" rows="3"></textarea>
                 </div>
                 
@@ -86,7 +89,7 @@
                 <br>
 
                 <div class="form-group" id="divBotao">
-                    <button type="submit" class="btn btn-success">Cadastrar Empresa</button>
+                    <button type="submit" class="btn btn-success">Cadastrar Funcionario</button>
                     <button class="btn btn-danger" onclick="apagarCampos()">Apagar Campos</button>
                     <a href="" class="btn btn-primary">Voltar</a>
                 </div>

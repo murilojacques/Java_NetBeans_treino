@@ -87,4 +87,12 @@ body{
     background-color: #007cff;
     color: white;
 }
+
+#divBotao > a{
+  margin: 25px;
+}
+
+#divBotao > button{
+  margin-left: 15px;
+}
 /****************************** IDs ******************************/

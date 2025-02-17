@@ -38,6 +38,7 @@ public class Controller {
     
     @GetMapping("pagCadastrarEmpresa")
     public ModelAndView pagCadastrarEmpresa(){
-        ModelAndView mv = new ModelAndView("");
+        ModelAndView mv = new ModelAndView("pagCadastrarEmpresa");
+        return mv;
     }
 }

@@ -26,6 +26,8 @@ public class FuncionarioEntity {
     
     private String email;
     
+    private int cpf;
+    
     private int idade;
     
     private String experiencia;
