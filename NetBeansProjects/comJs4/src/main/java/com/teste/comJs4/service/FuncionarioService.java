@@ -9,6 +9,7 @@ import com.teste.comJs4.data.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.teste.comJs4.data.FuncionarioEntity;
+import java.util.List;
 
 /**
  *
@@ -28,5 +29,26 @@ public class FuncionarioService {
     public void adicionarEmpregador(EmpresaEntity empresa, FuncionarioEntity func) {
         func.setEmpregador(empresa);
         funcionarioRepository.save(func);
+    }
+
+    public FuncionarioEntity cadastrarFuncionario(FuncionarioEntity func, EmpresaEntity empresa) {
+        func.setId(null);
+        func.setEmpregador(empresa);
+        funcionarioRepository.save(func);
+        return func;
+    }
+
+   /*
+    void deletarFuncPorEmpresa(EmpresaEntity empresa) {
+        List<FuncionarioEntity> funcs = empresa.getFuncionarios();
+        
+        for(FuncionarioEntity func : funcs){
+            funcionarioRepository.delete(func);
+        }
+    }
+*/
+
+    public FuncionarioEntity findFuncionarioById(Integer id) {
+        return funcionarioRepository.findById(id).orElse(null);
     }
 }

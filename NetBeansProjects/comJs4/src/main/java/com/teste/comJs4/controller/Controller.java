@@ -42,6 +42,7 @@ public class Controller {
     
     
     
+    
     @GetMapping("/pagCadastrarEmpresa")
     public ModelAndView pagCadastrarEmpresa(){
         ModelAndView mv = new ModelAndView("pagCadastrarEmpresa");
@@ -99,6 +100,7 @@ public class Controller {
     public ModelAndView pagDetalhesEmpresa(@PathVariable("id") Integer id){
         ModelAndView mv = new ModelAndView("pagDetalhesEmpresa");
         EmpresaEntity empresa = empresaService.findEmpresaById(id);
+        
         mv.addObject("empresa", empresa);
         mv.addObject("funcionario", new FuncionarioEntity());
         return mv;
@@ -128,17 +130,43 @@ public class Controller {
             return "redirect:/cadastrarFuncionario/"+id;
         }
         
-        empresaService.adicionarFuncionario(empresa, func);
-        funcionarioService.adicionarEmpregador(empresa, func);
+        FuncionarioEntity funcionario = funcionarioService.cadastrarFuncionario(func, empresa);
+        empresaService.adicionarFuncionario(empresa, funcionario);
         
-        return "redirect:/cadastrarFuncionario/"+id;
+        return "redirect:/pagDetalhesEmpresa/"+id;
     }
     
-   
-    /*
-    @PostMapping("/deletarEmpresa/{id}")
-    public ModelAndView deletarEmpresa(@PathVariable("id") Integer id, BindingResult results, RedirectAttributes attributes){
-        empresaService.deletarEmpresa(id);
+    @GetMapping("/pagVerListaFuncionarios/{id}")
+    public ModelAndView pagVerFuncionarios(@PathVariable("id") Integer id){
+        ModelAndView mv = new ModelAndView("pagVerListaFuncionarios");
+        
+        EmpresaEntity empresa = empresaService.findEmpresaById(id);
+        List<FuncionarioEntity> funcionarios = empresa.getFuncionarios();
+        
+        mv.addObject("funcionarios", funcionarios);
+        mv.addObject("empresa", empresa);
+        return mv;
     }
-*/
+    
+    @GetMapping("/pagDetalhesFuncionario/{id}")
+    public ModelAndView pagDetalhesFuncionario(@PathVariable("id") Integer id){
+        ModelAndView mv = new ModelAndView("pagDetalhesFuncionario");
+        FuncionarioEntity func = funcionarioService.findFuncionarioById(id);
+        mv.addObject("funcionario", func);
+        
+        return mv;
+    }
+    
+    /**
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/deletarEmpresa/{id}")
+    public String deletarEmpresa(@PathVariable("id") Integer id){
+        empresaService.deletarEmpresa(id, funcionarioService);
+        return "redirect:/pagListaEmpresas";
+    }
+
+    
 }

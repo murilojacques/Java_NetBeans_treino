@@ -49,13 +49,17 @@ public class EmpresaService {
         empresaRepository.save(newEmpresa);
     }
 
-    public void deletarEmpresa(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void deletarEmpresa(Integer id, FuncionarioService funcService) {
+        //EmpresaEntity empresa = empresaRepository.findById(id).orElse(null);
+        //funcService.deletarFuncPorEmpresa(empresa);
+        System.out.println("ID: " + id);
+        empresaRepository.deleteById(id);
     }
 
     public void adicionarFuncionario(EmpresaEntity empresa, FuncionarioEntity func) {
         List<FuncionarioEntity> funcionarios = empresa.getFuncionarios();
         funcionarios.add(func);
+        System.out.println(funcionarios.get(0).getNome());
         empresa.setFuncionarios(funcionarios);
         empresaRepository.save(empresa);
     }
