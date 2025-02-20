@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="#">App RH</a>
+
+                <div id="headerButton">
+                    <button class="openbtn" onclick="openNav()">&#9776; Open Sidebar</button>
+                </div>
+
+
+                <div id="mySidebar" class="sidebar">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <a href="#">About</a>
+                    <a href="#">Cadastrar Empresa</a>
+                    <a href="#">Listar Empresas</a>
+                    <a href="#">Cadastrar Funcionario</a>
+                    <a href="#">Listar Funcionario</a>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <br><br>
+
+    <main class="container w-75">
+
+        <h1>Cadastrar Empresa</h1>
+
+        <br>
+        <br>
+
+        <div class="container w-100 mx-auto">
+            
+            <form th:action="@{/cadastrarEmpresa}" th:object="${empresa}" method="post">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <p><b>Nome: </b><input type="text" th:field="*{nome}" class="form-control"></p>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <div class="form-group">
+                            <p><b>Salario: </b><input type="number" th:field="*{salario}" class="form-control" pattern="^\d+(\.|\,)\d{2}$"></p>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <p><b>Email de Contato: </b><input type="text" th:field="*{emailContato}" class="form-control"></p>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <div class="form-group">
+                            <p><b>Numero de Contato: </b><input type="text" th:field="*{numeroContato}" class="form-control"></p>
+                        </div>
+                    </div> 
+                </div>
+
+
+                <div class="form-group">
+                    <p><b>Descricao da Vaga: </b></p>
+                    <textarea id="" class="form-control" th:field="*{Descricao}" maxlength="254" rows="3"></textarea>
+                </div>
+                
+                <br>
+                <br>
+
+                <div class="form-group" id="divBotao">
+                    <button type="submit" class="btn btn-success">Cadastrar Empresa</button>
+                    <button class="btn btn-danger" onclick="apagarCampos()">Apagar Campos</button>
+                    <a th:href="@{/}" class="btn btn-primary">Voltar</a>
+                </div>
+                
+            </form>
+        </div>
+    </main>
+    
+    <div style="height: 100px;"></div>
+
+            <div class="footer-copyright fixed-bottom bg-primary text-center py-3">
+                <span class="text-light align-middle">| App RH - UC 12 | - ©
+                    2022 Copyright: CTM Supervisão de Educação Online</span>
+            </div>
+    
+    <script src="../js/js.js" type="text/javascript"></script>
+</body>
+</html>
+

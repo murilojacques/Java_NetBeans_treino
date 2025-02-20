@@ -49,5 +49,46 @@ public class CandidatosEntity implements Serializable{
     @ManyToOne
     @JoinColumn(name = "vaga_id", nullable = false, updatable = false)
     private VagasEntity vaga;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNomeCandidato() {
+        return nomeCandidato;
+    }
+
+    public void setNomeCandidato(String nomeCandidato) {
+        this.nomeCandidato = nomeCandidato;
+    }
+
+    public int getRg() {
+        return rg;
+    }
+
+    public void setRg(int rg) {
+        this.rg = rg;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public VagasEntity getVaga() {
+        return vaga;
+    }
+
+    public void setVaga(VagasEntity vaga) {
+        this.vaga = vaga;
+    }
      
+    
 }

@@ -24,7 +24,7 @@ import lombok.Data;
  *
  * @author Murilo
  */
-@Data
+//@Data
 @Entity
 @Table(name="Vagas", uniqueConstraints = {
     @UniqueConstraint(columnNames = "id")})
@@ -53,4 +53,55 @@ public class VagasEntity implements Serializable{
             
     @OneToMany(mappedBy = "vaga", cascade = CascadeType.REMOVE)
     private List<CandidatosEntity> candidatos = new ArrayList<CandidatosEntity>();
+
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public String getSalario() {
+        return salario;
+    }
+
+    public void setSalario(String salario) {
+        this.salario = salario;
+    }
+
+    public List<CandidatosEntity> getCandidatos() {
+        return candidatos;
+    }
+
+    public void setCandidatos(List<CandidatosEntity> candidatos) {
+        this.candidatos = candidatos;
+    }
+    
+    
 }
