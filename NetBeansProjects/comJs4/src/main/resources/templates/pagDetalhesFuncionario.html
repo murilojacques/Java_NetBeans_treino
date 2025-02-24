@@ -47,7 +47,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <h1>Detalhes Funcionario</h1>
             <br>
             
-            <form action="action" th:object="${funcionario}" method="post">
+            <form th:action="@{/atualizarFuncionario/{id} (id = ${funcionario.id})}" th:object="${funcionario}" method="post">
                 <div class="row">
                     <div class="col">
                         <div class="form-group">

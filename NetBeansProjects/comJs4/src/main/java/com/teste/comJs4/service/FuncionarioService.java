@@ -51,4 +51,20 @@ public class FuncionarioService {
     public FuncionarioEntity findFuncionarioById(Integer id) {
         return funcionarioRepository.findById(id).orElse(null);
     }
+
+    public void atualizarFuncionario(Integer id, FuncionarioEntity func) {
+        FuncionarioEntity newFunc = funcionarioRepository.findById(id).orElse(null);
+        
+        newFunc.setNome(func.getNome());
+        newFunc.setIdade(func.getIdade());
+        newFunc.setEmail(func.getEmail());
+        newFunc.setExperiencia(func.getExperiencia());
+        newFunc.setCpf(func.getCpf());
+        
+        funcionarioRepository.save(newFunc);
+    }
+
+    public void deletarFuncionario(FuncionarioEntity func) {
+        funcionarioRepository.delete(func);
+    }
 }

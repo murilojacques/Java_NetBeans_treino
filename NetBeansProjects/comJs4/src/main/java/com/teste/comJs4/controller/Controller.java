@@ -143,6 +143,10 @@ public class Controller {
         EmpresaEntity empresa = empresaService.findEmpresaById(id);
         List<FuncionarioEntity> funcionarios = empresa.getFuncionarios();
         
+        for(FuncionarioEntity f : funcionarios){
+            System.out.println("Nome: " + f.getNome());
+        }
+        
         mv.addObject("funcionarios", funcionarios);
         mv.addObject("empresa", empresa);
         return mv;
@@ -157,6 +161,17 @@ public class Controller {
         return mv;
     }
     
+    @PostMapping("/atualizarFuncionario/{id}")
+    public String atualizarFuncionario(@PathVariable("id") Integer id, @ModelAttribute("funcionario") @Valid FuncionarioEntity func, RedirectAttributes attributes, BindingResult result){
+        int empregadorId = funcionarioService.findFuncionarioById(id).getEmpregador().getId();
+        if(result.hasErrors()){
+            return "redirect:/pagVerListaFuncionarios/"+empregadorId;
+        }
+        
+        funcionarioService.atualizarFuncionario(id, func);
+        return "redirect:/pagVerListaFuncionarios/"+empregadorId;
+    }
+    
     /**
      *
      * @param id
@@ -168,5 +183,13 @@ public class Controller {
         return "redirect:/pagListaEmpresas";
     }
 
-    
+    @GetMapping("/deletarFuncionario/{id}")
+    public String deletarFuncionario(@PathVariable("id") Integer id){
+        FuncionarioEntity func = funcionarioService.findFuncionarioById(id);
+        EmpresaEntity empresa = empresaService.findEmpresaById(func.getEmpregador().getId());
+        
+        funcionarioService.deletarFuncionario(func);
+        //empresaService.deletarFuncionario
+        return "redirect:/pagVerListaFuncionarios/"+func.getEmpregador().getId();
+    }
 }
