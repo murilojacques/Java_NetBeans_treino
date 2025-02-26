@@ -26,4 +26,9 @@ public class UserController {
         System.out.println("Nome: "+user.getUsername());
         return userService.register(user);
     }
+    
+    @PostMapping("/login")
+    public String login(@RequestBody UserEntity user){
+        return userService.verify(user);
+    }
 }
