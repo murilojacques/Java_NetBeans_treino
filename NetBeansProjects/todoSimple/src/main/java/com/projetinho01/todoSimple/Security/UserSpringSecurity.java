@@ -18,7 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  *
  * @author Murilo
  */
-@Data
+//@Data
 public class UserSpringSecurity implements UserDetails{
     
     private Long id;
@@ -33,6 +33,42 @@ public class UserSpringSecurity implements UserDetails{
         this.authorities = profileEnums.stream().map(x -> new SimpleGrantedAuthority(x.getDescription())).collect(Collectors.toList());
     }
 
+    
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
+
+    
+    
     
     @Override
     public boolean isAccountNonExpired() {

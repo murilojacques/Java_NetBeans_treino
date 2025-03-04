@@ -29,12 +29,27 @@ import lombok.NoArgsConstructor;
  *
  * @author Murilo
  */
-@Data
+//@Data
 @Entity
 @Table(name = "user", uniqueConstraints = {
     @UniqueConstraint(columnNames = "id")})
-@NoArgsConstructor
+//@NoArgsConstructor
 public class PessoaEntity implements Serializable{
+
+    public PessoaEntity(Long id, String nome, String senha, int rg, int cpf, float saldo) {
+        this.id = id;
+        this.nome = nome;
+        this.senha = senha;
+        this.rg = rg;
+        this.cpf = cpf;
+        this.saldo = saldo;
+    }
+    
+    @java.lang.SuppressWarnings(value = "all")
+    public PessoaEntity() {
+
+    }
+    
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,14 +79,12 @@ public class PessoaEntity implements Serializable{
     
     private float saldo;
 
-    @java.lang.SuppressWarnings(value = "all")
-    public PessoaEntity() {
-
-    }
-    
-    
     
 
+    
+    
+    
+    
     public Long getId() {
         return id;
     }
@@ -96,20 +109,20 @@ public class PessoaEntity implements Serializable{
         this.senha = senha;
     }
 
+    public List<RolesEntity> getRole() {
+        return role;
+    }
+
+    public void setRole(List<RolesEntity> role) {
+        this.role = role;
+    }
+
     public int getRg() {
         return rg;
     }
 
     public void setRg(int rg) {
         this.rg = rg;
-    }
-
-    public float getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(float saldo) {
-        this.saldo = saldo;
     }
 
     public int getCpf() {
@@ -119,6 +132,13 @@ public class PessoaEntity implements Serializable{
     public void setCpf(int cpf) {
         this.cpf = cpf;
     }
-    
+
+    public float getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(float saldo) {
+        this.saldo = saldo;
+    }
     
 }

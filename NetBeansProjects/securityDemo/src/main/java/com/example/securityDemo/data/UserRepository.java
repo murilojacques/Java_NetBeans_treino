@@ -2,16 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package com.projeto.TesteTokenVerification.Data;
+package com.example.securityDemo.data;
 
-import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Murilo
  */
-public interface UserRepository extends JpaRepository<PessoaEntity, Integer>{
-    Optional<PessoaEntity> findByUsername(String username);
-    Boolean existsByUsername(String username);
+@Repository
+public interface UserRepository extends JpaRepository<UserEntity, Integer>{
+    
 }

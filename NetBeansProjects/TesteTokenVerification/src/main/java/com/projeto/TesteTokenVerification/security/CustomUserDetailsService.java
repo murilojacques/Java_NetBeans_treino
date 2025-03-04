@@ -7,7 +7,13 @@ package com.projeto.TesteTokenVerification.security;
 import com.projeto.TesteTokenVerification.Data.PessoaEntity;
 import com.projeto.TesteTokenVerification.Data.RolesEntity;
 import com.projeto.TesteTokenVerification.Data.UserRepository;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -30,11 +36,15 @@ public class CustomUserDetailsService implements UserDetailsService{
     }
     
     
-    
+  
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        PessoaEntity user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("username not found"));
-        return new User(user.getUsername(), user.get);
+        PessoaEntity user = userRepository.findByUsername(username).orElseThrow();
+        return new User(user.getNome(), user.getSenha(), mapRolesAuthorities(user.getRole()));
+    }
+
+    private Collection<? extends GrantedAuthority> mapRolesAuthorities(List<RolesEntity> roles) {
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getUsername())).collect(Collectors.toList());
     }
     
 }
