@@ -1,0 +1,124 @@
+20-Mar-2025 12:23:00.410 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.102
+20-Mar-2025 12:23:00.415 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Mar 3 2025 19:33:14 UTC
+20-Mar-2025 12:23:00.415 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 9.0.102.0
+20-Mar-2025 12:23:00.415 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 11
+20-Mar-2025 12:23:00.415 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+20-Mar-2025 12:23:00.415 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+20-Mar-2025 12:23:00.415 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk-23
+20-Mar-2025 12:23:00.415 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           23+37-2369
+20-Mar-2025 12:23:00.416 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+20-Mar-2025 12:23:00.416 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102
+20-Mar-2025 12:23:00.416 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102
+20-Mar-2025 12:23:00.422 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+20-Mar-2025 12:23:00.422 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang.invoke=ALL-UNNAMED
+20-Mar-2025 12:23:00.422 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
+20-Mar-2025 12:23:00.422 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+20-Mar-2025 12:23:00.423 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+20-Mar-2025 12:23:00.423 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+20-Mar-2025 12:23:00.423 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+20-Mar-2025 12:23:00.423 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\conf\logging.properties
+20-Mar-2025 12:23:00.423 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+20-Mar-2025 12:23:00.423 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+20-Mar-2025 12:23:00.423 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+20-Mar-2025 12:23:00.423 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dsun.io.useCanonCaches=false
+20-Mar-2025 12:23:00.424 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+20-Mar-2025 12:23:00.424 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102
+20-Mar-2025 12:23:00.424 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102
+20-Mar-2025 12:23:00.424 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\temp
+20-Mar-2025 12:23:00.454 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded Apache Tomcat Native library [1.3.1] using APR version [1.7.4].
+20-Mar-2025 12:23:00.455 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+20-Mar-2025 12:23:00.455 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+20-Mar-2025 12:23:00.459 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 3.0.14 4 Jun 2024]
+20-Mar-2025 12:23:00.701 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-5050"]
+20-Mar-2025 12:23:00.717 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [489] milliseconds
+20-Mar-2025 12:23:00.783 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+20-Mar-2025 12:23:00.783 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.102]
+20-Mar-2025 12:23:00.802 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Diretório de instalação da aplicação web [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\webapps\docs]
+20-Mar-2025 12:23:01.050 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\webapps\docs] has finished in [246] ms
+20-Mar-2025 12:23:01.050 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Diretório de instalação da aplicação web [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\webapps\examples]
+20-Mar-2025 12:23:01.391 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\webapps\examples] has finished in [341] ms
+20-Mar-2025 12:23:01.391 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Diretório de instalação da aplicação web [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\webapps\host-manager]
+20-Mar-2025 12:23:01.420 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\webapps\host-manager] has finished in [29] ms
+20-Mar-2025 12:23:01.420 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Diretório de instalação da aplicação web [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\webapps\manager]
+20-Mar-2025 12:23:01.447 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\webapps\manager] has finished in [27] ms
+20-Mar-2025 12:23:01.447 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Diretório de instalação da aplicação web [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\webapps\ROOT]
+20-Mar-2025 12:23:01.456 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\webapps\ROOT] has finished in [9] ms
+20-Mar-2025 12:23:01.456 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-5050"]
+20-Mar-2025 12:23:01.485 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [753] milliseconds
+20-Mar-2025 12:23:02.105 INFO [http-nio-5050-exec-2] org.apache.catalina.startup.HostConfig.undeploy Undeploying context []
+20-Mar-2025 12:23:02.118 INFO [http-nio-5050-exec-4] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\conf\Catalina\localhost\ROOT.xml]
+20-Mar-2025 12:23:02.118 WARNING [http-nio-5050-exec-4] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [] in deployment descriptor [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\conf\Catalina\localhost\ROOT.xml] has been ignored
+20-Mar-2025 12:23:02.147 WARNING [http-nio-5050-exec-4] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [6.0]. Default version will be used.
+20-Mar-2025 12:23:02.157 WARNING [http-nio-5050-exec-4] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [5.0]. Default version will be used.
+20-Mar-2025 12:23:02.751 INFO [http-nio-5050-exec-4] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+20-Mar-2025 12:23:02.751 INFO [http-nio-5050-exec-4] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\conf\Catalina\localhost\ROOT.xml] has finished in [633] ms
+20-Mar-2025 12:23:02.763 INFO [http-nio-5050-exec-6] org.apache.catalina.util.LifecycleBase.start The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[]] after start() had already been called. The second call will be ignored.
+20-Mar-2025 14:26:52.756 INFO [main] org.apache.catalina.core.StandardServer.await A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+20-Mar-2025 14:26:52.757 INFO [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-5050"]
+20-Mar-2025 14:26:52.758 INFO [main] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+20-Mar-2025 14:26:52.773 INFO [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-5050"]
+20-Mar-2025 14:26:52.791 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-5050"]
+20-Mar-2025 14:26:53.702 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.102
+20-Mar-2025 14:26:53.705 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Mar 3 2025 19:33:14 UTC
+20-Mar-2025 14:26:53.705 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 9.0.102.0
+20-Mar-2025 14:26:53.706 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 11
+20-Mar-2025 14:26:53.706 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+20-Mar-2025 14:26:53.706 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+20-Mar-2025 14:26:53.706 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk-23
+20-Mar-2025 14:26:53.706 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           23+37-2369
+20-Mar-2025 14:26:53.707 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+20-Mar-2025 14:26:53.707 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102
+20-Mar-2025 14:26:53.707 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102
+20-Mar-2025 14:26:53.713 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+20-Mar-2025 14:26:53.713 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang.invoke=ALL-UNNAMED
+20-Mar-2025 14:26:53.714 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
+20-Mar-2025 14:26:53.714 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+20-Mar-2025 14:26:53.714 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+20-Mar-2025 14:26:53.714 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+20-Mar-2025 14:26:53.714 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+20-Mar-2025 14:26:53.714 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\conf\logging.properties
+20-Mar-2025 14:26:53.714 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+20-Mar-2025 14:26:53.714 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+20-Mar-2025 14:26:53.714 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+20-Mar-2025 14:26:53.715 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dsun.io.useCanonCaches=false
+20-Mar-2025 14:26:53.715 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+20-Mar-2025 14:26:53.715 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102
+20-Mar-2025 14:26:53.715 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102
+20-Mar-2025 14:26:53.715 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\temp
+20-Mar-2025 14:26:53.754 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded Apache Tomcat Native library [1.3.1] using APR version [1.7.4].
+20-Mar-2025 14:26:53.754 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+20-Mar-2025 14:26:53.754 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+20-Mar-2025 14:26:53.758 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 3.0.14 4 Jun 2024]
+20-Mar-2025 14:26:54.006 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-5050"]
+20-Mar-2025 14:26:54.023 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [488] milliseconds
+20-Mar-2025 14:26:54.097 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+20-Mar-2025 14:26:54.097 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.102]
+20-Mar-2025 14:26:54.106 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\conf\Catalina\localhost\ROOT.xml]
+20-Mar-2025 14:26:54.116 WARNING [main] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [] in deployment descriptor [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\conf\Catalina\localhost\ROOT.xml] has been ignored
+20-Mar-2025 14:26:54.238 WARNING [main] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [6.0]. Default version will be used.
+20-Mar-2025 14:26:54.257 WARNING [main] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [5.0]. Default version will be used.
+20-Mar-2025 14:26:54.977 INFO [main] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+20-Mar-2025 14:26:55.024 INFO [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\conf\Catalina\localhost\ROOT.xml] has finished in [918] ms
+20-Mar-2025 14:26:55.040 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Diretório de instalação da aplicação web [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\webapps\docs]
+20-Mar-2025 14:26:55.056 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\webapps\docs] has finished in [16] ms
+20-Mar-2025 14:26:55.056 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Diretório de instalação da aplicação web [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\webapps\examples]
+20-Mar-2025 14:26:55.346 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\webapps\examples] has finished in [290] ms
+20-Mar-2025 14:26:55.346 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Diretório de instalação da aplicação web [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\webapps\host-manager]
+20-Mar-2025 14:26:55.372 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\webapps\host-manager] has finished in [26] ms
+20-Mar-2025 14:26:55.372 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Diretório de instalação da aplicação web [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\webapps\manager]
+20-Mar-2025 14:26:55.395 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\webapps\manager] has finished in [23] ms
+20-Mar-2025 14:26:55.397 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-5050"]
+20-Mar-2025 14:26:55.405 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [1388] milliseconds
+20-Mar-2025 14:26:56.000 INFO [http-nio-5050-exec-8] org.apache.catalina.startup.HostConfig.undeploy Undeploying context []
+20-Mar-2025 14:26:56.016 INFO [http-nio-5050-exec-1] org.apache.catalina.startup.HostConfig.deployDescriptor Deploying deployment descriptor [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\conf\Catalina\localhost\ROOT.xml]
+20-Mar-2025 14:26:56.017 WARNING [http-nio-5050-exec-1] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [] in deployment descriptor [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\conf\Catalina\localhost\ROOT.xml] has been ignored
+20-Mar-2025 14:26:56.043 WARNING [http-nio-5050-exec-1] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [6.0]. Default version will be used.
+20-Mar-2025 14:26:56.051 WARNING [http-nio-5050-exec-1] org.apache.tomcat.util.descriptor.web.WebXml.setVersion Unknown version string [5.0]. Default version will be used.
+20-Mar-2025 14:26:56.595 INFO [http-nio-5050-exec-1] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+20-Mar-2025 14:26:56.595 INFO [http-nio-5050-exec-1] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [C:\Users\Murilo\Documents\NetBeansProjects\apache-tomcat-9.0.102\conf\Catalina\localhost\ROOT.xml] has finished in [579] ms
+20-Mar-2025 14:26:56.595 INFO [http-nio-5050-exec-3] org.apache.catalina.util.LifecycleBase.start The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[]] after start() had already been called. The second call will be ignored.
+20-Mar-2025 14:31:12.198 INFO [main] org.apache.catalina.core.StandardServer.await A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+20-Mar-2025 14:31:12.198 INFO [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-5050"]
+20-Mar-2025 14:31:12.198 INFO [main] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+20-Mar-2025 14:31:12.218 INFO [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-5050"]
+20-Mar-2025 14:31:12.220 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-5050"]

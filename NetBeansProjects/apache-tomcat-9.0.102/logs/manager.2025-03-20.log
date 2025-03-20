@@ -1,0 +1,13 @@
+20-Mar-2025 12:23:01.549 INFO [http-nio-5050-exec-2] org.apache.catalina.core.ApplicationContext.log Manager: init: Associated with Deployer 'Catalina:type=Deployer,host=localhost'
+20-Mar-2025 12:23:01.549 INFO [http-nio-5050-exec-2] org.apache.catalina.core.ApplicationContext.log Manager: init: Global resources are available
+20-Mar-2025 12:23:01.554 INFO [http-nio-5050-exec-8] org.apache.catalina.core.ApplicationContext.log Manager: list: Listing contexts for virtual host 'localhost'
+20-Mar-2025 12:23:01.556 INFO [http-nio-5050-exec-2] org.apache.catalina.core.ApplicationContext.log Manager: undeploy: Undeploying web application at '/'
+20-Mar-2025 12:23:02.117 INFO [http-nio-5050-exec-4] org.apache.catalina.core.ApplicationContext.log Manager: install: Installing context configuration at 'file:/C:/Users/Murilo/AppData/Local/Temp/context7852581325294926273.xml'
+20-Mar-2025 12:23:02.763 INFO [http-nio-5050-exec-6] org.apache.catalina.core.ApplicationContext.log Manager: start: Starting web application '/'
+20-Mar-2025 14:26:55.466 INFO [http-nio-5050-exec-4] org.apache.catalina.core.ApplicationContext.log Manager: init: Associated with Deployer 'Catalina:type=Deployer,host=localhost'
+20-Mar-2025 14:26:55.466 INFO [http-nio-5050-exec-4] org.apache.catalina.core.ApplicationContext.log Manager: init: Global resources are available
+20-Mar-2025 14:26:55.480 INFO [http-nio-5050-exec-10] org.apache.catalina.core.ApplicationContext.log Manager: list: Listing contexts for virtual host 'localhost'
+20-Mar-2025 14:26:55.482 INFO [http-nio-5050-exec-7] org.apache.catalina.core.ApplicationContext.log Manager: list: Listing contexts for virtual host 'localhost'
+20-Mar-2025 14:26:55.485 INFO [http-nio-5050-exec-8] org.apache.catalina.core.ApplicationContext.log Manager: undeploy: Undeploying web application at '/'
+20-Mar-2025 14:26:56.012 INFO [http-nio-5050-exec-1] org.apache.catalina.core.ApplicationContext.log Manager: install: Installing context configuration at 'file:/C:/Users/Murilo/AppData/Local/Temp/context17103101026822981811.xml'
+20-Mar-2025 14:26:56.595 INFO [http-nio-5050-exec-3] org.apache.catalina.core.ApplicationContext.log Manager: start: Starting web application '/'

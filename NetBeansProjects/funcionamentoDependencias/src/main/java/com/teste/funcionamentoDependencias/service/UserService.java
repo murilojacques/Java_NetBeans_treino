@@ -29,7 +29,7 @@ public class UserService {
     @Autowired
     JwtService jwtService;
     
-    BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(12);
     
     
     public void cadastrarUser(UserEntity user) {
@@ -44,6 +44,7 @@ public class UserService {
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
         
         if(authentication.isAuthenticated()){
+            System.out.println("token2: "+ jwtService.generateToken(user.getUsername()));
             return jwtService.generateToken(user.getUsername());
         }
         

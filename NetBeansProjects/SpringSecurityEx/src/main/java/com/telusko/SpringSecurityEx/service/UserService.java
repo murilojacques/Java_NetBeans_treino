@@ -29,7 +29,7 @@ public class UserService {
     @Autowired
     private JwtService jwtService;
     
-    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
     
     
     

@@ -7,6 +7,7 @@ package com.teste.funcionamentoDependencias.controller;
 import com.teste.funcionamentoDependencias.data.UserEntity;
 import com.teste.funcionamentoDependencias.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,8 @@ public class UserController {
     @GetMapping("/")
     public ModelAndView pagLogin(){
         ModelAndView mv = new ModelAndView("index");
+        Object nome = SecurityContextHolder.getContext().getAuthentication().getName();
+        System.out.println("Object Principal: "+nome);
         mv.addObject("User", new UserEntity());
         return mv;
     }
