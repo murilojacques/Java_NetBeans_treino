@@ -1,6 +1,6 @@
-application\se_security_01\config\DsInitializer.class
-application\se_security_01\controller\ByeController.class
 application\se_security_01\resources\JakartaEE11Resource.class
-application\se_security_01\controller\HiController.class
-application\se_security_01\config\MyAppConfig.class
+config\MyAppConfig.class
+controller\ByeController.class
+controller\HiController.class
+config\DSInitializer.class
 application\se_security_01\JakartaRestConfiguration.class

@@ -1,1 +1,5 @@
+application\se_security_1\controller\HiController1.class
+application\se_security_1\config\MyAppConfig1.class
+application\se_security_1\controller\ByeController1.class
 application\se_security_1\Se_security_1.class
+application\se_security_1\config\DsInitializer1.class

@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -38,5 +39,11 @@ public class cookiesController {
         novoCookie.setMaxAge(0);
         response.addCookie(novoCookie);
         return "excluicookie";
+    }
+    
+    
+    @GetMapping("/abc")
+    public String sayHi(){
+        return "Hi Everyone";
     }
 }
