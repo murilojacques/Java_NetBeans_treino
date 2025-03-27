@@ -20,4 +20,10 @@ public class EntityController {
         ModelAndView mv = new ModelAndView("a");
         return mv;
     }
+    
+    @GetMapping("/b")
+    public ModelAndView pagB(){
+        ModelAndView mv = new ModelAndView("b");
+        return mv;
+    }
 }
