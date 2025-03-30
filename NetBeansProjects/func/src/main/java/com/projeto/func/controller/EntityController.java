@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class EntityController {
     
-    @GetMapping("/")
+    @GetMapping("/a")
     public ModelAndView pagIndex(){
         ModelAndView mv = new ModelAndView("a");
         return mv;
